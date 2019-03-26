@@ -6,6 +6,7 @@ import Landing from "./views/Landing";
 import Login from "./Login";
 import Logout from "./Logout";
 
+
 const Routes = props => {
 	return (
 		<>
@@ -15,6 +16,7 @@ const Routes = props => {
 			<Route path="/callback" component={Callback} />{" "}
 			{/* Component that opens after login with Auth0, saves JWT to token in localStorage. */}
 			<Route path="/home" component={Home} />
+		
 		</>
 	);
 };

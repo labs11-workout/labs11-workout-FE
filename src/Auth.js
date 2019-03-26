@@ -10,7 +10,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: `${process.env.REACT_APP_AUTH0}`,
     clientID: `${process.env.REACT_APP_CLIENT_ID}`,
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: `${process.env.REACT_APP_CLIENT_ID}`,
     responseType: 'token id_token',
     scope: 'openid'
   });

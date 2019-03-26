@@ -19,7 +19,8 @@ class App extends Component {
 			<div className="App">
 				<Navigation />
 				<Routes />
-				<Query query={getInfo}>
+				{/* No cache flag makes it query from the API and NOT from our local Apollo Client cache. */}
+				<Query query={getInfo} fetchPolicy="no-cache">
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) {

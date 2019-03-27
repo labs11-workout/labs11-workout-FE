@@ -7,6 +7,7 @@
     "apollo-client": "^2.5.1",
     "apollo-link-context": "^1.0.17",
     "auth0-js": "^9.10.1",
+    "auth0-lock": "^11.14.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "firebase": "^5.9.1",

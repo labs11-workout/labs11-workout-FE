@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -6,9 +6,7 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createContext } from 'react';
 
-export const Store = createContext({ state: {}, dispatch: () => {} });
 
 const client = new ApolloClient({
 	uri: process.env.REACT_APP_GQL_API,

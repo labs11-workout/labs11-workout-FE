@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Suspense, useState, useContext, lazy } from "react";
 import { Route } from "react-router-dom";
 import Callback from "./callback.js";
 import Home from "./views/Home";
@@ -16,7 +16,7 @@ const Routes = props => {
 			<Route path="/callback" component={Callback} />{" "}
 			{/* Component that opens after login with Auth0, saves JWT to token in localStorage. */}
 			<Route path="/home" component={Home} />
-		
+      		
 		</>
 	);
 };

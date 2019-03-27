@@ -8,6 +8,15 @@ const getWorkouts = gql`
         getWorkouts {
             id
             name
+            exercises{
+                id
+                name
+                interval
+                rep 
+                set
+                duration
+                intensity
+            }
         }
     }
 `;
@@ -19,7 +28,6 @@ const Workouts = props => {
           if(loading) return <p>Loading...</p>;
           if(error) return <p>{error.message}</p>;
           console.log(data);
-          return <Workouts workouts={data.getWorkouts} />
         }}
       </Query>
     )

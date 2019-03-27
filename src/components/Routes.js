@@ -6,8 +6,7 @@ import Landing from "./views/Landing";
 import Login from "./Login";
 import Logout from "./Logout";
 import Schedule from "./views/Schedule";
-
-const MyWorkouts = lazy(() => import("./views/WorkoutsView/MyWorkouts.js"));
+import Workouts from "./views/WorkoutsView";
 
 const Routes = props => {
 	return (
@@ -18,24 +17,7 @@ const Routes = props => {
 			<Route exact path="/schedule" component={Schedule} />
 			<Route path="/callback" component={Callback} />{" "}
 			{/* Component that opens after login with Auth0, saves JWT to token in localStorage. */}
-			<Route
-				exact
-				path="/workouts"
-				render={props => (
-					<Suspense
-						fallback={
-							<Loader
-								type="Ball-Triangle"
-								color="#FD8F25"
-								height="180"
-								width="120"
-							/>
-						}
-					>
-						<MyWorkouts {...props} />
-					</Suspense>
-				)}
-			/>
+			<Route exact path="/workouts" component={Workouts} />
 		</>
 	);
 };

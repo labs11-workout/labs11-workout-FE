@@ -1,10 +1,18 @@
+import React from "react";
+import Protected from "../../Protected";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 const getWorkouts = gql`
     {
-        info
+        getWorkouts {
+            id
+            name
+        }
     }
 `;
 
-const workouts = props => {
+const Workouts = props => {
     return (
       <Query query={getWorkouts}>
         {({loading, error, data}) => {
@@ -17,4 +25,4 @@ const workouts = props => {
     )
   }
 
-export default withRouter(workouts);
+export default (Workouts);

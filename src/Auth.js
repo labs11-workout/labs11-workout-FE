@@ -95,7 +95,6 @@ const auth = new Auth0Lock(
 		auth: {
 			redirect: false,
 			responseType: "token id_token",
-			redirect: false,
 			params: {
 				scope: "openid profile email"
 			}

@@ -95,6 +95,7 @@ const auth = new Auth0Lock(
 		auth: {
 			redirect: false,
 			responseType: "token id_token",
+			redirect: false,
 			params: {
 				scope: "openid profile email"
 			}
@@ -118,14 +119,6 @@ auth.on("authenticated", function(authResult) {
 		localStorage.setItem("token", authResult.idToken);
 		window.location.href = "/schedule";
 	});
-});
-
-auth.on("authorization_error", function(err) {
-	console.log(err);
-});
-
-auth.on("unrecoverable_error", err => {
-	console.log(err);
 });
 
 // const auth = new Auth();

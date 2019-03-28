@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 import BodyMetrics from "./BodyMetrics/";
-import BodyMeasurements from "./BodyMeasurements";
+import BodyMeasurements from "./BodyMeasurements/";
 
 //When a Query Component gets the Data after running this query. It will have data.getBodyMetrics, and data.getBodyMeasurements
 const getMetricsAndMeasurements = gql`

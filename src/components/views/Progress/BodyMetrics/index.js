@@ -7,7 +7,7 @@ const BodyMetrics = ({ metrics }) => {
 		<s.Measurements>
 			<h3>Body Metrics</h3>
 			{metrics.map(m => {
-				return <BodyMetric metric={m} />;
+				return <BodyMetric key={m.id} metric={m} />;
 			})}
 		</s.Measurements>
 	);

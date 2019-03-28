@@ -1,5 +1,4 @@
-import React, { Suspense, lazy } from "react";
-import Loader from "react-loader-spinner";
+import React from "react";
 import { Route, withRouter } from "react-router-dom";
 import Callback from "./callback.js";
 import Landing from "./views/Landing";

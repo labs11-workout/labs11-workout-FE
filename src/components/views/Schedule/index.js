@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import * as s from "./styles";
 import Protected from "../../Protected";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Calendar from "./Calendar";
+import "./Calendar.css";
 
 const getSchedules = gql`
   {
@@ -20,15 +22,28 @@ const getSchedules = gql`
 const Schedule = props => {
   return (
     <s.Container>
-      Schedule Page
-      <Query query={getSchedules}>
-        {({ loading, error, data }) => {
-          if (loading) return <p> loading </p>;
-          if (error) return <p> error </p>;
-          console.log(data);
-          return <p> loaded </p>;
-        }}
-      </Query>
+      <div className="Calendar">
+        Schedule Page
+        <header>
+          <div id="logo">
+            <span className="icon">date_range</span>
+            <span>
+              Workout <b>calendar</b>
+            </span>
+          </div>
+        </header>
+        <main>
+          <Calendar />
+        </main>
+        <Query query={getSchedules}>
+          {({ loading, error, data }) => {
+            if (loading) return <p> loading </p>;
+            if (error) return <p> error </p>;
+            console.log(data);
+            return <p> loaded </p>;
+          }}
+        </Query>
+      </div>
     </s.Container>
   );
 };

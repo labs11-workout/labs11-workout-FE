@@ -15,6 +15,7 @@ const Navigation = props => {
 			{localStorage.getItem("token") ? (
 				<>
 					<s.Link to="/schedule">Schedules</s.Link>
+					<s.Link to="/progress">Progress</s.Link>
 					<s.Link to="/logout">Logout</s.Link>
 				</>
 			) : (

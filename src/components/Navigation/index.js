@@ -16,6 +16,7 @@ const Navigation = props => {
 				<>
 					<s.Link to="/schedule">Schedules</s.Link>
 					<s.Link to="/logout">Logout</s.Link>
+					<s.Link to="/workouts">Workouts</s.Link>
 				</>
 			) : (
 				<s.Link to="/login">Login</s.Link>

@@ -3,9 +3,7 @@ import * as s from "./styles";
 
 const Navigation = props => {
 	//Only re-render if localStorage.getItem("token")] changes.
-	useEffect(() => {
-		console.log("UPDATED");
-	}, [localStorage.getItem("token")]);
+	useEffect(() => {}, [localStorage.getItem("token")]);
 
 	return (
 		<s.Container>
@@ -14,7 +12,9 @@ const Navigation = props => {
 			{localStorage.getItem("token") ? (
 				<>
 					<s.Link to="/schedule">Schedules</s.Link>
+					<s.Link to="/workouts">Workouts</s.Link>
 					<s.Link to="/progress">Progress</s.Link>
+					<s.Link to="/payment">Billing</s.Link>
 					<s.Link to="/logout">Logout</s.Link>
 				</>
 			) : (

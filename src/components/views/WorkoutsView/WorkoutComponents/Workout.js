@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Workout extends React.Component {
     render() {
-        return <h1>Hello World!, {this.props.workout.name}</h1>;
+        return <h1>{this.props.workout.name}</h1>;
     }
 }
 

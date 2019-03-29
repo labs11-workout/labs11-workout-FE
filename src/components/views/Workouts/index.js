@@ -3,12 +3,15 @@ import Protected from "../../Protected";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Workout from "./WorkoutsComponents/Workout.js";
+import SavedWorkout from "./WorkoutsComponents/SavedWorkout.js";
+import * as s from "./styles";
 
 const getWorkouts = gql`
 	{
 		getSavedWorkouts {
 			id
 			name
+			createdAt
 			exercises {
 				id
 				name
@@ -31,9 +34,11 @@ const Workouts = props => {
 				console.log(data);
 				return (
 					<>
-						{data.getSavedWorkouts.map(w => (
-							<Workout workout={w} />
-						))}
+						<s.WorkoutsContainer>
+							{data.getSavedWorkouts.map(w => (
+								<SavedWorkout workout={w} />
+							))}
+						</s.WorkoutsContainer>
 					</>
 				);
 			}}

@@ -11,6 +11,9 @@ const getSchedules = gql`
 		getSchedules {
 			id
 			time
+			workouts {
+				id
+			}
 		}
 	}
 `;
@@ -57,16 +60,15 @@ const Schedule = props => {
 						</div>
 					</header>
 					<main>
-						<Calendar />
+						<Query query={getSchedules}>
+							{({ loading, error, data }) => {
+								if (loading) return <p> loading </p>;
+								if (error) return <p> error </p>;
+								console.log(data);
+								return <Calendar schedules={data.getSchedules} />;
+							}}
+						</Query>
 					</main>
-					<Query query={getSchedules}>
-						{({ loading, error, data }) => {
-							if (loading) return <p> loading </p>;
-							if (error) return <p> error </p>;
-							console.log(data);
-							return <p> loaded schedules(Check console) </p>;
-						}}
-					</Query>
 				</div>
 			</s.Container>
 		</>

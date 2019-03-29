@@ -33,7 +33,6 @@ const getMetricsAndMeasurements = gql`
 const Progress = props => {
 	return (
 		<s.Container>
-			<h1>Progress</h1>
 			<Query query={getMetricsAndMeasurements}>
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;

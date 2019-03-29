@@ -18,6 +18,7 @@ const getUserInfo = gql`
 `
 ;
 
+//this is our stripe thing. 
 
 class Payment extends Component{
     onToken = (res) => {

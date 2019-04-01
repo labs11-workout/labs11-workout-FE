@@ -41,13 +41,29 @@ export const Day = styled.div`
 	width: 100%;
 	border: 1px solid #ccc;
 	padding: 6px;
+
+	&:hover {
+		.DayHeader {
+			color: #1a8fff90;
+		}
+
+		.selected {
+			color: #1a8fff;
+		}
+	}
 `;
 
 export const DayHeader = styled.div`
+	position: relative;
 	width: 100%;
 	text-align: right;
 	font-size: 18px;
 	color: rgba(0, 0, 0, 0.5);
+	transition: all 0.3s;
+
+	&.selected {
+		color: #1a8fff;
+	}
 `;
 
 export const DayCell = styled.div`

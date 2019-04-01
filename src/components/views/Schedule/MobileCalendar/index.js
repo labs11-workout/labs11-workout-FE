@@ -33,13 +33,20 @@ const MobileCalendar = ({ schedules }) => {
 				dateFns.isSameDay(currentDay, s.time)
 			);
 			days.push(
-				<s.Day key={i}>
-					<s.DayHeader>{dateFns.format(currentDay, dateFormat)}</s.DayHeader>
+				<s.Day key={i} onClick={() => selectDate(currentDay)}>
+					<s.DayHeader
+						className={`DayHeader ${dateFns.isSameDay(
+							currentDay,
+							selectedDate
+						) && "selected"}`}
+					>
+						{dateFns.format(currentDay, dateFormat)}
+					</s.DayHeader>
 					<s.DayCell>
 						{todaySchedule.length > 0 ? (
 							todaySchedule.map(d => {
 								return (
-									<s.DaySchedule>
+									<s.DaySchedule key={d.id}>
 										You have {d.workouts.length} Workout
 										{d.workouts.length > 1 || d.workouts.length === 0
 											? "s"

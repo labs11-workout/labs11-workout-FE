@@ -3,8 +3,8 @@ import * as s from "./styles";
 import Protected from "../../Protected";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Calendar from "./Calendar";
-import "./Calendar.css";
+import Calendar from "./Calendar/";
+import MobileCalendar from "./MobileCalendar/";
 
 const getSchedules = gql`
 	{
@@ -50,7 +50,6 @@ const Schedule = props => {
 			backend if one is not already created. */}
 			<s.Container>
 				<div className="Calendar">
-					Schedule Page
 					<header>
 						<div id="logo">
 							<span className="icon">date_range</span>
@@ -65,7 +64,11 @@ const Schedule = props => {
 								if (loading) return <p> loading </p>;
 								if (error) return <p> error </p>;
 								console.log(data);
-								return <Calendar schedules={data.getSchedules} />;
+								if (window.innerWidth > 600) {
+									return <Calendar schedules={data.getSchedules} />;
+								} else {
+									return <MobileCalendar schedules={data.getSchedules} />;
+								}
 							}}
 						</Query>
 					</main>

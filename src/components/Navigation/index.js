@@ -7,15 +7,27 @@ const Navigation = props => {
 
 	return (
 		<s.Container>
-			<s.Link to="/">Landing Page</s.Link>
+			<s.Link exact to="/">
+				Landing Page
+			</s.Link>
 			{/* Show Logout button and other Auth Required routes if token is present, otherwise show Login button. */}
 			{localStorage.getItem("token") ? (
 				<>
-					<s.Link to="/schedule">Schedules</s.Link>
-					<s.Link to="/workouts">Workouts</s.Link>
-					<s.Link to="/progress">Progress</s.Link>
-					<s.Link to="/payment">Billing</s.Link>
-					<s.Link to="/logout">Logout</s.Link>
+					<s.Link to="/schedule" activeClassName="active">
+						Schedules
+					</s.Link>
+					<s.Link to="/workouts" activeClassName="active">
+						Workouts
+					</s.Link>
+					<s.Link to="/progress" activeClassName="active">
+						Progress
+					</s.Link>
+					<s.Link to="/payment" activeClassName="active">
+						Billing
+					</s.Link>
+					<s.Link to="/logout" activeClassName="active">
+						Logout
+					</s.Link>
 				</>
 			) : (
 				<s.Link to="/login">Login</s.Link>

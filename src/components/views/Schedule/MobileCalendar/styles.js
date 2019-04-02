@@ -72,7 +72,3 @@ export const DayCell = styled.div`
 	padding: 6px;
 	min-height: 32px;
 `;
-
-export const EmptyDay = styled.span`
-	color: rgba(0, 0, 0, 0.5);
-`;

@@ -14,3 +14,15 @@ export const DaySchedule = styled.div`
 		cursor: pointer;
 	}
 `;
+
+export const CloseButton = styled.span`
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	font-size: 20px;
+	transition: 0.4s all;
+	&:hover {
+		color: red;
+		cursor: pointer;
+	}
+`;

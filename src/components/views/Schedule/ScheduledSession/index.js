@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as s from "./styles";
 import dateFns from "date-fns";
+import classnames from "classnames";
 import {
 	Button,
 	Modal,
@@ -57,7 +58,14 @@ const ScheduledSession = ({ schedule }) => {
 								{schedule.workouts.map((w, i) => {
 									return (
 										<NavItem key={w.id}>
-											<NavLink onClick={() => toggleTab(i)}>{w.name}</NavLink>
+											<NavLink
+												className={classnames({
+													active: activeTab === i
+												})}
+												onClick={() => toggleTab(i)}
+											>
+												{w.name}
+											</NavLink>
 										</NavItem>
 									);
 								})}
@@ -107,7 +115,11 @@ const ScheduledSession = ({ schedule }) => {
 						<span>You don't have any workouts. Try adding one!</span>
 					)}
 				</ModalBody>
-				<ModalFooter>Footer</ModalFooter>
+				<ModalFooter>
+					<s.CloseButton onClick={() => toggleModal(!modalOpen)}>
+						<i className="fas fa-times" />
+					</s.CloseButton>
+				</ModalFooter>
 			</Modal>
 		</>
 	);

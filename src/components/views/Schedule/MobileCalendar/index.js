@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import dateFns from "date-fns";
 import * as s from "./styles";
 import ScheduledSession from "../ScheduledSession";
+import CalendarDay from "../CalendarDay";
+import MobileDayCell from "./MobileDayCell";
 
 const MobileCalendar = ({ schedules }) => {
 	const [currentWeek, setWeek] = useState(new Date());
@@ -34,27 +36,13 @@ const MobileCalendar = ({ schedules }) => {
 				dateFns.isSameDay(currentDay, s.time)
 			);
 			days.push(
-				<s.Day key={i} onClick={() => selectDate(currentDay)}>
-					<s.DayHeader
-						className={`DayHeader ${dateFns.isSameDay(
-							currentDay,
-							selectedDate
-						) && "selected"}`}
-					>
-						{dateFns.format(currentDay, dateFormat)}
-					</s.DayHeader>
-					<s.DayCell>
-						{todaySchedule.length > 0 ? (
-							todaySchedule.map(d => {
-								return <ScheduledSession key={d.id} schedule={d} />;
-							})
-						) : (
-							<s.EmptyDay>
-								You have no workouts today. Try adding one!
-							</s.EmptyDay>
-						)}
-					</s.DayCell>
-				</s.Day>
+				<MobileDayCell
+					key={currentDay}
+					day={currentDay}
+					schedules={todaySchedule}
+					selectedDate={selectedDate}
+					selectDate={selectDate}
+				/>
 			);
 		}
 

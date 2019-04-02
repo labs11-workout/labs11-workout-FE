@@ -40,3 +40,16 @@ export const DeleteButton = styled.span`
 		cursor: pointer;
 	}
 `;
+
+export const AddWorkout = styled.div`
+	display: flex;
+	width: 100%;
+	margin-bottom: 6px;
+	input {
+		width: 50%;
+	}
+	button {
+		width: 50%;
+		margin: 0 4px;
+	}
+`;

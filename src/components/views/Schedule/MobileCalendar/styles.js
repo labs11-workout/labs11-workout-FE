@@ -73,6 +73,8 @@ export const DayCell = styled.div`
 	min-height: 32px;
 `;
 
-export const EmptyDay = styled.span`
-	color: rgba(0, 0, 0, 0.5);
+export const TodayLabel = styled.span`
+	position: absolute;
+	opacity: 0.6;
+	left: 0;
 `;

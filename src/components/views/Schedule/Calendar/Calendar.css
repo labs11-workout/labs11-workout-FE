@@ -118,6 +118,12 @@ main {
 	border: 1px solid var(--border-color);
 }
 
+@media (max-width: 600px) {
+	.calendar {
+		display: none;
+	}
+}
+
 .calendar .header {
 	text-transform: uppercase;
 	font-weight: 700;

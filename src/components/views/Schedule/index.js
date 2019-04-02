@@ -72,12 +72,17 @@ const Schedule = props => {
 							{({ loading, error, data }) => {
 								if (loading) return <p> loading </p>;
 								if (error) return <p> error </p>;
-								console.log(data);
-								if (window.innerWidth > 600) {
-									return <Calendar schedules={data.getSchedules} />;
-								} else {
-									return <MobileCalendar schedules={data.getSchedules} />;
-								}
+								return (
+									<>
+										<Calendar schedules={data.getSchedules} />
+										<MobileCalendar schedules={data.getSchedules} />
+									</>
+								);
+								// if (window.innerWidth > 600) {
+								// 	return <Calendar schedules={data.getSchedules} />;
+								// } else {
+								// 	return <MobileCalendar schedules={data.getSchedules} />;
+								// }
 							}}
 						</Query>
 					</main>

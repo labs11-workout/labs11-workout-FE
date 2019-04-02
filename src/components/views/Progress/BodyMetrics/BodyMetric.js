@@ -12,6 +12,24 @@ const deleteBodyMetric = gql`
 		}
 	}
 `;
+const addBodyMetric = gql`
+	mutation AddBodyMetric($id: ID!) {
+		editBodyMetric(id: $id) {
+			height
+			weight
+			bodyfat
+		}
+	}
+`;
+const editBodyMetric = gql`
+	mutation EditBodyMetric($id: ID!) {
+		editBodyMetric(id: $id) {
+			height
+			weight
+			bodyfat
+		}
+	}
+`;
 
 const getBodyMetrics = gql`
 	{
@@ -40,6 +58,18 @@ const BodyMetric = ({ metric }) => {
 						>
 							X
 						</s.DeleteButton>
+					)}
+				</Mutation>
+				<Mutation
+					mutation={editBodyMetric}
+					refetchQueries={() => [{ query: getBodyMetrics }]}
+				>
+					{(editBodyMetric, { data }) => (
+						<s.UpdateButton
+							onClick={() => editBodyMetric({ variables: { id: m.id } })}
+						>
+							Update
+						</s.UpdateButton>
 					)}
 				</Mutation>
 				<CardTitle>

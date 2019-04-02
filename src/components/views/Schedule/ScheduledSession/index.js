@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import * as s from "./styles";
 import dateFns from "date-fns";
 import classnames from "classnames";
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+
 import {
+	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,
@@ -17,7 +21,36 @@ import {
 	CardBody
 } from "reactstrap";
 
-const ScheduledSession = ({ schedule }) => {
+const deleteSchedule = gql`
+	mutation DeleteSchedule($id: ID!) {
+		deleteSchedule(id: $id) {
+			id
+		}
+	}
+`;
+
+const getSchedules = gql`
+	{
+		getSchedules {
+			id
+			time
+			workouts {
+				id
+				name
+				completed
+				exercises {
+					name
+					reps
+					sets
+					duration
+					intensity
+				}
+			}
+		}
+	}
+`;
+
+const ScheduledSession = ({ schedule, showDeleteButton }) => {
 	const [modalOpen, toggleModal] = useState(false);
 	const [activeTab, toggleTab] = useState(0);
 	return (
@@ -34,6 +67,29 @@ const ScheduledSession = ({ schedule }) => {
 					? "s"
 					: ""}{" "}
 				@ {dateFns.format(schedule.time, "h:mma")}
+				{showDeleteButton && (
+					<Mutation
+						mutation={deleteSchedule}
+						refetchQueries={() => [{ query: getSchedules }]}
+					>
+						{(deleteSchedule, { loading, data }) => {
+							return (
+								<s.DeleteButton
+									onClick={e => {
+										e.stopPropagation();
+										deleteSchedule({ variables: { id: schedule.id } });
+									}}
+								>
+									{loading ? (
+										<i className="fas fa-circle-notch fa-spin" />
+									) : (
+										<i className="fas fa-minus-square" />
+									)}
+								</s.DeleteButton>
+							);
+						}}
+					</Mutation>
+				)}
 			</s.DaySchedule>
 			{/* Scheduled Session Modal Containing Information */}
 			<Modal
@@ -114,6 +170,32 @@ const ScheduledSession = ({ schedule }) => {
 					)}
 				</ModalBody>
 				<ModalFooter>
+					<Mutation
+						mutation={deleteSchedule}
+						refetchQueries={() => [{ query: getSchedules }]}
+					>
+						{(deleteSchedule, { loading, data }) => {
+							if (loading) {
+								return (
+									<Button color="danger">
+										<i className="fas fa-circle-notch fa-spin" />
+									</Button>
+								);
+							} else {
+								return (
+									<Button
+										color="danger"
+										onClick={e => {
+											e.stopPropagation();
+											deleteSchedule({ variables: { id: schedule.id } });
+										}}
+									>
+										Delete
+									</Button>
+								);
+							}
+						}}
+					</Mutation>
 					<s.CloseButton onClick={() => toggleModal(!modalOpen)}>
 						<i className="fas fa-times" />
 					</s.CloseButton>

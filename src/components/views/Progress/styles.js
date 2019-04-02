@@ -40,3 +40,14 @@ export const DeleteButton = styled.div`
 		cursor: pointer;
 	}
 `;
+export const UpdateButton = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 6px;
+	color: red;
+
+	&:hover {
+		cursor: pointer;
+	}
+`;

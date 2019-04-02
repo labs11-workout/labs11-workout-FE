@@ -31,6 +31,9 @@ const DayCell = ({
 				toggleModal(!toggled);
 			}}
 		>
+			<span className="light-text">
+				{dateFns.isSameDay(day, new Date()) && "Today"}
+			</span>
 			<span className="number">{formattedDate}</span>
 			<span className="content">
 				<CalendarDay

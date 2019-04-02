@@ -72,3 +72,9 @@ export const DayCell = styled.div`
 	padding: 6px;
 	min-height: 32px;
 `;
+
+export const TodayLabel = styled.span`
+	position: absolute;
+	opacity: 0.6;
+	left: 0;
+`;

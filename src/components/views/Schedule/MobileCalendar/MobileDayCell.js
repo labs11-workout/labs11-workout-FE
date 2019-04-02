@@ -20,6 +20,9 @@ const MobileDayCell = ({ day, schedules, selectDate, selectedDate }) => {
 				className={`DayHeader ${dateFns.isSameDay(day, selectedDate) &&
 					"selected"}`}
 			>
+				<s.TodayLabel>
+					{dateFns.isSameDay(day, new Date()) && "Today"}
+				</s.TodayLabel>
 				{dateFns.format(day, dateFormat)}
 			</s.DayHeader>
 			<s.DayCell>

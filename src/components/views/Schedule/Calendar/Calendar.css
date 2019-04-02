@@ -199,6 +199,17 @@ main {
 	font-weight: 700;
 }
 
+.calendar .body .cell .light-text {
+	position: absolute;
+	font-weight: 400;
+	font-size: 12px;
+	opacity: 0.4;
+	text-align: center;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
 .calendar .body .cell .content {
 	font-size: 82.5%;
 	width: 100%;

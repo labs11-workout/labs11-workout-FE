@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Alert } from "reactstrap";
 
 export const Container = styled.div`
 	position: relative;
@@ -33,5 +34,12 @@ export const AddSchedule = styled.div`
 	button {
 		width: 50%;
 		margin: 0 4px;
+	}
+`;
+
+export const AlertBox = styled(Alert)`
+	text-align: center;
+	&:hover {
+		cursor: pointer;
 	}
 `;

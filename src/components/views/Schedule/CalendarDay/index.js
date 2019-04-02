@@ -13,8 +13,7 @@ import {
 	InputGroup,
 	Input,
 	InputGroupText,
-	Button,
-	Alert
+	Button
 } from "reactstrap";
 
 const addSchedule = gql`
@@ -64,6 +63,7 @@ const getSchedules = gql`
 const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
 	const [modalOpen, toggleModal] = useState(false);
 	const [timeInput, setTimeInput] = useState("12:00");
+	const [scheduleFormError, setScheduleFormError] = useState(null);
 
 	//This is used to take the time from our time input, assign it to the day that was clicked on, then format it so our backend can read it.
 	const createDate = time => {
@@ -113,30 +113,43 @@ const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
 							refetchQueries={() => [{ query: getSchedules }]}
 						>
 							{(addSchedule, { loading, error, data }) => {
+								if (error) {
+									setScheduleFormError(
+										"There was a network error. Please try again."
+									);
+								}
 								return (
 									<>
 										<Button
 											color="primary"
-											onClick={() =>
-												addSchedule({
-													variables: {
-														time: createDate(timeInput)
-													}
-												})
-											}
+											onClick={() => {
+												const scheduleTime = createDate(timeInput);
+												if (scheduleTime !== "Invalid Date") {
+													addSchedule({
+														variables: {
+															time: scheduleTime
+														}
+													});
+												} else {
+													setScheduleFormError("Invalid Date.");
+												}
+											}}
 										>
 											{loading ? "Loading..." : "Add Schedule"}
 										</Button>
-										{error && (
-											<Alert color="danger">
-												There was an error. Please try again.
-											</Alert>
-										)}
 									</>
 								);
 							}}
 						</Mutation>
 					</s.AddSchedule>
+					{scheduleFormError && (
+						<s.AlertBox
+							color="danger"
+							onClick={() => setScheduleFormError(null)}
+						>
+							{scheduleFormError}
+						</s.AlertBox>
+					)}
 					{schedules.length > 0 ? (
 						schedules.map(d => {
 							return <ScheduledSession key={d.id} schedule={d} />;

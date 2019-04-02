@@ -4,7 +4,8 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Workout from "./WorkoutsComponents/Workout.js";
 import SavedWorkout from "./WorkoutsComponents/SavedWorkout.js";
-import * as s from "./styles";
+import CreatedWorkout from "./WorkoutsComponents/AddWorkout.js";
+import * as s from "./styles.js";
 
 const getWorkouts = gql`
 	{

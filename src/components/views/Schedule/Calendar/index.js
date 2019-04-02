@@ -1,8 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
 import "./Calendar.css";
-import ScheduledSession from "../ScheduledSession";
-import CalendarDay from "../CalendarDay";
 import DayCell from "./DayCell";
 
 class Calendar extends React.Component {
@@ -66,46 +64,20 @@ class Calendar extends React.Component {
 			for (let i = 0; i < 7; i++) {
 				formattedDate = dateFns.format(day, dateFormat);
 				const cloneDay = day;
+				const schedules = this.props.schedules.filter(s =>
+					dateFns.isSameDay(day, s.time)
+				);
 				days.push(
 					<DayCell
 						key={day}
 						day={day}
-						schedules={this.props.schedules.filter(s =>
-							dateFns.isSameDay(day, s.time)
-						)}
+						schedules={schedules}
 						monthStart={monthStart}
 						selectedDate={selectedDate}
 						cloneDay={cloneDay}
 						formattedDate={formattedDate}
 						select={this.onDateClick}
 					/>
-					// <div
-					// 	className={`col cell ${
-					// 		!dateFns.isSameMonth(day, monthStart)
-					// 			? "disabled"
-					// 			: dateFns.isSameDay(day, selectedDate)
-					// 			? "selected"
-					// 			: ""
-					// 	}`}
-					// 	key={day}
-					// 	onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-					// >
-					// 	<span className="number">{formattedDate}</span>
-					// 	<span className="content">
-					// 		<CalendarDay
-					// 			day={day}
-					// 			schedules={this.props.schedules.filter(s =>
-					// 				dateFns.isSameDay(day, s.time)
-					// 			)}
-					// 		/>
-					// 		{/* {this.props.schedules
-					// 			.filter(s => dateFns.isSameDay(day, s.time))
-					// 			.map(d => {
-					// 				// return <ScheduledSession key={d.id} schedule={d} />;
-					// 			})} */}
-					// 	</span>
-					// 	<span className="bg">{formattedDate}</span>
-					// </div>
 				);
 				day = dateFns.addDays(day, 1);
 			}

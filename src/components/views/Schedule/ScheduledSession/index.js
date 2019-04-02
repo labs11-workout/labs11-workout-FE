@@ -3,7 +3,6 @@ import * as s from "./styles";
 import dateFns from "date-fns";
 import classnames from "classnames";
 import {
-	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,
@@ -15,7 +14,6 @@ import {
 	NavLink,
 	Card,
 	CardHeader,
-	CardText,
 	CardBody
 } from "reactstrap";
 

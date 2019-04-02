@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import dateFns from "date-fns";
 import * as s from "./styles";
-import ScheduledSession from "../ScheduledSession";
-import CalendarDay from "../CalendarDay";
 import MobileDayCell from "./MobileDayCell";
 
 const MobileCalendar = ({ schedules }) => {
@@ -25,7 +23,6 @@ const MobileCalendar = ({ schedules }) => {
 	};
 
 	const renderDays = () => {
-		const dateFormat = "dddd, MMMM Do";
 		const days = [];
 
 		let startdate = dateFns.startOfWeek(currentWeek);

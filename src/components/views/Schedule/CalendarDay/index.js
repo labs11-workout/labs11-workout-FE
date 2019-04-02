@@ -1,26 +1,9 @@
 import React, { useState } from "react";
 import dateFns from "date-fns";
-import classnames from "classnames";
 import * as s from "./styles";
 import ScheduledSession from "../ScheduledSession";
 
-import {
-	Button,
-	Modal,
-	ModalHeader,
-	ModalBody,
-	ModalFooter,
-	TabContent,
-	TabPane,
-	Nav,
-	NavItem,
-	NavLink,
-	Card,
-	CardHeader,
-	CardText,
-	CardBody,
-	Alert
-} from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 //If the externalToggle and externalToggled props are not provided, then the CalendarDay component's container (<s.Container> element) will serve as the Modal toggle click listener.
 // externalToggle and externalToggled are used if a component outside of this one is meant to control the modal. Values passed via props.
 const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {

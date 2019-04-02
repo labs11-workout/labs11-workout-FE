@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import dateFns from "date-fns";
 import * as s from "./styles";
+import ScheduledSession from "../ScheduledSession";
 
 const MobileCalendar = ({ schedules }) => {
 	const [currentWeek, setWeek] = useState(new Date());
@@ -45,15 +46,7 @@ const MobileCalendar = ({ schedules }) => {
 					<s.DayCell>
 						{todaySchedule.length > 0 ? (
 							todaySchedule.map(d => {
-								return (
-									<s.DaySchedule key={d.id}>
-										You have {d.workouts.length} Workout
-										{d.workouts.length > 1 || d.workouts.length === 0
-											? "s"
-											: ""}{" "}
-										@ {dateFns.format(d.time, "h:mma")}
-									</s.DaySchedule>
-								);
+								return <ScheduledSession key={d.id} schedule={d} />;
 							})
 						) : (
 							<s.EmptyDay>

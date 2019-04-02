@@ -1,6 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 import "./Calendar.css";
+import ScheduledSession from "../ScheduledSession";
 
 class Calendar extends React.Component {
 	state = {
@@ -80,15 +81,7 @@ class Calendar extends React.Component {
 							{this.props.schedules
 								.filter(s => dateFns.isSameDay(day, s.time))
 								.map(d => {
-									return (
-										<p key={d.id} className="schedule">{`${
-											d.workouts.length
-										} Workout${
-											d.workouts.length > 1 || d.workouts.length === 0
-												? "s"
-												: ""
-										} ${dateFns.format(d.time, "h:mma")}`}</p>
-									);
+									return <ScheduledSession key={d.id} schedule={d} />;
 								})}
 						</span>
 						<span className="bg">{formattedDate}</span>

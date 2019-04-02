@@ -13,6 +13,15 @@ const getSchedules = gql`
 			time
 			workouts {
 				id
+				name
+				completed
+				exercises {
+					name
+					reps
+					sets
+					duration
+					intensity
+				}
 			}
 		}
 	}

@@ -40,6 +40,7 @@ export const DeleteButton = styled.div`
 		cursor: pointer;
 	}
 `;
+
 export const UpdateButton = styled.div`
 	position: absolute;
 	top: 0;
@@ -51,3 +52,29 @@ export const UpdateButton = styled.div`
 		cursor: pointer;
 	}
 `;
+
+export const Workouts = styled.div`
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	h3 {
+		width: 100%;
+		margin: 4px;
+	}
+`;
+
+export const Workout = styled.div`
+	position: relative;
+	width: 25%;
+	margin: 6px;
+	border: 1px solid black;
+	border-radius: 6px;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+`;
+

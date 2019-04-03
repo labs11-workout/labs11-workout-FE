@@ -92,12 +92,6 @@ const Schedule = props => {
 													<>
 														<Calendar schedules={data.getSchedules} />
 														<MobileCalendar schedules={data.getSchedules} />
-														{/* <Route
-															path={`/schedule/:monthDayYear/:day`}
-															render={() => (
-																<CalendarDay schedules={data.getSchedules} />
-															)}
-														/> */}
 													</>
 												);
 											}}

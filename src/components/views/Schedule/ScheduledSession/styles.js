@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DaySchedule = styled.div`
 	position: relative;
 	background: #1a8fff;
-	color: black;
+	color: #eee;
 	width: 100%;
 	margin: 2px auto;
 	padding: 6px;
@@ -24,6 +24,18 @@ export const CloseButton = styled.span`
 	transition: 0.4s all;
 	&:hover {
 		color: red;
+		cursor: pointer;
+	}
+`;
+
+export const BackButton = styled.span`
+	position: absolute;
+	top: 4px;
+	left: 12px;
+	font-size: 14px;
+	transition: 0.4s all;
+	&:hover {
+		color: #1a8fff;
 		cursor: pointer;
 	}
 `;

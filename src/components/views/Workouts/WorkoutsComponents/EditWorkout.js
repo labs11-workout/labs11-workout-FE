@@ -48,9 +48,9 @@ const getWorkouts = gql`
 	}
 `;
 
-const UpdatedWorkout = ({ workout }) => {
+const UpdatedWorkout = ({workout}) => {
 	const w = workout;
-	const [workoutName, setWorkout] = useState(w.name);
+	const [workoutName, setWorkout] = useState(workout.name);
 	return (
 		<s.Workout>
 			<Card>
@@ -65,8 +65,9 @@ const UpdatedWorkout = ({ workout }) => {
 							X
 						</s.UpdateButton>
 					)}
-					<input type="text" value={workoutName} onChange={(e) => setWorkout(e.target.value)}></input>
+					
 				</Mutation>
+				<input type="text" value={workoutName} onChange={(e) => setWorkout(e.target.value)}></input>
 				<CardTitle>
 					{datefns.format(w.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>

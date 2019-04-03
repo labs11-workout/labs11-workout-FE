@@ -4,8 +4,10 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Workout from "./WorkoutsComponents/Workout.js";
 import SavedWorkout from "./WorkoutsComponents/SavedWorkout.js";
-import CreatedWorkout from "./WorkoutsComponents/AddWorkout.js";
 import * as s from "./styles.js";
+import CreatedWorkout from "./WorkoutsComponents/AddWorkout.js";
+import DeletedWorkout from "./WorkoutsComponents/DeleteWorkout.js";
+import UpdatedWorkout from "./WorkoutsComponents/EditWorkout.js";
 
 const getWorkouts = gql`
 	{
@@ -28,6 +30,7 @@ const getWorkouts = gql`
 
 const Workouts = props => {
 	return (
+		<>
 		<Query query={getWorkouts}>
 			{({ loading, error, data }) => {
 				if (loading) return <p>Loading...</p>;
@@ -37,13 +40,21 @@ const Workouts = props => {
 					<>
 						<s.WorkoutsContainer>
 							{data.getSavedWorkouts.map(w => (
+								<>
 								<SavedWorkout workout={w} />
+								<UpdatedWorkout workout={w} />
+								<CreatedWorkout workout={w} />
+								<DeletedWorkout workout={w}/>
+								</>
 							))}
 						</s.WorkoutsContainer>
 					</>
 				);
 			}}
 		</Query>
+		
+		
+	   </>
 	);
 };
 

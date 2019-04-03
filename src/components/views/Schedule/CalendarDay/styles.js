@@ -28,12 +28,20 @@ export const AddSchedule = styled.div`
 	display: flex;
 	width: 100%;
 	margin-bottom: 6px;
-	input {
+	flex-wrap: wrap;
+	.input-group {
 		width: 50%;
+		@media (max-width: 991px) {
+			width: 100%;
+		}
 	}
 	button {
-		width: 50%;
+		flex-grow: 1;
 		margin: 0 4px;
+		@media (max-width: 991px) {
+			width: 100%;
+			margin: 4px 0;
+		}
 	}
 `;
 

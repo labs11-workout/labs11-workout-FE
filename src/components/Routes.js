@@ -9,14 +9,13 @@ import Payment from "./views/Payment/payment.js";
 import Workouts from "./views/Workouts";
 import Progress from "./views/Progress";
 
-
 const Routes = props => {
 	return (
 		<>
 			<Route exact path="/" component={Landing} />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/logout" component={Logout} />
-			<Route exact path="/schedule" component={Schedule} />
+			<Route path="/schedule" component={Schedule} />
 			<Route path="/callback" component={Callback} />
 			<Route exact path="/workouts" component={Workouts} />
 			<Route exact path="/payment" component={Payment} />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dateFns from "date-fns";
+import { withRouter } from "react-router-dom";
 import CalendarDay from "../CalendarDay";
 
 // The purpose of DayCell is to provide the whole day's cell, but to also make it a click listener to toggle the CalendarDay modal, while keeping the CalendarDay's modal in it's own component.
@@ -13,9 +14,12 @@ const DayCell = ({
 	selectedDate,
 	cloneDay,
 	formattedDate,
-	select
+	select,
+	match,
+	history
 }) => {
 	const [toggled, toggleModal] = useState(false);
+	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
 	return (
 		<div
 			className={`col cell ${
@@ -28,7 +32,7 @@ const DayCell = ({
 			key={day}
 			onClick={() => {
 				select(dateFns.parse(cloneDay));
-				toggleModal(!toggled);
+				history.push(`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`);
 			}}
 		>
 			<span className="light-text">
@@ -53,4 +57,4 @@ const DayCell = ({
 	);
 };
 
-export default DayCell;
+export default withRouter(DayCell);

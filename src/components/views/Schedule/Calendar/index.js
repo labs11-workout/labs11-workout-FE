@@ -2,12 +2,24 @@ import React from "react";
 import dateFns from "date-fns";
 import "./Calendar.css";
 import DayCell from "./DayCell";
+import { withRouter } from "react-router-dom";
 
 class Calendar extends React.Component {
-	state = {
-		currentMonth: new Date(),
-		selectedDate: new Date()
-	};
+	constructor(props) {
+		super(props);
+		const day = dateFns.format(
+			dateFns.subMonths(this.props.match.params.monthDayYear, 1),
+			"MM-DD-YYYY"
+		);
+		this.state = {
+			currentMonth: new Date(day.split("-")[2], day.split("-")[0]),
+			selectedDate: new Date(
+				day.split("-")[2],
+				day.split("-")[0],
+				day.split("-")[1]
+			)
+		};
+	}
 
 	renderHeader() {
 		const dateFormat = "MMMM YYYY";
@@ -20,7 +32,9 @@ class Calendar extends React.Component {
 					</div>
 				</div>
 				<div className="col col-center">
-					<span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
+					<span>
+						{dateFns.format(this.props.match.params.monthDayYear, dateFormat)}
+					</span>
 				</div>
 				<div className="col col-end" onClick={this.nextMonth}>
 					<div className="icon">chevron_right</div>
@@ -33,7 +47,7 @@ class Calendar extends React.Component {
 		const dateFormat = "dddd";
 		const days = [];
 
-		let startDate = dateFns.startOfWeek(this.state.currentMonth);
+		let startDate = dateFns.startOfWeek(this.props.match.params.monthDayYear);
 
 		for (let i = 0; i < 7; i++) {
 			days.push(
@@ -47,7 +61,8 @@ class Calendar extends React.Component {
 	}
 
 	renderCells() {
-		const { currentMonth, selectedDate } = this.state;
+		const { selectedDate } = this.state;
+		const currentMonth = this.props.match.params.monthDayYear;
 		const monthStart = dateFns.startOfMonth(currentMonth);
 		const monthEnd = dateFns.endOfMonth(monthStart);
 		const startDate = dateFns.startOfWeek(monthStart);
@@ -98,15 +113,19 @@ class Calendar extends React.Component {
 	};
 
 	nextMonth = () => {
-		this.setState({
-			currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
-		});
+		const newDate = dateFns.format(
+			dateFns.addMonths(this.props.match.params.monthDayYear, 1),
+			"MM-DD-YYYY"
+		);
+		this.props.history.push(`/schedule/${newDate}`);
 	};
 
 	prevMonth = () => {
-		this.setState({
-			currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
-		});
+		const newDate = dateFns.format(
+			dateFns.subMonths(this.props.match.params.monthDayYear, 1),
+			"MM-DD-YYYY"
+		);
+		this.props.history.push(`/schedule/${newDate}`);
 	};
 
 	render() {
@@ -120,4 +139,4 @@ class Calendar extends React.Component {
 	}
 }
 
-export default Calendar;
+export default withRouter(Calendar);

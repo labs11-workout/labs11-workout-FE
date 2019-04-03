@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import * as s from "../styles.js";
 import { Card, CardBody, CardTitle } from "reactstrap";
 import datefns from "date-fns";
@@ -7,12 +7,22 @@ import gql from "graphql-tag";
 
 const updateWorkout = gql`
 	mutation UpdateWorkout($id: ID!, $name: String!) {
-		UpdateWorkout(id: $id) {
+		updateWorkout(id: $id, name: $name) {
 			id
             name
-            exercise
+            exercise {
+				name 
+				interval
+				duration
+				sets
+				reps
+				intensity
+			}
             completed
-            schedule
+            schedule {
+				id
+				time
+			}
             createdAt
             updatedAt
 		}
@@ -40,6 +50,7 @@ const getWorkouts = gql`
 
 const UpdatedWorkout = ({ workout }) => {
 	const w = workout;
+	const [workoutName, setWorkout] = useState(w.name);
 	return (
 		<s.Workout>
 			<Card>
@@ -49,11 +60,12 @@ const UpdatedWorkout = ({ workout }) => {
 				>
 					{(updateWorkout, { data }) => (
 						<s.UpdateButton
-							onClick={() => updateWorkout({ variables: { id: w.id, name: w.name } })}
+							onClick={() => updateWorkout({ variables: { id: w.id, name: workoutName } })}
 						>
 							X
 						</s.UpdateButton>
 					)}
+					<input type="text" value={workoutName} onChange={(e) => setWorkout(e.target.value)}></input>
 				</Mutation>
 				<CardTitle>
 					{datefns.format(w.createdAt, "ddd, Do MMM YYYY h:mm a")}

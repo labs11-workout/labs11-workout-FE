@@ -121,7 +121,7 @@ const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
 								return (
 									<>
 										<Button
-											color="primary"
+											color="success"
 											onClick={() => {
 												const scheduleTime = createDate(timeInput);
 												if (scheduleTime !== "Invalid Date") {
@@ -152,7 +152,9 @@ const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
 					)}
 					{schedules.length > 0 ? (
 						schedules.map(d => {
-							return <ScheduledSession key={d.id} schedule={d} />;
+							return (
+								<ScheduledSession key={d.id} schedule={d} showDeleteButton />
+							);
 						})
 					) : (
 						<span>You don't have any Scheduled Sessions. Try adding one!</span>

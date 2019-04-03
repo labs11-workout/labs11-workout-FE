@@ -200,21 +200,19 @@ const ScheduledSession = ({ schedule, showDeleteButton }) => {
 						>
 							{(addWorkoutFromSavedWorkout, { loading, error, data }) => {
 								return (
-									<>
-										<Button
-											color="success"
-											onClick={() =>
-												addWorkoutFromSavedWorkout({
-													variables: {
-														scheduleId: schedule.id,
-														savedWorkoutId
-													}
-												})
-											}
-										>
-											{loading ? "Loading..." : "Add Workout"}
-										</Button>
-									</>
+									<Button
+										color="success"
+										onClick={() =>
+											addWorkoutFromSavedWorkout({
+												variables: {
+													scheduleId: schedule.id,
+													savedWorkoutId
+												}
+											})
+										}
+									>
+										{loading ? "Loading..." : "Add Workout"}
+									</Button>
 								);
 							}}
 						</Mutation>

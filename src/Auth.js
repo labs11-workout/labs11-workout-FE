@@ -1,6 +1,7 @@
 // import auth0 from 'auth0-js';
 // import { createBrowserHistory } from 'history';
 import Auth0Lock from "auth0-lock";
+import dateFns from "date-fns";
 
 //const history = createBrowserHistory();
 
@@ -116,7 +117,8 @@ auth.on("authenticated", function(authResult) {
 		console.log(authResult.idToken);
 		//we only need to store the token to authenticate our users.
 		localStorage.setItem("token", authResult.idToken);
-		window.location.href = "/schedule";
+		let d = dateFns.format(new Date(), "MM-DD-YYYY");
+		window.location.href = `/schedule/${d}`;
 	});
 });
 

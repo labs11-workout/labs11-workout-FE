@@ -2,20 +2,32 @@ import React, { useState } from "react";
 import dateFns from "date-fns";
 import * as s from "./styles";
 import MobileDayCell from "./MobileDayCell";
+import { withRouter } from "react-router-dom";
 
-const MobileCalendar = ({ schedules }) => {
-	const [currentWeek, setWeek] = useState(new Date());
-	const [selectedDate, selectDate] = useState(new Date());
+const MobileCalendar = ({ schedules, match, history }) => {
+	const [currentWeek, setWeek] = useState(
+		dateFns.format(new Date(match.params.monthDayYear), "MM-DD-YYYY")
+	);
+	const [selectedDate, selectDate] = useState(
+		dateFns.format(new Date(), "MM-DD-YYYY")
+	);
 
 	const renderHeader = () => {
-		const dateFormat = "MMM Do YYYY";
+		const dateFormat = "MMM Do";
 		return (
 			<s.Header>
 				<s.Previous onClick={prevWeek}>{`<`}</s.Previous>
 				{/* <h2>{dateFns.format(currentWeek, dateFormat)}</h2> */}
 				<h3>
-					{dateFns.format(dateFns.startOfWeek(currentWeek), dateFormat)} -{" "}
-					{dateFns.format(dateFns.endOfWeek(currentWeek), dateFormat)}
+					{dateFns.format(
+						dateFns.startOfWeek(match.params.monthDayYear),
+						dateFormat
+					)}{" "}
+					-{" "}
+					{dateFns.format(
+						dateFns.endOfWeek(match.params.monthDayYear),
+						dateFormat
+					)}
 				</h3>
 				<s.Next onClick={nextWeek}>{`>`}</s.Next>
 			</s.Header>
@@ -25,7 +37,7 @@ const MobileCalendar = ({ schedules }) => {
 	const renderDays = () => {
 		const days = [];
 
-		let startdate = dateFns.startOfWeek(currentWeek);
+		let startdate = dateFns.startOfWeek(match.params.monthDayYear);
 
 		for (let i = 0; i < 7; i++) {
 			let currentDay = dateFns.addDays(startdate, i);
@@ -47,11 +59,21 @@ const MobileCalendar = ({ schedules }) => {
 	};
 
 	const nextWeek = () => {
-		setWeek(dateFns.addWeeks(currentWeek, 1));
+		const newDate = dateFns.format(
+			dateFns.addWeeks(match.params.monthDayYear, 1),
+			"MM-DD-YYYY"
+		);
+		history.push(`/schedule/${newDate}`);
+		// setWeek(dateFns.addWeeks(currentWeek, 1));
 	};
 
 	const prevWeek = () => {
-		setWeek(dateFns.subWeeks(currentWeek, 1));
+		const newDate = dateFns.format(
+			dateFns.subWeeks(match.params.monthDayYear, 1),
+			"MM-DD-YYYY"
+		);
+		history.push(`/schedule/${newDate}`);
+		// setWeek(dateFns.subWeeks(currentWeek, 1));
 	};
 
 	return (
@@ -62,4 +84,4 @@ const MobileCalendar = ({ schedules }) => {
 	);
 };
 
-export default MobileCalendar;
+export default withRouter(MobileCalendar);

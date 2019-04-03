@@ -48,3 +48,4 @@ const Workouts = props => {
 };
 
 export default Protected(Workouts);
+

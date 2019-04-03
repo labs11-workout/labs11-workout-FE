@@ -41,7 +41,7 @@ export const CreateButton = styled.div`
 	top: 0;
 	right: 0;
 	margin: 6px;
-	color: green;
+	color: red;
 
 	&:hover {
 		cursor: pointer;
@@ -60,6 +60,17 @@ export const DeleteButton = styled.div`
 	}
 `;
 
+export const UpdateButton = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 6px;
+	color: red;
+
+	&:hover {
+		cursor: pointer;
+	}
+`;
 
 export const Workouts = styled.div`
 	width: 100%;

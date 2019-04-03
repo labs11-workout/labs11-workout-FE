@@ -7,6 +7,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Calendar from "./Calendar/";
 import MobileCalendar from "./MobileCalendar/";
+import CalendarDay from "./CalendarDay";
 import ScheduledSession from "./ScheduledSession";
 
 const getSchedules = gql`
@@ -91,10 +92,12 @@ const Schedule = props => {
 													<>
 														<Calendar schedules={data.getSchedules} />
 														<MobileCalendar schedules={data.getSchedules} />
-														<Route
-															path={`/schedule/:monthDayYear/:day/:scheduleId`}
-															component={ScheduledSession}
-														/>
+														{/* <Route
+															path={`/schedule/:monthDayYear/:day`}
+															render={() => (
+																<CalendarDay schedules={data.getSchedules} />
+															)}
+														/> */}
 													</>
 												);
 											}}

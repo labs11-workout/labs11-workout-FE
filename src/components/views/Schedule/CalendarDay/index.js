@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Route, withRouter } from "react-router-dom";
 import dateFns from "date-fns";
 import * as s from "./styles";
 import ScheduledSession from "../ScheduledSession";
@@ -60,7 +61,14 @@ const getSchedules = gql`
 
 //If the externalToggle and externalToggled props are not provided, then the CalendarDay component's container (<s.Container> element) will serve as the Modal toggle click listener.
 // externalToggle and externalToggled are used if a component outside of this one is meant to control the modal. Values passed via props.
-const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
+const CalendarDay = ({
+	day,
+	schedules,
+	externalToggle,
+	externalToggled,
+	history,
+	match
+}) => {
 	const [modalOpen, toggleModal] = useState(false);
 	const [timeInput, setTimeInput] = useState("12:00");
 	const [scheduleFormError, setScheduleFormError] = useState(null);
@@ -77,101 +85,123 @@ const CalendarDay = ({ day, schedules, externalToggle, externalToggled }) => {
 		return formattedDate;
 	};
 
+	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
+
 	return (
 		<s.Container
-			onClick={externalToggle ? externalToggle : () => toggleModal(!modalOpen)}
+			// onClick={externalToggle ? externalToggle : () => toggleModal(!modalOpen)}
+			onClick={() =>
+				history.push(`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`)
+			}
 		>
 			{schedules.length > 0 &&
 				schedules.map(d => {
 					return <ScheduledSession key={d.id} schedule={d} />;
 				})}
-
-			<Modal
-				size="lg"
-				centered
-				isOpen={externalToggle ? externalToggled : modalOpen}
-				toggle={externalToggle ? externalToggle : () => toggleModal(!modalOpen)}
-			>
-				<ModalHeader>
-					{dateFns.format(day, "dddd, MMMM Do")} - {schedules.length} Session
-					{schedules.length > 1 || schedules.length === 0 ? "s" : ""}
-				</ModalHeader>
-				<ModalBody>
-					<s.AddSchedule>
-						<InputGroup>
-							<InputGroupText>Time</InputGroupText>
-							<Input
-								value={timeInput}
-								onChange={e => {
-									setTimeInput(e.target.value);
-								}}
-								type="time"
-							/>
-						</InputGroup>
-						<Mutation
-							mutation={addSchedule}
-							refetchQueries={() => [{ query: getSchedules }]}
-						>
-							{(addSchedule, { loading, error, data }) => {
-								if (error) {
-									setScheduleFormError(
-										"There was a network error. Please try again."
-									);
-								}
-								return (
-									<>
-										<Button
-											color="success"
-											onClick={() => {
-												const scheduleTime = createDate(timeInput);
-												if (scheduleTime !== "Invalid Date") {
-													addSchedule({
-														variables: {
-															time: scheduleTime
-														}
-													});
-												} else {
-													setScheduleFormError("Invalid Date.");
-												}
-											}}
-										>
-											{loading ? "Loading..." : "Add Schedule"}
-										</Button>
-									</>
-								);
-							}}
-						</Mutation>
-					</s.AddSchedule>
-					{scheduleFormError && (
-						<s.AlertBox
-							color="danger"
-							onClick={() => setScheduleFormError(null)}
-						>
-							{scheduleFormError}
-						</s.AlertBox>
-					)}
-					{schedules.length > 0 ? (
-						schedules.map(d => {
-							return (
-								<ScheduledSession key={d.id} schedule={d} showDeleteButton />
-							);
-						})
-					) : (
-						<span>You don't have any Scheduled Sessions. Try adding one!</span>
-					)}
-				</ModalBody>
-				<ModalFooter>
-					<s.CloseButton
-						onClick={
-							externalToggle ? externalToggle : () => toggleModal(!modalOpen)
-						}
+			<Route
+				exact
+				path={`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`}
+				render={() => (
+					<Modal
+						size="lg"
+						centered
+						// isOpen={externalToggle ? externalToggled : modalOpen}
+						isOpen={true}
+						// toggle={externalToggle ? externalToggle : () => toggleModal(!modalOpen)}
+						toggle={() => history.push(`/schedule/${monthDayYear}`)}
 					>
-						<i className="fas fa-times" />
-					</s.CloseButton>
-				</ModalFooter>
-			</Modal>
+						<ModalHeader>
+							{dateFns.format(day, "dddd, MMMM Do")} - {schedules.length}{" "}
+							Session
+							{schedules.length > 1 || schedules.length === 0 ? "s" : ""}
+						</ModalHeader>
+						<ModalBody>
+							<s.AddSchedule>
+								<InputGroup>
+									<InputGroupText>Time</InputGroupText>
+									<Input
+										value={timeInput}
+										onChange={e => {
+											setTimeInput(e.target.value);
+										}}
+										type="time"
+									/>
+								</InputGroup>
+								<Mutation
+									mutation={addSchedule}
+									refetchQueries={() => [{ query: getSchedules }]}
+								>
+									{(addSchedule, { loading, error, data }) => {
+										if (error) {
+											setScheduleFormError(
+												"There was a network error. Please try again."
+											);
+										}
+										return (
+											<>
+												<Button
+													color="success"
+													onClick={() => {
+														const scheduleTime = createDate(timeInput);
+														if (scheduleTime !== "Invalid Date") {
+															addSchedule({
+																variables: {
+																	time: scheduleTime
+																}
+															});
+														} else {
+															setScheduleFormError("Invalid Date.");
+														}
+													}}
+												>
+													{loading ? "Loading..." : "Add Schedule"}
+												</Button>
+											</>
+										);
+									}}
+								</Mutation>
+							</s.AddSchedule>
+							{scheduleFormError && (
+								<s.AlertBox
+									color="danger"
+									onClick={() => setScheduleFormError(null)}
+								>
+									{scheduleFormError}
+								</s.AlertBox>
+							)}
+							{schedules.length > 0 ? (
+								schedules.map(d => {
+									return (
+										<ScheduledSession
+											key={d.id}
+											schedule={d}
+											showDeleteButton
+										/>
+									);
+								})
+							) : (
+								<span>
+									You don't have any Scheduled Sessions. Try adding one!
+								</span>
+							)}
+						</ModalBody>
+						<ModalFooter>
+							<s.CloseButton
+								// onClick={
+								// 	externalToggle ? externalToggle : () => toggleModal(!modalOpen)
+								// }
+								onClick={() =>
+									history.push(`/schedule/${match.params.monthDayYear}`)
+								}
+							>
+								<i className="fas fa-times" />
+							</s.CloseButton>
+						</ModalFooter>
+					</Modal>
+				)}
+			/>
 		</s.Container>
 	);
 };
 
-export default CalendarDay;
+export default withRouter(CalendarDay);

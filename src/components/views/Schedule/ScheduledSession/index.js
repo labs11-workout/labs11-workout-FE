@@ -115,8 +115,8 @@ const ScheduledSession = ({ schedule, showDeleteButton }) => {
 			<s.DaySchedule
 				key={schedule.id}
 				onClick={e => {
-					e.stopPropagation();
-					toggleModal(!modalOpen);
+					// e.stopPropagation();
+					// toggleModal(!modalOpen);
 				}}
 			>
 				{schedule.workouts.length} Workout

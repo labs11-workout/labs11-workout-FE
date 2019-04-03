@@ -1,52 +1,107 @@
-import React from "react";
+import React, {useState} from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardBody, CardTitle,InputGroup,Input,InputGroupText } from "reactstrap";
 import datefns from "date-fns";
-import { Mutation } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
+// import { Scheduler } from "rxjs";
+
+
 
 const createWorkout = gql`
-	mutation CreateWorkout($id: ID!, $scheduleId: ID!) {
-		CreateWorkout(id: $id) {
+	mutation AddWorkout($name: String!, $scheduleId: ID!) {
+		addWorkout(name: $name, scheduleId: $scheduleId) {
 			id
             name
-            exercise
+            exercise{
+				name
+				interval
+				intensity
+				sets
+				reps
+				duration
+			}
             completed
-            schedule
+            schedule {
+				id 
+				time
+			}
             createdAt
             updatedAt
 		}
 	}
 `;
 
-const CreatedWorkout = ({ workout }) => {
-	const w = workout;
+const getSchedules = gql`
+    {
+        getSchedules {
+            id
+            time
+            workouts {
+                id
+                name
+                completed
+                exercises {
+                    name
+                    reps
+                    sets
+                    duration
+                    intensity
+                }
+            }
+        }
+    }
+`;
+
+
+const CreatedWorkout = () => {
+const [workoutName, setWorkoutName]  = useState('');
 	return (
 		<s.Workout>
 			<Card>
 				<Mutation
-					mutation={CreatedWorkout}
+					mutation={createWorkout}
 				>
-					{(createdWorkout, { data }) => (
+					{(addWorkout, { data }) => (
 						<s.CreateButton
-							onClick={() => createdWorkout({ variables: { id: w.id, scheduleId: w.scheduleId } })}
+							onClick={() => createWorkout({ variables: {name: workoutName} })}
 						>
 							X
 						</s.CreateButton>
 					)}
-							
+						
 				</Mutation>
+				<input type='text' value={workoutName}></input>	
 				<CardTitle>
-					{datefns.format(w.createdAt, "ddd, Do MMM YYYY h:mm a")}
+					{/* {datefns.format(new Date(), "ddd, Do MMM YYYY h:mm a")} */}
+					Add Workout
 				</CardTitle>
 				<CardBody>
-				    {w.id && <p>ID: {w.id}</p>}
-                    {w.name && <p>Name: {w.name}</p>}
-                    {w.exercise && <p>exercise: {w.exercise}</p>}
-                    {w.completed && <p>Completed: {w.completed}</p>}
-                    {w.schedule.id && <p>schedule: {w.schedule.id}</p>}
-                    {w.createdAt && <p>Date: {w.createdAt}</p>}
-                    {w.updatedAt && <p>Date: {w.updatedAt}</p>}
+				<InputGroup>
+					<InputGroupText>Workouts</InputGroupText>
+					<Input
+						value={workoutName}
+						onChange={e => {
+							workoutName(e.target.value);
+						}}
+						type="select"
+					>
+						<Query query={getSchedules}>
+							{({loading, error, data}) => {
+								if(loading) return "Loading..."
+								if(error) return "Error..."
+								return <>
+									{data.getSchedules.map(s => {
+										return <option key={s.id} value={s.id}>
+											{datefns.format(s.time, "ddd, mmm, h:mma")}
+											</option>
+									})}
+								</>
+							}}
+						</Query>
+						
+					</Input>
+				</InputGroup>
 
 				</CardBody>
 			</Card>

@@ -6,6 +6,10 @@ export const WorkoutsContainer = styled.div`
 	flex-wrap: wrap;
 	width: 100%;
 	justify-content: center;
+	@media (max-width: 991px) {
+		width: 100%;
+		margin: 4px 0;
+	}
 `;
 
 export const WorkoutContainer = styled.div`

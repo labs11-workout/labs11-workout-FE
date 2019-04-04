@@ -52,6 +52,7 @@ const DeletedWorkout = ({ workout }) => {
 				</Mutation>
 				<CardTitle>
 					{datefns.format(w.createdAt, "ddd, Do MMM YYYY h:mm a")}
+					
 				</CardTitle>
 				<CardBody>
 					{w.id && <p>ID: {w.id}</p>}

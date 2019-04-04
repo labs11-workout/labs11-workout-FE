@@ -72,6 +72,8 @@ const UpdatedWorkout = ({workout}) => {
 					{datefns.format(w.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>
 				<CardBody>
+				<input type="text" value={workoutName} onChange={(e) => setWorkout(e.target.value)}></input>
+				
 					{w.id && <p>ID: {w.id}</p>}
 					{w.name && <p>Name: {w.name}</p>}
 					{w.updatedAt && <p>Date: {w.updatedAt}</p>}

@@ -53,6 +53,14 @@ const addWorkoutFromSavedWorkout = gql`
 	}
 `;
 
+const deleteWorkout = gql`
+	mutation DeleteWorkout($id: ID!) {
+		deleteWorkout(id: $id) {
+			id
+		}
+	}
+`;
+
 const getSavedWorkouts = gql`
 	{
 		getSavedWorkouts {
@@ -258,31 +266,77 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 											return (
 												<TabPane tabId={i} key={i}>
 													<Card body>
-														<CardHeader>Exercises</CardHeader>
+														<s.CardHead>
+															Exercises
+															<Mutation
+																mutation={deleteWorkout}
+																refetchQueries={() => [
+																	{
+																		query: getSchedule,
+																		variables: { id: schedule.id }
+																	}
+																]}
+															>
+																{(delWorkout, { loading, error, data }) => {
+																	return (
+																		<s.DeleteWorkout
+																			onClick={() =>
+																				delWorkout({ variables: { id: w.id } })
+																			}
+																		>
+																			{loading
+																				? "Deleting..."
+																				: "Delete Workout"}
+																		</s.DeleteWorkout>
+																	);
+																}}
+															</Mutation>
+														</s.CardHead>
 														<CardBody>
 															{w.exercises.length > 0 ? (
 																<>
 																	{w.exercises.map((e, i) => (
 																		<Card key={i} body>
-																			<CardHeader
-																				onClick={() => setActiveCollapse(i)}
+																			<s.CardHead
+																				onClick={
+																					activeCollapse === i
+																						? () => setActiveCollapse("")
+																						: () => setActiveCollapse(i)
+																				}
+																				className={`${activeCollapse === i &&
+																					"active"}`}
 																			>
-																				{e.name}
-																			</CardHeader>
+																				<span>
+																					{activeCollapse === i ? (
+																						<i className="fas fa-sort-up" />
+																					) : (
+																						<i className="fas fa-sort-down" />
+																					)}{" "}
+																					{e.name}
+																				</span>
+																			</s.CardHead>
 																			<Collapse isOpen={activeCollapse === i}>
-																				<CardBody>
+																				<s.CardMain>
 																					{e.intervals && (
-																						<p>Intervals: {e.intervals}</p>
+																						<span>
+																							Intervals: {e.intervals}
+																						</span>
 																					)}
-																					{e.sets && <p>Sets: {e.sets}</p>}
-																					{e.reps && <p>Reps: {e.reps}</p>}
+																					{e.sets && (
+																						<span>Sets: {e.sets}</span>
+																					)}
+																					{e.reps && (
+																						<span>Reps: {e.reps}</span>
+																					)}
 																					{e.duration && (
-																						<p>Duration: {e.duration}</p>
+																						<span>Duration: {e.duration}</span>
 																					)}
 																					{e.intensity && (
-																						<p>Intensity: {e.intensity}</p>
+																						<span>
+																							Intensity: {e.intensity}
+																						</span>
 																					)}
-																				</CardBody>
+																				</s.CardMain>
 																			</Collapse>
 																		</Card>
 																	))}

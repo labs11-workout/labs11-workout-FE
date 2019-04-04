@@ -22,7 +22,8 @@ import {
 	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText
+	InputGroupText,
+	Collapse
 } from "reactstrap";
 
 const deleteSchedule = gql`
@@ -107,9 +108,9 @@ const getSchedule = gql`
 `;
 
 const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
-	const [modalOpen, toggleModal] = useState(false);
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
+	const [activeCollapse, setActiveCollapse] = useState("");
 
 	const day = new Date(schedule.time);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
@@ -233,6 +234,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 									}}
 								</Mutation>
 							</s.AddWorkout>
+							<hr />
 							{schedule.workouts.length > 0 ? (
 								<>
 									<Nav tabs>
@@ -262,20 +264,26 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																<>
 																	{w.exercises.map((e, i) => (
 																		<Card key={i} body>
-																			<CardHeader>{e.name}</CardHeader>
-																			<CardBody>
-																				{e.intervals && (
-																					<p>Intervals: {e.intervals}</p>
-																				)}
-																				{e.sets && <p>Sets: {e.sets}</p>}
-																				{e.reps && <p>Reps: {e.reps}</p>}
-																				{e.duration && (
-																					<p>Duration: {e.duration}</p>
-																				)}
-																				{e.intensity && (
-																					<p>Intensity: {e.intensity}</p>
-																				)}
-																			</CardBody>
+																			<CardHeader
+																				onClick={() => setActiveCollapse(i)}
+																			>
+																				{e.name}
+																			</CardHeader>
+																			<Collapse isOpen={activeCollapse === i}>
+																				<CardBody>
+																					{e.intervals && (
+																						<p>Intervals: {e.intervals}</p>
+																					)}
+																					{e.sets && <p>Sets: {e.sets}</p>}
+																					{e.reps && <p>Reps: {e.reps}</p>}
+																					{e.duration && (
+																						<p>Duration: {e.duration}</p>
+																					)}
+																					{e.intensity && (
+																						<p>Intensity: {e.intensity}</p>
+																					)}
+																				</CardBody>
+																			</Collapse>
 																		</Card>
 																	))}
 																</>

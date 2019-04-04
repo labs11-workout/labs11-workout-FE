@@ -40,17 +40,7 @@ const DayCell = ({
 			</span>
 			<span className="number">{formattedDate}</span>
 			<span className="content">
-				<CalendarDay
-					day={day}
-					schedules={schedules}
-					externalToggled={toggled}
-					externalToggle={() => toggleModal(!toggled)}
-				/>
-				{/* {this.props.schedules
-                    .filter(s => dateFns.isSameDay(day, s.time))
-                    .map(d => {
-                        // return <ScheduledSession key={d.id} schedule={d} />;
-                    })} */}
+				<CalendarDay day={day} schedules={schedules} />
 			</span>
 			<span className="bg">{formattedDate}</span>
 		</div>

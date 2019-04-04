@@ -7,23 +7,20 @@ import { withRouter } from "react-router-dom";
 class Calendar extends React.Component {
 	constructor(props) {
 		super(props);
-		const day = dateFns.format(
-			dateFns.subMonths(this.props.match.params.monthDayYear, 1),
-			"MM-DD-YYYY"
-		);
+		const initialDayFromURL = new Date();
 		this.state = {
-			currentMonth: new Date(day.split("-")[2], day.split("-")[0]),
-			selectedDate: new Date(
-				day.split("-")[2],
-				day.split("-")[0],
-				day.split("-")[1]
-			)
+			date: new Date(
+				this.props.match.params.monthDayYear.split("-")[2],
+				this.props.match.params.monthDayYear.split("-")[0] - 1,
+				this.props.match.params.monthDayYear.split("-")[1] - 1
+			),
+			currentMonth: initialDayFromURL,
+			selectedDate: initialDayFromURL
 		};
 	}
 
 	renderHeader() {
 		const dateFormat = "MMMM YYYY";
-
 		return (
 			<div className="header row flex-middle">
 				<div className="col col-start">
@@ -33,7 +30,14 @@ class Calendar extends React.Component {
 				</div>
 				<div className="col col-center">
 					<span>
-						{dateFns.format(this.props.match.params.monthDayYear, dateFormat)}
+						{dateFns.format(
+							new Date(
+								this.props.match.params.monthDayYear.split("-")[2],
+								this.props.match.params.monthDayYear.split("-")[0] - 1,
+								this.props.match.params.monthDayYear.split("-")[1]
+							),
+							dateFormat
+						)}
 					</span>
 				</div>
 				<div className="col col-end" onClick={this.nextMonth}>
@@ -47,7 +51,13 @@ class Calendar extends React.Component {
 		const dateFormat = "dddd";
 		const days = [];
 
-		let startDate = dateFns.startOfWeek(this.props.match.params.monthDayYear);
+		let startDate = dateFns.startOfWeek(
+			new Date(
+				this.props.match.params.monthDayYear.split("-")[2],
+				this.props.match.params.monthDayYear.split("-")[0] - 1,
+				this.props.match.params.monthDayYear.split("-")[1]
+			)
+		);
 
 		for (let i = 0; i < 7; i++) {
 			days.push(
@@ -62,7 +72,11 @@ class Calendar extends React.Component {
 
 	renderCells() {
 		const { selectedDate } = this.state;
-		const currentMonth = this.props.match.params.monthDayYear;
+		const currentMonth = new Date(
+			this.props.match.params.monthDayYear.split("-")[2],
+			this.props.match.params.monthDayYear.split("-")[0] - 1,
+			this.props.match.params.monthDayYear.split("-")[1]
+		);
 		const monthStart = dateFns.startOfMonth(currentMonth);
 		const monthEnd = dateFns.endOfMonth(monthStart);
 		const startDate = dateFns.startOfWeek(monthStart);
@@ -114,7 +128,14 @@ class Calendar extends React.Component {
 
 	nextMonth = () => {
 		const newDate = dateFns.format(
-			dateFns.addMonths(this.props.match.params.monthDayYear, 1),
+			dateFns.addMonths(
+				new Date(
+					this.props.match.params.monthDayYear.split("-")[2],
+					this.props.match.params.monthDayYear.split("-")[0] - 1,
+					this.props.match.params.monthDayYear.split("-")[1]
+				),
+				1
+			),
 			"MM-DD-YYYY"
 		);
 		this.props.history.push(`/schedule/${newDate}`);
@@ -122,7 +143,14 @@ class Calendar extends React.Component {
 
 	prevMonth = () => {
 		const newDate = dateFns.format(
-			dateFns.subMonths(this.props.match.params.monthDayYear, 1),
+			dateFns.subMonths(
+				new Date(
+					this.props.match.params.monthDayYear.split("-")[2],
+					this.props.match.params.monthDayYear.split("-")[0] - 1,
+					this.props.match.params.monthDayYear.split("-")[1]
+				),
+				1
+			),
 			"MM-DD-YYYY"
 		);
 		this.props.history.push(`/schedule/${newDate}`);

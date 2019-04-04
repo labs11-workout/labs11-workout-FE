@@ -333,7 +333,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 															{w.exercises.length > 0 ? (
 																<>
 																	{w.exercises.map((e, i) => (
-																		<Card key={i} body>
+																		<s.NestedCard key={i} body>
 																			<s.CardHead
 																				onClick={
 																					activeCollapse === i
@@ -374,10 +374,6 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																										className="far fa-square not-completed"
 																										onClick={ev => {
 																											ev.stopPropagation();
-																											console.log(
-																												e.id,
-																												e.completed
-																											);
 																											editExercise({
 																												variables: {
 																													exerciseId: e.id,
@@ -415,7 +411,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																					)}
 																				</s.CardMain>
 																			</Collapse>
-																		</Card>
+																		</s.NestedCard>
 																	))}
 																</>
 															) : (

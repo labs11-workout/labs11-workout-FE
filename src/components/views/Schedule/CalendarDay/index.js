@@ -48,11 +48,13 @@ const getSchedules = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}

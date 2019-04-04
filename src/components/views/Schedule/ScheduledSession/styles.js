@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CardHeader, CardBody, Button } from "reactstrap";
+import { CardHeader, CardBody, Button, Card } from "reactstrap";
 
 export const DaySchedule = styled.div`
 	position: relative;
@@ -136,5 +136,12 @@ export const CompletedExercise = styled.div`
 			cursor: pointer;
 			color: #dc3545;
 		}
+	}
+`;
+
+export const NestedCard = styled(Card)`
+	&& {
+		width: 100%;
+		padding: 0;
 	}
 `;

@@ -43,6 +43,7 @@ const addWorkoutFromSavedWorkout = gql`
 			id
 			name
 			exercises {
+				id
 				name
 				sets
 				reps
@@ -83,11 +84,13 @@ const getSchedules = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}
@@ -104,13 +107,47 @@ const getSchedule = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
+		}
+	}
+`;
+
+const editExercise = gql`
+	mutation EditExercise(
+		$exerciseId: ID!
+		$sets: Int
+		$reps: Int
+		$intervals: Int
+		$duration: Float
+		$intensity: Int
+		$name: String
+		$completed: Boolean
+	) {
+		editExercise(
+			exerciseId: $exerciseId
+			sets: $sets
+			reps: $reps
+			intervals: $intervals
+			duration: $duration
+			intensity: $intensity
+			name: $name
+			completed: $completed
+		) {
+			id
+			name
+			reps
+			sets
+			duration
+			intensity
+			completed
 		}
 	}
 `;
@@ -314,6 +351,46 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																					)}{" "}
 																					{e.name}
 																				</span>
+																				<Mutation mutation={editExercise}>
+																					{editExercise => {
+																						return (
+																							<s.CompletedExercise>
+																								Completed:{" "}
+																								{e.completed ? (
+																									<i
+																										className="fas fa-check-square completed"
+																										onClick={ev => {
+																											ev.stopPropagation();
+																											editExercise({
+																												variables: {
+																													exerciseId: e.id,
+																													completed: false
+																												}
+																											});
+																										}}
+																									/>
+																								) : (
+																									<i
+																										className="far fa-square not-completed"
+																										onClick={ev => {
+																											ev.stopPropagation();
+																											console.log(
+																												e.id,
+																												e.completed
+																											);
+																											editExercise({
+																												variables: {
+																													exerciseId: e.id,
+																													completed: true
+																												}
+																											});
+																										}}
+																									/>
+																								)}
+																							</s.CompletedExercise>
+																						);
+																					}}
+																				</Mutation>
 																			</s.CardHead>
 																			<Collapse isOpen={activeCollapse === i}>
 																				<s.CardMain>

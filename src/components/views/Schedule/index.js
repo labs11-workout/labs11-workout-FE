@@ -20,11 +20,13 @@ const getSchedules = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}
@@ -70,7 +72,6 @@ const Schedule = props => {
 						console.log(error);
 						return "";
 					}
-					console.log("Successful Login.");
 					return "";
 				}}
 			</Query>

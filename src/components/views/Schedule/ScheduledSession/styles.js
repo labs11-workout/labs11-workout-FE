@@ -76,13 +76,15 @@ export const AddWorkout = styled.div`
 `;
 
 export const CardHead = styled(CardHeader)`
-	transition: 0.4s all;
 	display: flex;
 	justify-content: space-between;
-	&.active {
+	span {
+		transition: 0.4s all;
+	}
+	span.active {
 		color: #1a8fff;
 	}
-	&:hover {
+	span:hover {
 		cursor: pointer;
 		color: #1a8fff;
 	}
@@ -111,6 +113,28 @@ export const DeleteWorkout = styled(Button)`
 			color: white;
 			background: #a71d2a;
 			border-color: #a71d2a;
+		}
+	}
+`;
+
+export const CompletedExercise = styled.div`
+	i {
+		transition: 0.4s all;
+		font-size: 22px;
+		&.not-completed {
+			color: #dc3545;
+		}
+		&.not-completed:hover {
+			cursor: pointer;
+			color: #28a745;
+		}
+
+		&.completed {
+			color: #28a745;
+		}
+		&.completed:hover {
+			cursor: pointer;
+			color: #dc3545;
 		}
 	}
 `;

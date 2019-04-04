@@ -37,7 +37,7 @@ const MobileCalendar = ({ schedules, match, history }) => {
 							new Date(
 								match.params.monthDayYear.split("-")[2],
 								match.params.monthDayYear.split("-")[0] - 1,
-								match.params.monthDayYear.split("-")[1] - 1
+								match.params.monthDayYear.split("-")[1]
 							)
 						),
 						dateFormat
@@ -48,7 +48,7 @@ const MobileCalendar = ({ schedules, match, history }) => {
 							new Date(
 								match.params.monthDayYear.split("-")[2],
 								match.params.monthDayYear.split("-")[0] - 1,
-								match.params.monthDayYear.split("-")[1] - 1
+								match.params.monthDayYear.split("-")[1]
 							)
 						),
 						dateFormat
@@ -66,7 +66,7 @@ const MobileCalendar = ({ schedules, match, history }) => {
 			new Date(
 				match.params.monthDayYear.split("-")[2],
 				match.params.monthDayYear.split("-")[0] - 1,
-				match.params.monthDayYear.split("-")[1] - 1
+				match.params.monthDayYear.split("-")[1]
 			)
 		);
 

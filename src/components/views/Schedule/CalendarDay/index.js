@@ -48,11 +48,13 @@ const getSchedules = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}
@@ -106,9 +108,7 @@ const CalendarDay = ({
 						fade={false}
 						size="lg"
 						centered
-						// isOpen={externalToggle ? externalToggled : modalOpen}
 						isOpen={true}
-						// toggle={externalToggle ? externalToggle : () => toggleModal(!modalOpen)}
 						toggle={() => history.push(`/schedule/${monthDayYear}`)}
 					>
 						<ModalHeader>
@@ -170,6 +170,7 @@ const CalendarDay = ({
 									{scheduleFormError}
 								</s.AlertBox>
 							)}
+							<hr />
 							{schedules.length > 0 ? (
 								schedules.map(d => {
 									return (
@@ -188,9 +189,6 @@ const CalendarDay = ({
 						</ModalBody>
 						<ModalFooter>
 							<s.CloseButton
-								// onClick={
-								// 	externalToggle ? externalToggle : () => toggleModal(!modalOpen)
-								// }
 								onClick={() =>
 									history.push(`/schedule/${match.params.monthDayYear}`)
 								}

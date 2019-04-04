@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CardHeader, CardBody, Button, Card } from "reactstrap";
 
 export const DaySchedule = styled.div`
 	position: relative;
@@ -71,5 +72,76 @@ export const AddWorkout = styled.div`
 			width: 100%;
 			margin: 4px 0;
 		}
+	}
+`;
+
+export const CardHead = styled(CardHeader)`
+	display: flex;
+	justify-content: space-between;
+	span {
+		transition: 0.4s all;
+	}
+	span.active {
+		color: #1a8fff;
+	}
+	span:hover {
+		cursor: pointer;
+		color: #1a8fff;
+	}
+`;
+
+export const CardMain = styled(CardBody)`
+	display: flex;
+	flex-wrap: wrap;
+	span {
+		width: 100%;
+	}
+`;
+
+export const DeleteWorkout = styled(Button)`
+	&& {
+		transition: 0.4s all;
+		color: #dc3545;
+		border-color: #dc3545;
+		background: white;
+		&:hover {
+			color: white;
+			background: #dc3545;
+			border-color: #dc3545;
+		}
+		&&:active {
+			color: white;
+			background: #a71d2a;
+			border-color: #a71d2a;
+		}
+	}
+`;
+
+export const CompletedExercise = styled.div`
+	i {
+		transition: 0.4s all;
+		font-size: 22px;
+		&.not-completed {
+			color: #dc3545;
+		}
+		&.not-completed:hover {
+			cursor: pointer;
+			color: #28a745;
+		}
+
+		&.completed {
+			color: #28a745;
+		}
+		&.completed:hover {
+			cursor: pointer;
+			color: #dc3545;
+		}
+	}
+`;
+
+export const NestedCard = styled(Card)`
+	&& {
+		width: 100%;
+		padding: 0;
 	}
 `;

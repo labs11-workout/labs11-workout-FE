@@ -22,7 +22,8 @@ import {
 	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText
+	InputGroupText,
+	Collapse
 } from "reactstrap";
 
 const deleteSchedule = gql`
@@ -42,12 +43,21 @@ const addWorkoutFromSavedWorkout = gql`
 			id
 			name
 			exercises {
+				id
 				name
 				sets
 				reps
 				intervals
 				duration
 			}
+		}
+	}
+`;
+
+const deleteWorkout = gql`
+	mutation DeleteWorkout($id: ID!) {
+		deleteWorkout(id: $id) {
+			id
 		}
 	}
 `;
@@ -74,11 +84,13 @@ const getSchedules = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}
@@ -95,21 +107,55 @@ const getSchedule = gql`
 				name
 				completed
 				exercises {
+					id
 					name
 					reps
 					sets
 					duration
 					intensity
+					completed
 				}
 			}
 		}
 	}
 `;
 
+const editExercise = gql`
+	mutation EditExercise(
+		$exerciseId: ID!
+		$sets: Int
+		$reps: Int
+		$intervals: Int
+		$duration: Float
+		$intensity: Int
+		$name: String
+		$completed: Boolean
+	) {
+		editExercise(
+			exerciseId: $exerciseId
+			sets: $sets
+			reps: $reps
+			intervals: $intervals
+			duration: $duration
+			intensity: $intensity
+			name: $name
+			completed: $completed
+		) {
+			id
+			name
+			reps
+			sets
+			duration
+			intensity
+			completed
+		}
+	}
+`;
+
 const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
-	const [modalOpen, toggleModal] = useState(false);
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
+	const [activeCollapse, setActiveCollapse] = useState("");
 
 	const day = new Date(schedule.time);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
@@ -233,6 +279,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 									}}
 								</Mutation>
 							</s.AddWorkout>
+							<hr />
 							{schedule.workouts.length > 0 ? (
 								<>
 									<Nav tabs>
@@ -256,27 +303,115 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 											return (
 												<TabPane tabId={i} key={i}>
 													<Card body>
-														<CardHeader>Exercises</CardHeader>
+														<s.CardHead>
+															Exercises
+															<Mutation
+																mutation={deleteWorkout}
+																refetchQueries={() => [
+																	{
+																		query: getSchedule,
+																		variables: { id: schedule.id }
+																	}
+																]}
+															>
+																{(delWorkout, { loading, error, data }) => {
+																	return (
+																		<s.DeleteWorkout
+																			onClick={() =>
+																				delWorkout({ variables: { id: w.id } })
+																			}
+																		>
+																			{loading
+																				? "Deleting..."
+																				: "Delete Workout"}
+																		</s.DeleteWorkout>
+																	);
+																}}
+															</Mutation>
+														</s.CardHead>
 														<CardBody>
 															{w.exercises.length > 0 ? (
 																<>
 																	{w.exercises.map((e, i) => (
-																		<Card key={i} body>
-																			<CardHeader>{e.name}</CardHeader>
-																			<CardBody>
-																				{e.intervals && (
-																					<p>Intervals: {e.intervals}</p>
-																				)}
-																				{e.sets && <p>Sets: {e.sets}</p>}
-																				{e.reps && <p>Reps: {e.reps}</p>}
-																				{e.duration && (
-																					<p>Duration: {e.duration}</p>
-																				)}
-																				{e.intensity && (
-																					<p>Intensity: {e.intensity}</p>
-																				)}
-																			</CardBody>
-																		</Card>
+																		<s.NestedCard key={i} body>
+																			<s.CardHead
+																				onClick={
+																					activeCollapse === i
+																						? () => setActiveCollapse("")
+																						: () => setActiveCollapse(i)
+																				}
+																				className={`${activeCollapse === i &&
+																					"active"}`}
+																			>
+																				<span>
+																					{activeCollapse === i ? (
+																						<i className="fas fa-sort-up" />
+																					) : (
+																						<i className="fas fa-sort-down" />
+																					)}{" "}
+																					{e.name}
+																				</span>
+																				<Mutation mutation={editExercise}>
+																					{editExercise => {
+																						return (
+																							<s.CompletedExercise>
+																								Completed:{" "}
+																								{e.completed ? (
+																									<i
+																										className="fas fa-check-square completed"
+																										onClick={ev => {
+																											ev.stopPropagation();
+																											editExercise({
+																												variables: {
+																													exerciseId: e.id,
+																													completed: false
+																												}
+																											});
+																										}}
+																									/>
+																								) : (
+																									<i
+																										className="far fa-square not-completed"
+																										onClick={ev => {
+																											ev.stopPropagation();
+																											editExercise({
+																												variables: {
+																													exerciseId: e.id,
+																													completed: true
+																												}
+																											});
+																										}}
+																									/>
+																								)}
+																							</s.CompletedExercise>
+																						);
+																					}}
+																				</Mutation>
+																			</s.CardHead>
+																			<Collapse isOpen={activeCollapse === i}>
+																				<s.CardMain>
+																					{e.intervals && (
+																						<span>
+																							Intervals: {e.intervals}
+																						</span>
+																					)}
+																					{e.sets && (
+																						<span>Sets: {e.sets}</span>
+																					)}
+																					{e.reps && (
+																						<span>Reps: {e.reps}</span>
+																					)}
+																					{e.duration && (
+																						<span>Duration: {e.duration}</span>
+																					)}
+																					{e.intensity && (
+																						<span>
+																							Intensity: {e.intensity}
+																						</span>
+																					)}
+																				</s.CardMain>
+																			</Collapse>
+																		</s.NestedCard>
 																	))}
 																</>
 															) : (

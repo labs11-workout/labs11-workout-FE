@@ -166,6 +166,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 				}`}
 				render={() => (
 					<Modal
+						fade={false}
 						size="lg"
 						centered
 						isOpen={true}

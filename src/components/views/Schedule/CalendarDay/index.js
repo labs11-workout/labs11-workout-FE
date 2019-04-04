@@ -103,6 +103,7 @@ const CalendarDay = ({
 				path={`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`}
 				render={() => (
 					<Modal
+						fade={false}
 						size="lg"
 						centered
 						// isOpen={externalToggle ? externalToggled : modalOpen}

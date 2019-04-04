@@ -1,23 +1,14 @@
-import React from "react";
+import React, { useState} from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardBody, CardTitle, Form, FormGroup, Button } from "reactstrap";
 import datefns from "date-fns";
-import { Mutation } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
 
 const deleteBodyMetric = gql`
 	mutation DeleteBodyMetric($id: ID!) {
 		deleteBodyMetric(id: $id) {
 			id
-		}
-	}
-`;
-const addBodyMetric = gql`
-	mutation AddBodyMetric($id: ID!) {
-		editBodyMetric(id: $id) {
-			height
-			weight
-			bodyfat
 		}
 	}
 `;
@@ -43,8 +34,12 @@ const getBodyMetrics = gql`
 	}
 `;
 
+
+
+
 const BodyMetric = ({ metric }) => {
 	const m = metric;
+
 	return (
 		<s.Measurement>
 			<Card>
@@ -52,13 +47,13 @@ const BodyMetric = ({ metric }) => {
 					mutation={deleteBodyMetric}
 					refetchQueries={() => [{ query: getBodyMetrics }]}
 				>
-					{(deleteBodyMetric, { data }) => (
-						<s.DeleteButton
+					{(deleteBodyMetric, { data }) => {
+						return<s.DeleteButton
 							onClick={() => deleteBodyMetric({ variables: { id: m.id } })}
 						>
 							X
 						</s.DeleteButton>
-					)}
+					}}
 				</Mutation>
 				<Mutation
 					mutation={editBodyMetric}
@@ -68,20 +63,23 @@ const BodyMetric = ({ metric }) => {
 						<s.UpdateButton
 							onClick={() => editBodyMetric({ variables: { id: m.id } })}
 						>
-							Update
+							Update {console.log(data)}
 						</s.UpdateButton>
 					)}
 				</Mutation>
+				
 				<CardTitle>
 					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>
 				<CardBody>
-					{m.weight && <p>Weight: {m.weight}</p>}
-					{m.height && <p>Height: {m.height}</p>}
+					{m.weight && <p>Weight: {m.weight}kg</p>}
+					{m.height && <p>Height: {m.height}cm</p>}
 					{m.bodyfat && <p>Body Fat: {m.bodyfat}%</p>}
 				</CardBody>
 			</Card>
+
 		</s.Measurement>
+
 	);
 };
 

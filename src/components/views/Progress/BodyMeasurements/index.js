@@ -7,9 +7,11 @@ const BodyMeasurements = ({ measurements }) => {
 		<s.Measurements>
 			<h3>Body Measurements</h3>
 			{measurements.length > 0 ? (
-				measurements.map(m => {
-					return <BodyMeasurement key={m.id} measurement={m} />;
-				})
+				<>
+					<BodyMeasurement key={measurements.id} measurement={measurements[0]} />
+					<BodyMeasurement key={measurements.id} measurement={measurements[measurements.length-1]} />
+				</>
+
 			) : (
 				<p>You have no Body Measurements recorded. Try Adding One!</p>
 			)}

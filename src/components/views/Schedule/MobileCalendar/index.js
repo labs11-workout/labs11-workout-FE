@@ -6,10 +6,24 @@ import { withRouter } from "react-router-dom";
 
 const MobileCalendar = ({ schedules, match, history }) => {
 	const [currentWeek, setWeek] = useState(
-		dateFns.format(new Date(match.params.monthDayYear), "MM-DD-YYYY")
+		dateFns.format(
+			new Date(
+				match.params.monthDayYear.split("-")[2],
+				match.params.monthDayYear.split("-")[0] - 1,
+				match.params.monthDayYear.split("-")[1] - 1
+			),
+			"MM-DD-YYYY"
+		)
 	);
 	const [selectedDate, selectDate] = useState(
-		dateFns.format(new Date(), "MM-DD-YYYY")
+		dateFns.format(
+			new Date(
+				match.params.monthDayYear.split("-")[2],
+				match.params.monthDayYear.split("-")[0] - 1,
+				match.params.monthDayYear.split("-")[1] - 1
+			),
+			"MM-DD-YYYY"
+		)
 	);
 
 	const renderHeader = () => {
@@ -17,15 +31,26 @@ const MobileCalendar = ({ schedules, match, history }) => {
 		return (
 			<s.Header>
 				<s.Previous onClick={prevWeek}>{`<`}</s.Previous>
-				{/* <h2>{dateFns.format(currentWeek, dateFormat)}</h2> */}
 				<h3>
 					{dateFns.format(
-						dateFns.startOfWeek(match.params.monthDayYear),
+						dateFns.startOfWeek(
+							new Date(
+								match.params.monthDayYear.split("-")[2],
+								match.params.monthDayYear.split("-")[0] - 1,
+								match.params.monthDayYear.split("-")[1] - 1
+							)
+						),
 						dateFormat
 					)}{" "}
 					-{" "}
 					{dateFns.format(
-						dateFns.endOfWeek(match.params.monthDayYear),
+						dateFns.endOfWeek(
+							new Date(
+								match.params.monthDayYear.split("-")[2],
+								match.params.monthDayYear.split("-")[0] - 1,
+								match.params.monthDayYear.split("-")[1] - 1
+							)
+						),
 						dateFormat
 					)}
 				</h3>
@@ -37,7 +62,13 @@ const MobileCalendar = ({ schedules, match, history }) => {
 	const renderDays = () => {
 		const days = [];
 
-		let startdate = dateFns.startOfWeek(match.params.monthDayYear);
+		let startdate = dateFns.startOfWeek(
+			new Date(
+				match.params.monthDayYear.split("-")[2],
+				match.params.monthDayYear.split("-")[0] - 1,
+				match.params.monthDayYear.split("-")[1] - 1
+			)
+		);
 
 		for (let i = 0; i < 7; i++) {
 			let currentDay = dateFns.addDays(startdate, i);
@@ -60,7 +91,14 @@ const MobileCalendar = ({ schedules, match, history }) => {
 
 	const nextWeek = () => {
 		const newDate = dateFns.format(
-			dateFns.addWeeks(match.params.monthDayYear, 1),
+			dateFns.addWeeks(
+				new Date(
+					match.params.monthDayYear.split("-")[2],
+					match.params.monthDayYear.split("-")[0] - 1,
+					match.params.monthDayYear.split("-")[1] - 1
+				),
+				1
+			),
 			"MM-DD-YYYY"
 		);
 		history.push(`/schedule/${newDate}`);
@@ -69,7 +107,14 @@ const MobileCalendar = ({ schedules, match, history }) => {
 
 	const prevWeek = () => {
 		const newDate = dateFns.format(
-			dateFns.subWeeks(match.params.monthDayYear, 1),
+			dateFns.subWeeks(
+				new Date(
+					match.params.monthDayYear.split("-")[2],
+					match.params.monthDayYear.split("-")[0] - 1,
+					match.params.monthDayYear.split("-")[1] - 1
+				),
+				1
+			),
 			"MM-DD-YYYY"
 		);
 		history.push(`/schedule/${newDate}`);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as s from "./styles";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import dateFns from "date-fns";
@@ -45,7 +45,21 @@ const userLogin = gql`
 //TODO add a schedule, mutation called addSchedule
 
 const Schedule = props => {
-	console.log(props);
+	const [clientWidth, setClientWidth] = useState(window.innerWidth);
+	useEffect(() => {
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", window);
+		};
+	});
+
+	const handleResize = e => {
+		if (clientWidth > 601 && e.currentTarget.innerWidth < 601) {
+			setClientWidth(e.currentTarget.innerWidth);
+		} else if (clientWidth < 601 && e.currentTarget.innerWidth > 601) {
+			setClientWidth(e.currentTarget.innerWidth);
+		}
+	};
 	return (
 		// This query is required don't remove it. It creates a user on our backend if one is not already created.
 		<>
@@ -88,12 +102,13 @@ const Schedule = props => {
 										<Route
 											path={`/schedule/:monthDayYear`}
 											render={() => {
-												return (
-													<>
-														<Calendar schedules={data.getSchedules} />
+												if (clientWidth > 601) {
+													return <Calendar schedules={data.getSchedules} />;
+												} else {
+													return (
 														<MobileCalendar schedules={data.getSchedules} />
-													</>
-												);
+													);
+												}
 											}}
 										/>
 									</>

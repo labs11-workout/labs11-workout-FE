@@ -19,7 +19,7 @@ const Routes = props => {
 			<Route exact path="/logout" component={Logout} />
 			<Route path="/schedule" component={Schedule} />
 			<Route path="/callback" component={Callback} />
-			<Route exact path="/workouts" component={Workouts} />
+			<Route path="/workouts" component={Workouts} />
 			<Route path="/settings" component={Settings} />
 			<Route exact path="/progress" component={Progress} />
 		</>

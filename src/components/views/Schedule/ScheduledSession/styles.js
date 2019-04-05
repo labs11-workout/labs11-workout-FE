@@ -48,6 +48,7 @@ export const DeleteButton = styled.span`
 	font-size: 20px;
 	transition: 0.4s all;
 	color: rgba(255, 0, 0, 0.5);
+	box-shadow: 0px 1px 2px black;
 	&:hover {
 		color: rgba(255, 0, 0, 0.7);
 		cursor: pointer;
@@ -68,6 +69,7 @@ export const AddWorkout = styled.div`
 	button {
 		flex-grow: 1;
 		margin: 0 4px;
+		box-shadow: 0px 1px 2px black;
 		@media (max-width: 991px) {
 			width: 100%;
 			margin: 4px 0;
@@ -143,5 +145,7 @@ export const NestedCard = styled(Card)`
 	&& {
 		width: 100%;
 		padding: 0;
+		box-shadow: 0px 0px 1px black;
+		margin: 6px auto;
 	}
 `;

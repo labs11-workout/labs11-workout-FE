@@ -17,14 +17,13 @@ const Navigation = props => {
 				)}
 			</s.NavToggle>
 			<s.Links className={navOpen && "open"}>
-
 				{/* Show Logout button and other Auth Required routes if token is present, otherwise show Login button. */}
 				{localStorage.getItem("token") ? (
 					<>
 						<s.Link to={`/schedule`} activeClassName="active">
 							Schedules
 						</s.Link>
-						<s.Link to="/workouts" activeClassName="active">
+						<s.Link to="/workouts/saved" activeClassName="active">
 							Workouts
 						</s.Link>
 						<s.Link to="/progress" activeClassName="active">
@@ -39,10 +38,10 @@ const Navigation = props => {
 					</>
 				) : (
 					<>
-					<s.Link exact to="/">
-					Landing Page
-					</s.Link>
-					<s.Link to="/login">Login</s.Link>
+						<s.Link exact to="/">
+							Landing Page
+						</s.Link>
+						<s.Link to="/login">Login</s.Link>
 					</>
 				)}
 			</s.Links>

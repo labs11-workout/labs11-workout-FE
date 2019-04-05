@@ -34,26 +34,44 @@ const deleteExercise = gql`
 	}
 `;
 
-const getSavedWorkout = gql`
-	query GetSavedWorkout($id: ID!) {
-		getSavedWorkout(id: $id) {
+const getWorkouts = gql`
+	{
+		getSchedules {
+			id
+			time
+			workouts {
+				id
+				name
+				completed
+				exercises {
+					id
+					name
+					reps
+					sets
+					duration
+					intensity
+					completed
+				}
+			}
+		}
+		getWorkouts {
 			id
 			name
-			createdAt
+			completed
 			exercises {
 				id
 				name
-				intervals
 				reps
 				sets
 				duration
 				intensity
+				completed
 			}
 		}
 	}
 `;
 
-const EditSavedWorkoutExercise = ({
+const EditScheduledWorkoutExercise = ({
 	exercise,
 	index,
 	activeCollapse,
@@ -96,7 +114,7 @@ const EditSavedWorkoutExercise = ({
 							<DropdownItem
 								onClick={() =>
 									history.push(
-										`/workouts/saved/${workout.id}/exercises/${exercise.id}`
+										`/workouts/scheduled/${workout.id}/exercises/${exercise.id}`
 									)
 								}
 							>
@@ -133,16 +151,14 @@ const EditSavedWorkoutExercise = ({
 				</h5>
 				<Mutation
 					mutation={deleteExercise}
-					refetchQueries={() => [
-						{ query: getSavedWorkout, variables: { id: workout.id } }
-					]}
+					refetchQueries={() => [{ query: getWorkouts }]}
 				>
 					{(deleteExercise, { loading }) => {
 						return (
 							<s.DeleteButton
 								onClick={() => {
 									deleteExercise({ variables: { exerciseId: e.id } });
-									history.push(`/workouts/saved/${workout.id}`);
+									history.push(`/workouts/scheduled/${workout.id}`);
 								}}
 								color="danger"
 							>
@@ -162,4 +178,4 @@ const EditSavedWorkoutExercise = ({
 	);
 };
 
-export default EditSavedWorkoutExercise;
+export default EditScheduledWorkoutExercise;

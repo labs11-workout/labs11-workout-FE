@@ -4,6 +4,7 @@ import { Card, CardBody, CardTitle } from "reactstrap";
 import datefns from "date-fns";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import EditBodyMeasurement from "./EditBodyMeasurements"
 
 const deleteBodyMeasurement = gql`
 	mutation DeleteBodyMeasurement($id: ID!) {
@@ -12,6 +13,8 @@ const deleteBodyMeasurement = gql`
 		}
 	}
 `;
+
+
 
 const getBodyMeasurements = gql`
 	{
@@ -45,16 +48,19 @@ const BodyMeasurement = ({ measurement }) => {
 						</s.DeleteButton>
 					)}
 				</Mutation>
+				<EditBodyMeasurement measurement = {m}>
+					Update
+				</EditBodyMeasurement>
 				<CardTitle>
 					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>
 				<CardBody>
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
-					{m.leftArm && <p>Left Arm: {m.leftArm}</p>}
-					{m.rightArm && <p>Right Arm: {m.rightArm}</p>}
-					{m.leftLeg && <p>Left Leg: {m.leftLeg}</p>}
-					{m.rightLeg && <p>Right Leg: {m.rightLeg}</p>}
+					{m.leftArm && <p>Left Arm: {m.leftArm}in</p>}
+					{m.rightArm && <p>Right Arm: {m.rightArm}in</p>}
+					{m.leftLeg && <p>Left Leg: {m.leftLeg}in</p>}
+					{m.rightLeg && <p>Right Leg: {m.rightLeg}in</p>}
 				</CardBody>
 			</Card>
 		</s.Measurement>

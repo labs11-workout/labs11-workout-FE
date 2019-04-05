@@ -4,6 +4,7 @@ import { Card, CardBody, CardTitle, Form, FormGroup, Button } from "reactstrap";
 import datefns from "date-fns";
 import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
+import EditBodyMetric from "./EditBodyMetric"
 
 const deleteBodyMetric = gql`
 	mutation DeleteBodyMetric($id: ID!) {
@@ -48,25 +49,13 @@ const BodyMetric = ({ metric }) => {
 					refetchQueries={() => [{ query: getBodyMetrics }]}
 				>
 					{(deleteBodyMetric, { data }) => {
-						return<s.DeleteButton
-							onClick={() => deleteBodyMetric({ variables: { id: m.id } })}
-						>
-							X
+						return<s.DeleteButton onClick={() => deleteBodyMetric({ variables: { id: m.id } })}>X
 						</s.DeleteButton>
 					}}
 				</Mutation>
-				<Mutation
-					mutation={editBodyMetric}
-					refetchQueries={() => [{ query: getBodyMetrics }]}
-				>
-					{(editBodyMetric, { data }) => (
-						<s.UpdateButton
-							onClick={() => editBodyMetric({ variables: { id: m.id } })}
-						>
-							Update {console.log(data)}
-						</s.UpdateButton>
-					)}
-				</Mutation>
+				<EditBodyMetric metric = {m}>
+					Update
+				</EditBodyMetric>
 				
 				<CardTitle>
 					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}

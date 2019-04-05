@@ -29,6 +29,9 @@ const Navigation = props => {
 						<s.Link to="/progress" activeClassName="active">
 							Progress
 						</s.Link>
+						<s.Link to="/notes" activeClassName="active">
+							Notes
+						</s.Link>
 						<s.Link to="/settings" activeClassName="active">
 							Settings
 						</s.Link>
@@ -38,10 +41,11 @@ const Navigation = props => {
 					</>
 				) : (
 					<>
-						<s.Link exact to="/">
-							Landing Page
-						</s.Link>
-						<s.Link to="/login">Login</s.Link>
+					{/* <s.Link exact to="/">
+					Welcome To CleanLift!
+					</s.Link> */}
+					<h1>Welcome To CleanLift!</h1>
+					{/* <s.Link to="/login">Login</s.Link> */}
 					</>
 				)}
 			</s.Links>

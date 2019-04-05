@@ -1,7 +1,6 @@
 import React, { useState} from "react";
 import * as s from "../styles.js";
 import { Form, FormGroup, Label, Input, Button, Modal } from "reactstrap";
-import datefns from "date-fns";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 

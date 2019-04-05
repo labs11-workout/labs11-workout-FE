@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Route, withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -25,6 +26,9 @@ import {
 	DropdownMenu,
 	DropdownItem
 } from "reactstrap";
+
+import EditSavedWorkout from "./EditSavedWorkout";
+import CreateSavedWorkoutExercise from "./CreateSavedWorkoutExercise";
 
 const deleteSavedWorkout = gql`
 	mutation DeleteSavedWorkout($id: ID!) {
@@ -53,7 +57,7 @@ const getSavedWorkouts = gql`
 	}
 `;
 
-const SavedWorkout = ({ workout }) => {
+const SavedWorkout = ({ workout, history }) => {
 	const [activeCollapse, setActiveCollapse] = useState("");
 	const [settings, toggleSettings] = useState(false);
 	const [deleteModalOpen, toggleDeleteModal] = useState(false);
@@ -68,7 +72,11 @@ const SavedWorkout = ({ workout }) => {
 							<i className="fas fa-cog" />
 						</s.SettingButton>
 						<DropdownMenu>
-							<DropdownItem>Edit</DropdownItem>
+							<DropdownItem
+								onClick={() => history.push(`/workouts/saved/${workout.id}`)}
+							>
+								Edit
+							</DropdownItem>
 							<s.DropdownItemDanger
 								onClick={() => toggleDeleteModal(!deleteModalOpen)}
 								color="danger"
@@ -116,6 +124,7 @@ const SavedWorkout = ({ workout }) => {
 				</CardBody>
 			</s.WorkoutCard>
 			<Modal
+				fade={false}
 				centered
 				isOpen={deleteModalOpen}
 				toggle={() => toggleDeleteModal(!deleteModalOpen)}
@@ -138,10 +147,27 @@ const SavedWorkout = ({ workout }) => {
 						);
 					}}
 				</Mutation>
-				<s.DeleteButton color="success">Cancel</s.DeleteButton>
+				<s.DeleteButton
+					color="success"
+					onClick={() => toggleDeleteModal(!deleteModalOpen)}
+				>
+					Cancel
+				</s.DeleteButton>
 			</Modal>
+			<Route
+				exact
+				path={`/workouts/saved/${workout.id}`}
+				render={() => <EditSavedWorkout history={history} workout={workout} />}
+			/>
+			<Route
+				exact
+				path={`/workouts/saved/${workout.id}/exercises/create`}
+				render={() => (
+					<CreateSavedWorkoutExercise history={history} workout={workout} />
+				)}
+			/>
 		</>
 	);
 };
 
-export default SavedWorkout;
+export default withRouter(SavedWorkout);

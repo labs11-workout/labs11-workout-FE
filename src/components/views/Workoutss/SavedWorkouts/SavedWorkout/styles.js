@@ -8,7 +8,8 @@ import {
 	DropdownToggle,
 	Dropdown,
 	DropdownItem,
-	Modal
+	Modal,
+	Form
 } from "reactstrap";
 
 export const WorkoutCard = styled(Card)`
@@ -58,6 +59,9 @@ export const SettingButton = styled(DropdownToggle)`
 	position: absolute;
 	right: 12px;
 	top: -36px;
+	&.exercise {
+		top: -8px;
+	}
 	&& {
 		padding: 6px;
 	}
@@ -78,5 +82,38 @@ export const DropdownItemDanger = styled(DropdownItem)`
 export const DeleteButton = styled(Button)`
 	&& {
 		margin: 8px;
+	}
+`;
+
+export const UpdateWorkout = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	button {
+		width: 100%;
+		margin: 4px auto;
+		box-shadow: 0px 1px 2px black;
+	}
+`;
+
+export const ExercisesHeader = styled.div`
+	position: relative;
+	margin-top: 32px;
+	button {
+		position: absolute;
+		right: 0;
+		top: -6px;
+		padding: 4px;
+	}
+`;
+
+export const CreationForm = styled(Form)`
+	&& {
+		.input-group {
+			margin: 6px auto;
+		}
+		button {
+			width: 100%;
+		}
 	}
 `;

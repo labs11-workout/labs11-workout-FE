@@ -1,8 +1,8 @@
-import React, { useState} from "react";
+import React  from "react";
 import * as s from "../styles.js";
 import { Card, CardBody, CardTitle, Form, FormGroup, Button } from "reactstrap";
 import datefns from "date-fns";
-import { Mutation, Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import EditBodyMetric from "./EditBodyMetric"
 

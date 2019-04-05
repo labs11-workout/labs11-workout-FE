@@ -19,8 +19,9 @@ const getBodyMeasurements = gql`
 	}
 `;
 
-const addBodyMeasurement = gql`
-	mutation AddBodyMeasurement(
+const editBodyMeasurement = gql`
+	mutation EditBodyMeasurement(
+            $id: ID!
 			$hips:Float
 			$waist:Float
 			$leftArm:Float
@@ -28,7 +29,8 @@ const addBodyMeasurement = gql`
 			$leftLeg:Float
 			$rightLeg:Float
     ) {
-		addBodyMeasurement(hips: $hips waist:$waist leftArm:$leftArm rightArm:$rightArm leftLeg:$leftLeg rightLeg:$rightLeg) {
+		editBodyMeasurement(id:$id hips: $hips waist:$waist leftArm:$leftArm rightArm:$rightArm leftLeg:$leftLeg rightLeg:$rightLeg) {
+            id
             hips
 			waist
 			leftArm
@@ -39,7 +41,7 @@ const addBodyMeasurement = gql`
 	}
 `;
 
-const AddBodyMeasurement = ( ) => {
+const EditBodyMeasurement = ({measurement} ) => {
     const [toggle, setState] = useState(false); 
 	const [hips, setHips] = useState(0);
 	const [waist, setWaist] = useState(0);
@@ -52,26 +54,26 @@ const AddBodyMeasurement = ( ) => {
 		setState(!toggle);
 		console.log(toggle);
     };
-    const SubmitForm = (e, addBodyMeasurement) => {
+    const SubmitForm = (e, editBodyMeasurement) => {
         e.preventDefault();
-        addBodyMeasurement({ variables: {hips, waist, leftArm, rightArm, leftLeg, rightLeg}})
+        editBodyMeasurement({ variables: {id:measurement.id, hips, waist, leftArm, rightArm, leftLeg, rightLeg}})
     }
     return(
         <>
 
-            <Button onClick={Toggle}>
-            Add Body Measurement
-            </Button>
+            <s.UpdateButton onClick={Toggle}>
+            Update
+            </s.UpdateButton>
 
             <Mutation
-                mutation={addBodyMeasurement}
+                mutation={editBodyMeasurement}
                 refetchQueries={() => [{ query: getBodyMeasurements }]}
             >
-                {(addBodyMeasurement) => (
+                {(editBodyMeasurement) => (
                 <Modal isOpen={toggle}>
                     <s.DeleteButton onClick={Toggle}>x
                     </s.DeleteButton>
-                    <Form onSubmit={e => SubmitForm(e, addBodyMeasurement)}>
+                    <Form onSubmit={e => SubmitForm(e, editBodyMeasurement)}>
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Label for="exampleEmail" className="mr-sm-2">hips</Label>
                             <Input type="number" value={hips} onChange={e => setHips(Number(e.target.value))}/>
@@ -107,4 +109,4 @@ const AddBodyMeasurement = ( ) => {
     )
 }
 
-export default AddBodyMeasurement;
+export default EditBodyMeasurement;

@@ -4,6 +4,7 @@ import { Card, CardBody, CardTitle } from "reactstrap";
 import datefns from "date-fns";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import EditBodyMeasurement from "./EditBodyMeasurements"
 
 const deleteBodyMeasurement = gql`
 	mutation DeleteBodyMeasurement($id: ID!) {
@@ -12,13 +13,7 @@ const deleteBodyMeasurement = gql`
 		}
 	}
 `;
-const editBodyMeasurement = gql`
-	mutation EditBodyMeasurement($id: ID!) {
-		editBodyMeasurement(id: $id) {
-			id
-		}
-	}
-`;
+
 
 
 const getBodyMeasurements = gql`
@@ -53,18 +48,9 @@ const BodyMeasurement = ({ measurement }) => {
 						</s.DeleteButton>
 					)}
 				</Mutation>
-				<Mutation
-					mutation={editBodyMeasurement}
-					refetchQueries={() => [{ query: getBodyMeasurements }]}
-				>
-					{(editBodyMeasurement, { data }) => (
-						<s.UpdateButton
-							onClick={() => editBodyMeasurement({ variables: { id: m.id } })}
-						>
-							Update
-						</s.UpdateButton>
-					)}
-				</Mutation>
+				<EditBodyMeasurement measurement = {m}>
+					Update
+				</EditBodyMeasurement>
 				<CardTitle>
 					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>

@@ -17,13 +17,14 @@ const getBodyMetrics = gql`
 	}
 `;
 
-const addBodyMetric = gql`
-	mutation AddBodyMetric(
+const editBodyMetric = gql`
+	mutation EditBodyMetric(
+        $id: ID!
         $height: Float
 		$weight: Float
 		$bodyfat: Float
     ) {
-		addBodyMetric(height: $height weight:$weight bodyfat:$bodyfat) {
+		editBodyMetric(id:$id height:$height weight:$weight bodyfat:$bodyfat) {
 			height
 			weight
 			bodyfat
@@ -31,7 +32,7 @@ const addBodyMetric = gql`
 	}
 `;
 
-const AddBodyMetric = ( ) => {
+const EditBodyMetric = ({metric} ) => {
     const [toggle, setState] = useState(false); 
 	const [height, setHeight] = useState(0);
 	const [weight, setWeight] = useState(0);
@@ -41,26 +42,26 @@ const AddBodyMetric = ( ) => {
 		setState(!toggle);
 		console.log(toggle)
     };
-    const SubmitForm = (e, addBodyMetric) => {
+    const SubmitForm = (e, editBodyMetric) => {
         e.preventDefault();
-        addBodyMetric({ variables: {height, bodyfat, weight}})
+        editBodyMetric({ variables: {id:metric.id, height, bodyfat, weight}})
     }
     return(
         <>
 
-            <Button onClick={Toggle}>
-            Add Body Metric
-            </Button>
+            <s.UpdateButton onClick={Toggle}>
+            Update
+            </s.UpdateButton>
 
             <Mutation
-                mutation={addBodyMetric}
+                mutation={editBodyMetric}
                 refetchQueries={() => [{ query: getBodyMetrics }]}
             >
-                {(addBodyMetric) => (
+                {(editBodyMetric) => (
                 <Modal isOpen={toggle}>
                     <s.DeleteButton onClick={Toggle}>x
                     </s.DeleteButton>
-                    <Form onSubmit={e => SubmitForm(e, addBodyMetric)}>
+                    <Form onSubmit={e => SubmitForm(e, editBodyMetric)}>
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Label for="exampleEmail" className="mr-sm-2">Weight</Label>
                             <Input type="number" name="email" id="exampleEmail" value={weight} onChange={e => setWeight(Number(e.target.value))}/>
@@ -84,4 +85,4 @@ const AddBodyMetric = ( ) => {
     )
 }
 
-export default AddBodyMetric;
+export default EditBodyMetric;

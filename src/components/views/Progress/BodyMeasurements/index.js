@@ -1,6 +1,7 @@
 import React from "react";
 import * as s from "../styles.js";
 import BodyMeasurement from "./BodyMeasurement";
+import AddBodyMeasurement from "./AddBodyMeasurement";
 
 const BodyMeasurements = ({ measurements }) => {
 	return (
@@ -10,6 +11,7 @@ const BodyMeasurements = ({ measurements }) => {
 				<>
 					<BodyMeasurement key={measurements.id} measurement={measurements[0]} />
 					<BodyMeasurement key={measurements.id} measurement={measurements[measurements.length-1]} />
+					<AddBodyMeasurement/>
 				</>
 
 			) : (

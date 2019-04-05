@@ -6,7 +6,7 @@ import Landing from "./views/Landing";
 import Login from "./Login";
 import Logout from "./Logout";
 import Schedule from "./views/Schedule";
-import Payment from "./views/Payment/payment.js";
+import Settings from "./views/Payment/settings";
 import Workouts from "./views/Workouts";
 import Progress from "./views/Progress";
 
@@ -20,6 +20,7 @@ const Routes = props => {
 			<Route path="/callback" component={Callback} />
 			<Route path="/workouts" component={Workouts} />
 			<Route exact path="/payment" component={Payment} />
+			<Route path="/settings" component={Settings} />
 			<Route exact path="/progress" component={Progress} />
 		</ContentContainer>
 	);

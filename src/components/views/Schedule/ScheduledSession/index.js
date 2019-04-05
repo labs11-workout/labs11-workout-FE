@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as s from "./styles";
-import { withRouter, Route } from "react-router-dom";
+import { withRouter, Route, Link } from "react-router-dom";
 import dateFns from "date-fns";
 import classnames from "classnames";
 import { Query, Mutation } from "react-apollo";
@@ -92,6 +92,20 @@ const getSchedules = gql`
 					intensity
 					completed
 				}
+			}
+		}
+		getWorkouts {
+			id
+			name
+			createdAt
+			exercises {
+				id
+				name
+				intervals
+				reps
+				sets
+				duration
+				intensity
 			}
 		}
 	}
@@ -231,57 +245,81 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 									{({ loading, error, data }) => {
 										if (loading) return <p>Loading Saved Workouts...</p>;
 										if (error) return <p>Error...</p>;
-										if (savedWorkoutId === "") {
+										if (
+											savedWorkoutId === "" &&
+											data.getSavedWorkouts.length > 0
+										) {
 											setSavedWorkoutId(data.getSavedWorkouts[0].id);
 										}
 										return (
-											<InputGroup>
-												<InputGroupText>Saved Workouts</InputGroupText>
-												<Input
-													value={savedWorkoutId}
-													onChange={e => {
-														setSavedWorkoutId(e.target.value);
-													}}
-													type="select"
-												>
-													{data.getSavedWorkouts.map(w => {
-														return (
-															<option key={w.id} value={w.id}>
-																{w.name} ({w.exercises.length} Exercise
-																{w.exercises.length > 1 ? "s" : ""})
-															</option>
-														);
-													})}
-												</Input>
-											</InputGroup>
+											<>
+												{data.getSavedWorkouts.length > 0 ? (
+													<>
+														<InputGroup>
+															<InputGroupText>Saved Workouts</InputGroupText>
+															<Input
+																value={savedWorkoutId}
+																onChange={e => {
+																	setSavedWorkoutId(e.target.value);
+																}}
+																type="select"
+															>
+																{data.getSavedWorkouts.map(w => {
+																	return (
+																		<option key={w.id} value={w.id}>
+																			{w.name} ({w.exercises.length} Exercise
+																			{w.exercises.length > 1 ? "s" : ""})
+																		</option>
+																	);
+																})}
+															</Input>
+														</InputGroup>
+														<Mutation
+															mutation={addWorkoutFromSavedWorkout}
+															refetchQueries={() => [{ query: getSchedules }]}
+														>
+															{(
+																addWorkoutFromSavedWorkout,
+																{ loading, error, data }
+															) => {
+																return (
+																	<Button
+																		color="success"
+																		onClick={() =>
+																			addWorkoutFromSavedWorkout({
+																				variables: {
+																					scheduleId: schedule.id,
+																					savedWorkoutId
+																				}
+																			})
+																		}
+																	>
+																		{loading ? "Loading..." : "Add Workout"}
+																	</Button>
+																);
+															}}
+														</Mutation>
+													</>
+												) : (
+													<span style={{ width: "100%", textAlign: "center" }}>
+														You don't have any saved workouts.{" "}
+														<Link to="/workouts/saved">Try Adding One!</Link>
+													</span>
+												)}
+											</>
 										);
 									}}
 								</Query>
-								<Mutation
-									mutation={addWorkoutFromSavedWorkout}
-									refetchQueries={() => [
-										{ query: getSchedule, variables: { id: schedule.id } }
-									]}
-								>
-									{(addWorkoutFromSavedWorkout, { loading, error, data }) => {
-										return (
-											<Button
-												color="success"
-												onClick={() =>
-													addWorkoutFromSavedWorkout({
-														variables: {
-															scheduleId: schedule.id,
-															savedWorkoutId
-														}
-													})
-												}
-											>
-												{loading ? "Loading..." : "Add Workout"}
-											</Button>
-										);
-									}}
-								</Mutation>
 							</s.AddWorkout>
+							<Button
+								color="primary"
+								style={{ width: "100%" }}
+								onClick={() =>
+									history.push(`/workouts/scheduled/create/${schedule.id}`)
+								}
+							>
+								Create New Workout
+							</Button>
 							<hr />
 							{schedule.workouts.length > 0 ? (
 								<>
@@ -312,8 +350,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																mutation={deleteWorkout}
 																refetchQueries={() => [
 																	{
-																		query: getSchedule,
-																		variables: { id: schedule.id }
+																		query: getSchedules
 																	}
 																]}
 															>

@@ -23,22 +23,18 @@ const getSavedWorkoutsAndSchedules = gql`
 				intensity
 			}
 		}
-		getSchedules {
+		getWorkouts {
 			id
-			time
-			workouts {
+			name
+			createdAt
+			exercises {
 				id
 				name
-				completed
-				exercises {
-					id
-					name
-					reps
-					sets
-					duration
-					intensity
-					completed
-				}
+				intervals
+				reps
+				sets
+				duration
+				intensity
 			}
 		}
 	}
@@ -79,7 +75,7 @@ const Workouts = ({ match, history, location }) => {
 								<Route
 									path="/workouts/scheduled"
 									render={() => (
-										<ScheduledWorkouts schedules={data.getSchedules} />
+										<ScheduledWorkouts workouts={data.getWorkouts} />
 									)}
 								/>
 							</s.Content>

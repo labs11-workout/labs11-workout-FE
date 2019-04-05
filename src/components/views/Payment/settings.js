@@ -13,10 +13,13 @@ const Settings = props => {
 					User Profile
 				</s.MenuLink>
 				<s.MenuLink activeClassName="active" to="/settings/scheduled">
-					Scheduled Workouts
+					User Interface Settings
 				</s.MenuLink>
                 <s.MenuLink activeClassName="active" to="/settings/billing">
 					Billing
+				</s.MenuLink>
+                <s.MenuLink activeClassName="active" to="/settings/notifications">
+					Notifications
 				</s.MenuLink>
 			</s.Menu>
             <Route exact path="/settings/billing" component={Payment}/>

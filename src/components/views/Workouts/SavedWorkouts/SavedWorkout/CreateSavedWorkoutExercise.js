@@ -7,17 +7,9 @@ import {
 	Modal,
 	ModalHeader,
 	ModalBody,
-	ModalFooter,
-	TabContent,
-	TabPane,
-	Card,
-	CardHeader,
-	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Collapse,
-	Form
+	InputGroupText
 } from "reactstrap";
 
 const addExercise = gql`
@@ -89,18 +81,28 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 									}
 									if (intervals !== "" || 0) {
 										properties.intervals = Number(intervals);
+									} else {
+										properties.intervals = null;
 									}
 									if (reps !== "" || 0) {
 										properties.reps = Number(reps);
+									} else {
+										properties.reps = null;
 									}
 									if (sets !== "" || 0) {
 										properties.sets = Number(sets);
+									} else {
+										properties.sets = null;
 									}
 									if (duration !== "" || 0) {
 										properties.duration = Number(duration);
+									} else {
+										properties.duration = null;
 									}
 									if (intensity !== "" || 0) {
 										properties.intensity = Number(intensity);
+									} else {
+										properties.intensity = null;
 									}
 									createExercise({
 										variables: { ...properties, workoutId: workout.id }
@@ -120,7 +122,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								<InputGroup>
 									<InputGroupText>Intervals</InputGroupText>
 									<Input
-										type="text"
+										type="number"
 										value={intervals}
 										onChange={e => setIntervals(e.target.value)}
 									/>
@@ -128,7 +130,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								<InputGroup>
 									<InputGroupText>Reps</InputGroupText>
 									<Input
-										type="text"
+										type="number"
 										value={reps}
 										onChange={e => setReps(e.target.value)}
 									/>
@@ -136,7 +138,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								<InputGroup>
 									<InputGroupText>Sets</InputGroupText>
 									<Input
-										type="text"
+										type="number"
 										value={sets}
 										onChange={e => setSets(e.target.value)}
 									/>
@@ -144,7 +146,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								<InputGroup>
 									<InputGroupText>Duration</InputGroupText>
 									<Input
-										type="text"
+										type="number"
 										value={duration}
 										onChange={e => setDuration(e.target.value)}
 									/>
@@ -152,7 +154,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								<InputGroup>
 									<InputGroupText>Intensity</InputGroupText>
 									<Input
-										type="text"
+										type="number"
 										value={intensity}
 										onChange={e => setIntensity(e.target.value)}
 									/>

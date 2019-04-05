@@ -8,7 +8,6 @@ import Logout from "./Logout";
 import Schedule from "./views/Schedule";
 import Payment from "./views/Payment/payment.js";
 import Workouts from "./views/Workouts";
-import Workoutss from "./views/Workoutss";
 import Progress from "./views/Progress";
 
 const Routes = props => {
@@ -19,7 +18,7 @@ const Routes = props => {
 			<Route exact path="/logout" component={Logout} />
 			<Route path="/schedule" component={Schedule} />
 			<Route path="/callback" component={Callback} />
-			<Route path="/workouts" component={Workoutss} />
+			<Route path="/workouts" component={Workouts} />
 			<Route exact path="/payment" component={Payment} />
 			<Route exact path="/progress" component={Progress} />
 		</ContentContainer>

@@ -45,7 +45,12 @@ const EditSavedWorkout = ({ workout, history }) => {
 	const [workoutName, setWorkoutName] = useState(workout.name);
 	const [activeCollapse, setActiveCollapse] = useState("");
 	return (
-		<Modal fade={false} centered isOpen={true} toggle={() => history.goBack()}>
+		<Modal
+			fade={false}
+			centered
+			isOpen={true}
+			toggle={() => history.push(`/workouts/saved`)}
+		>
 			<ModalHeader>{workout.name}</ModalHeader>
 			<ModalBody>
 				<s.UpdateWorkout>
@@ -79,7 +84,7 @@ const EditSavedWorkout = ({ workout, history }) => {
 					<Button
 						color="success"
 						onClick={() =>
-							history.push(`/workouts/saved/${workout.id}/exercises/create`)
+							history.push(`/workouts/saved/${workout.id}/exercises/c/new`)
 						}
 					>
 						<i className="fas fa-plus" />

@@ -1,102 +1,54 @@
 import styled from "styled-components";
-import { CardTitle, CardBody } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
-export const WorkoutsContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
+export const Container = styled.div`
 	width: 100%;
-	justify-content: center;
-	@media (max-width: 991px) {
-		width: 100%;
-		margin: 4px 0;
+	display: flex;
+	@media (max-width: 960px) {
+		flex-wrap: wrap;
 	}
 `;
 
-export const WorkoutContainer = styled.div`
-	width: 25%;
-	margin: 16px;
-	border: 1px solid black;
+export const Menu = styled.div`
+	width: 20%;
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	@media (max-width: 960px) {
+		width: 100%;
+	}
+`;
+
+export const MenuLink = styled(NavLink)`
+	width: 100%;
+	background: #ccc;
+	color: black;
+	padding: 4px;
 	border-radius: 4px;
-	p {
-		margin: 0;
+	text-decoration: none;
+	transition: 0.4s all;
+	margin: 6px auto;
+	&:visited {
+		text-decoration: none;
 	}
-`;
-
-export const CardHeader = styled(CardTitle)`
-	&& {
-		margin: 4px;
-	}
-`;
-
-export const CardContent = styled(CardBody)`
-	&& {
-		padding: 4px;
-
-		hr {
-			width: 50%;
-			margin: 4px auto;
-			color: black;
-		}
-	}
-`;
-
-export const CreateButton = styled.div`
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 6px;
-	color: red;
-
 	&:hover {
-		cursor: pointer;
+		text-decoration: none;
+		background: #1a8fff;
+		color: white;
+	}
+	&.active {
+		background: #1a8fff;
+		color: white;
+	}
+	@media (max-width: 960px) {
+		width: 50%;
 	}
 `;
 
-export const DeleteButton = styled.div`
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 6px;
-	color: red;
-
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
-export const UpdateButton = styled.div`
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 6px;
-	color: red;
-
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
-export const Workouts = styled.div`
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-
-	h3 {
+export const Content = styled.div`
+	width: 80%;
+	margin: 0 auto;
+	@media (max-width: 960px) {
 		width: 100%;
-		margin: 4px;
-	}
-`;
-
-export const Workout = styled.div`
-	position: relative;
-	width: 25%;
-	margin: 6px;
-	border: 1px solid black;
-	border-radius: 6px;
-
-	p {
-		padding: 0;
-		margin: 0;
 	}
 `;

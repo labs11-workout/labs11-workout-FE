@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, withRouter } from "react-router-dom";
-import { Mutation } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
 import {
@@ -29,6 +29,7 @@ import {
 
 import EditSavedWorkout from "./EditSavedWorkout";
 import CreateSavedWorkoutExercise from "./CreateSavedWorkoutExercise";
+import EditSavedWorkoutExerciseModal from "./EditSavedWorkoutExerciseModal";
 
 const deleteSavedWorkout = gql`
 	mutation DeleteSavedWorkout($id: ID!) {
@@ -57,7 +58,25 @@ const getSavedWorkouts = gql`
 	}
 `;
 
-const SavedWorkout = ({ workout, history }) => {
+const getExercise = gql`
+	query GetExercise($id: ID!) {
+		getExercise(id: $id) {
+			id
+			name
+			sets
+			reps
+			intervals
+			duration
+			intensity
+			completed
+			savedWorkout {
+				id
+			}
+		}
+	}
+`;
+
+const SavedWorkout = ({ workout, history, match, location }) => {
 	const [activeCollapse, setActiveCollapse] = useState("");
 	const [settings, toggleSettings] = useState(false);
 	const [deleteModalOpen, toggleDeleteModal] = useState(false);
@@ -111,11 +130,11 @@ const SavedWorkout = ({ workout, history }) => {
 								</s.CardHead>
 								<Collapse isOpen={activeCollapse === i}>
 									<s.CardMain>
-										{e.intervals && <span>Intervals: {e.intervals}</span>}
-										{e.sets && <span>Sets: {e.sets}</span>}
-										{e.reps && <span>Reps: {e.reps}</span>}
-										{e.duration && <span>Duration: {e.duration}</span>}
-										{e.intensity && <span>Intensity: {e.intensity}</span>}
+										{e.intervals > 0 && <span>Intervals: {e.intervals}</span>}
+										{e.sets > 0 && <span>Sets: {e.sets}</span>}
+										{e.reps > 0 && <span>Reps: {e.reps}</span>}
+										{e.duration > 0 && <span>Duration: {e.duration}</span>}
+										{e.intensity > 0 && <span>Intensity: {e.intensity}</span>}
 									</s.CardMain>
 								</Collapse>
 							</s.NestedCard>
@@ -161,10 +180,35 @@ const SavedWorkout = ({ workout, history }) => {
 			/>
 			<Route
 				exact
-				path={`/workouts/saved/${workout.id}/exercises/create`}
+				path={`/workouts/saved/${workout.id}/exercises/c/new`}
 				render={() => (
 					<CreateSavedWorkoutExercise history={history} workout={workout} />
 				)}
+			/>
+			<Route
+				exact
+				path={`/workouts/saved/${workout.id}/exercises/:exerciseId`}
+				render={() => {
+					return (
+						<Query
+							query={getExercise}
+							variables={{ id: location.pathname.split("/")[5] }}
+						>
+							{({ loading, error, data }) => {
+								if (loading) return <p>Loading...</p>;
+								if (error) return <p>{error.message}</p>;
+								return (
+									<EditSavedWorkoutExerciseModal
+										workout={workout}
+										match={match}
+										exercise={data.getExercise}
+										history={history}
+									/>
+								);
+							}}
+						</Query>
+					);
+				}}
 			/>
 		</>
 	);

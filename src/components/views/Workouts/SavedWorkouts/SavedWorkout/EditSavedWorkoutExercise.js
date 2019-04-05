@@ -94,7 +94,11 @@ const EditSavedWorkoutExercise = ({
 						</s.SettingButton>
 						<DropdownMenu>
 							<DropdownItem
-								onClick={() => history.push(`/workouts/saved/${workout.id}`)}
+								onClick={() =>
+									history.push(
+										`/workouts/saved/${workout.id}/exercises/${exercise.id}`
+									)
+								}
 							>
 								Edit
 							</DropdownItem>
@@ -136,9 +140,10 @@ const EditSavedWorkoutExercise = ({
 					{(deleteExercise, { loading }) => {
 						return (
 							<s.DeleteButton
-								onClick={() =>
-									deleteExercise({ variables: { exerciseId: e.id } })
-								}
+								onClick={() => {
+									deleteExercise({ variables: { exerciseId: e.id } });
+									history.push(`/workouts/saved/${workout.id}`);
+								}}
 								color="danger"
 							>
 								{loading ? "Loading" : "Delete"}

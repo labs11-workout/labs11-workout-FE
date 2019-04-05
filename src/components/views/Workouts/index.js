@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import * as s from "./styles";
 import Protected from "../../Protected";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
+import { Route, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
-import Workout from "./WorkoutsComponents/Workout.js";
-import SavedWorkout from "./WorkoutsComponents/SavedWorkout.js";
-import * as s from "./styles.js";
-import CreatedWorkout from "./WorkoutsComponents/AddWorkout.js";
-import DeletedWorkout from "./WorkoutsComponents/DeleteWorkout.js";
-import UpdatedWorkout from "./WorkoutsComponents/EditWorkout.js";
+import SavedWorkouts from "./SavedWorkouts/";
+import ScheduledWorkouts from "./ScheduledWorkouts/";
 
-const getWorkouts = gql`
+const getSavedWorkoutsAndSchedules = gql`
 	{
 		getSavedWorkouts {
 			id
@@ -25,38 +23,72 @@ const getWorkouts = gql`
 				intensity
 			}
 		}
+		getSchedules {
+			id
+			time
+			workouts {
+				id
+				name
+				completed
+				exercises {
+					id
+					name
+					reps
+					sets
+					duration
+					intensity
+					completed
+				}
+			}
+		}
 	}
 `;
 
-const Workouts = props => {
+const Workouts = ({ match, history, location }) => {
+	useEffect(() => {
+		if (location.pathname === "/workouts") {
+			history.push("/workouts/saved");
+		}
+	}, []);
+
 	return (
-		<>
-		<Query query={getWorkouts}>
-			{({ loading, error, data }) => {
-				if (loading) return <p>Loading...</p>;
-				if (error) return <p>{error.message}</p>;
-				console.log(data);
-				return (
-					<>
-						<s.WorkoutsContainer>
-							{data.getSavedWorkouts.map(w => (
-								<>
-								<SavedWorkout workout={w} />
-								<UpdatedWorkout workout={w} />
-								<CreatedWorkout workout={w} />
-								<DeletedWorkout workout={w}/>
-								</>
-							))}
-						</s.WorkoutsContainer>
-					</>
-				);
-			}}
-		</Query>
-		
-		
-	   </>
+		<s.Container>
+			<Query query={getSavedWorkoutsAndSchedules}>
+				{({ loading, error, data }) => {
+					if (loading) return <p>Loading...</p>;
+					if (error) return <p>{error.message}</p>;
+					return (
+						<>
+							<s.Menu>
+								<h3>Menu</h3>
+								<hr />
+								<s.MenuLink activeClassName="active" to="/workouts/saved">
+									Saved Workouts
+								</s.MenuLink>
+								<s.MenuLink activeClassName="active" to="/workouts/scheduled">
+									Scheduled Workouts
+								</s.MenuLink>
+							</s.Menu>
+							<s.Content>
+								<Route
+									path="/workouts/saved"
+									render={() => (
+										<SavedWorkouts savedWorkouts={data.getSavedWorkouts} />
+									)}
+								/>
+								<Route
+									path="/workouts/scheduled"
+									render={() => (
+										<ScheduledWorkouts schedules={data.getSchedules} />
+									)}
+								/>
+							</s.Content>
+						</>
+					);
+				}}
+			</Query>
+		</s.Container>
 	);
 };
 
-export default Protected(Workouts);
-
+export default Protected(withRouter(Workouts));

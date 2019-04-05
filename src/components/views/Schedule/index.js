@@ -51,7 +51,7 @@ const Schedule = props => {
 	useEffect(() => {
 		window.addEventListener("resize", handleResize);
 		return () => {
-			window.removeEventListener("resize", window);
+			window.removeEventListener("resize", handleResize);
 		};
 	});
 

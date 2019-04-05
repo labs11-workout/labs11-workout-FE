@@ -231,6 +231,9 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 									{({ loading, error, data }) => {
 										if (loading) return <p>Loading Saved Workouts...</p>;
 										if (error) return <p>Error...</p>;
+										if (savedWorkoutId === "") {
+											setSavedWorkoutId(data.getSavedWorkouts[0].id);
+										}
 										return (
 											<InputGroup>
 												<InputGroupText>Saved Workouts</InputGroupText>
@@ -390,21 +393,21 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																			</s.CardHead>
 																			<Collapse isOpen={activeCollapse === i}>
 																				<s.CardMain>
-																					{e.intervals && (
+																					{e.intervals > 0 && (
 																						<span>
 																							Intervals: {e.intervals}
 																						</span>
 																					)}
-																					{e.sets && (
+																					{e.sets > 0 && (
 																						<span>Sets: {e.sets}</span>
 																					)}
-																					{e.reps && (
+																					{e.reps > 0 && (
 																						<span>Reps: {e.reps}</span>
 																					)}
-																					{e.duration && (
+																					{e.duration > 0 && (
 																						<span>Duration: {e.duration}</span>
 																					)}
-																					{e.intensity && (
+																					{e.intensity > 0 && (
 																						<span>
 																							Intensity: {e.intensity}
 																						</span>

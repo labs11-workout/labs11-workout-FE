@@ -1,8 +1,8 @@
 import React, { useState} from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Modal } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Modal } from "reactstrap";
 import datefns from "date-fns";
-import { Mutation, Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
 const getBodyMetrics = gql`
@@ -58,6 +58,8 @@ const AddBodyMetric = ( ) => {
             >
                 {(addBodyMetric) => (
                 <Modal isOpen={toggle}>
+                    <s.DeleteButton onClick={Toggle}>x
+                    </s.DeleteButton>
                     <Form onSubmit={e => SubmitForm(e, addBodyMetric)}>
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Label for="exampleEmail" className="mr-sm-2">Weight</Label>
@@ -72,6 +74,8 @@ const AddBodyMetric = ( ) => {
                             <Input type="number" name="password" id="examplePassword" value={bodyfat} onChange={e => setBodyFat(Number(e.target.value))}/>
                         </FormGroup>
                         <Button  type="submit">Submit</Button>
+
+
                     </Form>
                 </Modal>
                 )}

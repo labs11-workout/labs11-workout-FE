@@ -12,6 +12,14 @@ const deleteBodyMeasurement = gql`
 		}
 	}
 `;
+const editBodyMeasurement = gql`
+	mutation EditBodyMeasurement($id: ID!) {
+		editBodyMeasurement(id: $id) {
+			id
+		}
+	}
+`;
+
 
 const getBodyMeasurements = gql`
 	{
@@ -45,16 +53,28 @@ const BodyMeasurement = ({ measurement }) => {
 						</s.DeleteButton>
 					)}
 				</Mutation>
+				<Mutation
+					mutation={editBodyMeasurement}
+					refetchQueries={() => [{ query: getBodyMeasurements }]}
+				>
+					{(editBodyMeasurement, { data }) => (
+						<s.UpdateButton
+							onClick={() => editBodyMeasurement({ variables: { id: m.id } })}
+						>
+							Update
+						</s.UpdateButton>
+					)}
+				</Mutation>
 				<CardTitle>
 					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>
 				<CardBody>
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
-					{m.leftArm && <p>Left Arm: {m.leftArm}</p>}
-					{m.rightArm && <p>Right Arm: {m.rightArm}</p>}
-					{m.leftLeg && <p>Left Leg: {m.leftLeg}</p>}
-					{m.rightLeg && <p>Right Leg: {m.rightLeg}</p>}
+					{m.leftArm && <p>Left Arm: {m.leftArm}in</p>}
+					{m.rightArm && <p>Right Arm: {m.rightArm}in</p>}
+					{m.leftLeg && <p>Left Leg: {m.leftLeg}in</p>}
+					{m.rightLeg && <p>Right Leg: {m.rightLeg}in</p>}
 				</CardBody>
 			</Card>
 		</s.Measurement>

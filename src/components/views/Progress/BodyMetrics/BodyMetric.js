@@ -48,10 +48,7 @@ const BodyMetric = ({ metric }) => {
 					refetchQueries={() => [{ query: getBodyMetrics }]}
 				>
 					{(deleteBodyMetric, { data }) => {
-						return<s.DeleteButton
-							onClick={() => deleteBodyMetric({ variables: { id: m.id } })}
-						>
-							X
+						return<s.DeleteButton onClick={() => deleteBodyMetric({ variables: { id: m.id } })}>X
 						</s.DeleteButton>
 					}}
 				</Mutation>

@@ -15,7 +15,10 @@ const BodyMeasurements = ({ measurements }) => {
 				</>
 
 			) : (
+				<>
 				<p>You have no Body Measurements recorded. Try Adding One!</p>
+				<AddBodyMeasurement/>
+				</>
 			)}
 		</s.Measurements>
 	);

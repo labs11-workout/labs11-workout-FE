@@ -4,7 +4,6 @@ import { Card, CardTitle, CardBody} from 'reactstrap';
 import gql from 'graphql-tag';
 import * as s from './styles.js'
 import Protected from '../../Protected.js';
-import datefns from "date-fns";
 import Note from "./notes"
 import AddNote from "./addnotes"
 

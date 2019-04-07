@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
-import { Mutation, Query} from 'react-apollo';
-import { withRouter, Redirect } from "react-router-dom";
-import Proptypes from 'prop-types';
+import { Query} from 'react-apollo';
 import Protected from "../../Protected";
 import gql from "graphql-tag";
 import {Card, CardDeck, CardBody} from 'reactstrap';
+import datefns from "date-fns";
 
 const getProfile = gql`
 {
@@ -37,7 +35,7 @@ class Profile extends Component{
                     </Card>
                     <Card>
                         <CardBody>
-                        Join: {data.getProfile.createdAt}
+                        Joined: {datefns.format(data.getProfile.createdAt, "ddd, Do MMM YYYY h:mm a")}
                         </CardBody>
                     </Card>
                     <Card>
@@ -53,7 +51,7 @@ class Profile extends Component{
                     </Card>
                     <Card>
                         <CardBody>
-                        Join: {data.getProfile.createdAt}
+                        Joined: {datefns.format(data.getProfile.createdAt, "ddd, Do MMM YYYY h:mm a")}
                         </CardBody>
                     </Card>
                     <Card>

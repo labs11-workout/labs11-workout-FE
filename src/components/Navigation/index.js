@@ -23,7 +23,7 @@ const Navigation = props => {
 						<s.Link to={`/schedule`} activeClassName="active">
 							Schedules
 						</s.Link>
-						<s.Link to="/workouts/saved" activeClassName="active">
+						<s.Link to="/workouts" activeClassName="active">
 							Workouts
 						</s.Link>
 						<s.Link to="/progress" activeClassName="active">

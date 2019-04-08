@@ -31,6 +31,29 @@ import EditScheduledWorkout from "./EditScheduledWorkout";
 import CreateScheduledWorkoutExercise from "./CreateScheduledWorkoutExercise";
 import EditScheduledWorkoutExerciseModal from "./EditScheduledWorkoutExerciseModal";
 
+const getSchedules = gql`
+	{
+		getSchedules {
+			id
+			time
+			workouts {
+				id
+				name
+				completed
+				exercises {
+					id
+					name
+					reps
+					sets
+					duration
+					intensity
+					completed
+				}
+			}
+		}
+	}
+`;
+
 const deleteWorkout = gql`
 	mutation DeleteWorkout($id: ID!) {
 		deleteWorkout(id: $id) {
@@ -155,7 +178,10 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 				</h5>
 				<Mutation
 					mutation={deleteWorkout}
-					refetchQueries={() => [{ query: getWorkouts }]}
+					refetchQueries={() => [
+						{ query: getWorkouts },
+						{ query: getSchedules }
+					]}
 				>
 					{(deleteWorkout, { loading }) => {
 						return (

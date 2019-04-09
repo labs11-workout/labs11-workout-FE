@@ -12,6 +12,7 @@ import {
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import dateFns from "date-fns";
+import { Redirect } from "react-router-dom";
 
 const getSchedules = gql`
 	{
@@ -55,6 +56,16 @@ const addWorkout = gql`
 		addWorkout(scheduleId: $scheduleId, name: $name) {
 			id
 			name
+			createdAt
+			exercises {
+				id
+				name
+				intervals
+				reps
+				sets
+				duration
+				intensity
+			}
 		}
 	}
 `;
@@ -95,10 +106,18 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 
 						return (
 							<Mutation
+								awaitRefetchQueries={true}
 								mutation={addWorkout}
 								refetchQueries={() => [{ query: getSchedules }]}
 							>
-								{(createWorkout, { loading }) => {
+								{(createWorkout, { loading, data }) => {
+									if (data && data.addWorkout) {
+										return (
+											<Redirect
+												to={`/workouts/scheduled/${data.addWorkout.id}`}
+											/>
+										);
+									}
 									return (
 										<>
 											{schedules.length < 1 ? (
@@ -108,7 +127,6 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 													onSubmit={e => {
 														e.preventDefault();
 														createWorkout({ variables: { name, scheduleId } });
-														history.push("/workouts/scheduled");
 													}}
 												>
 													<InputGroup>
@@ -138,7 +156,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 														/>
 													</InputGroup>
 													<Button style={{ width: "100%" }} color="success">
-														Create
+														{loading ? "Loading..." : "Create"}
 													</Button>
 												</Form>
 											)}

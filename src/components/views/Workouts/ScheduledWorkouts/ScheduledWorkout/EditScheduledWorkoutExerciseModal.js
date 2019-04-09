@@ -138,6 +138,7 @@ const EditScheduledWorkoutExerciseModal = ({
 			<ModalHeader>Update Exercise</ModalHeader>
 			<ModalBody>
 				<Mutation
+					awaitRefetchQueries={true}
 					mutation={editExercise}
 					refetchQueries={() => [
 						{ query: getWorkout, variables: { id: workout.id } }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -99,6 +99,41 @@ const getExercise = gql`
 	}
 `;
 
+const getSavedWorkouts = gql`
+	{
+		getSavedWorkouts {
+			id
+			name
+			createdAt
+			exercises {
+				id
+				name
+				intervals
+				reps
+				sets
+				duration
+				intensity
+			}
+		}
+	}
+`;
+
+const addSavedWorkoutFromWorkout = gql`
+	mutation AddSavedWorkoutFromWorkout($workoutId: ID!) {
+		addSavedWorkoutFromWorkout(workoutId: $workoutId) {
+			id
+			name
+			exercises {
+				name
+				sets
+				reps
+				intervals
+				duration
+			}
+		}
+	}
+`;
+
 const ScheduledWorkout = ({ workout, history, match, location }) => {
 	const [activeCollapse, setActiveCollapse] = useState("");
 	const [settings, toggleSettings] = useState(false);
@@ -121,6 +156,33 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 							>
 								Edit
 							</DropdownItem>
+							<Mutation
+								awaitRefetchQueries={true}
+								mutation={addSavedWorkoutFromWorkout}
+								refetchQueries={() => [{ query: getSavedWorkouts }]}
+							>
+								{(saveWorkout, { loading, data }) => {
+									if (data && data.addSavedWorkoutFromWorkout) {
+										return (
+											<Redirect
+												to={`/workouts/saved/${
+													data.addSavedWorkoutFromWorkout.id
+												}`}
+											/>
+										);
+									}
+									return (
+										<DropdownItem
+											toggle={false}
+											onClick={e => {
+												saveWorkout({ variables: { workoutId: workout.id } });
+											}}
+										>
+											{loading ? "Saving..." : "Save"}
+										</DropdownItem>
+									);
+								}}
+							</Mutation>
 							<s.DropdownItemDanger
 								onClick={() => toggleDeleteModal(!deleteModalOpen)}
 								color="danger"
@@ -177,6 +239,7 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 					Are you sure you want to delete this?
 				</h5>
 				<Mutation
+					awaitRefetchQueries={true}
 					mutation={deleteWorkout}
 					refetchQueries={() => [
 						{ query: getWorkouts },

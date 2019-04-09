@@ -2,6 +2,7 @@ import React from "react";
 import * as s from "./styles";
 import SavedWorkout from "./SavedWorkout/";
 import { Mutation } from "react-apollo";
+import { Redirect } from "react-router-dom";
 import gql from "graphql-tag";
 import { Button } from "reactstrap";
 
@@ -9,6 +10,17 @@ const addSavedWorkout = gql`
 	mutation AddSavedWorkout($name: String!) {
 		addSavedWorkout(name: $name) {
 			id
+			name
+			createdAt
+			exercises {
+				id
+				name
+				intervals
+				reps
+				sets
+				duration
+				intensity
+			}
 		}
 	}
 `;
@@ -32,16 +44,20 @@ const getSavedWorkouts = gql`
 	}
 `;
 
-const SavedWorkouts = ({ savedWorkouts }) => {
+const SavedWorkouts = ({ savedWorkouts, history }) => {
 	return (
 		<div>
 			<h2>Saved Workouts</h2>
 			<hr />
 			<Mutation
+				awaitRefetchQueries={true}
 				mutation={addSavedWorkout}
 				refetchQueries={() => [{ query: getSavedWorkouts }]}
+				onCompleted={data =>
+					history.push(`/workouts/saved/${data.addSavedWorkout.id}`)
+				}
 			>
-				{(addWorkout, { loading }) => {
+				{(addWorkout, { loading, data }) => {
 					return (
 						<Button
 							color="success"

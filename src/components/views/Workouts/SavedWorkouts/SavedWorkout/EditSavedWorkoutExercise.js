@@ -132,6 +132,7 @@ const EditSavedWorkoutExercise = ({
 					Are you sure you want to delete this?
 				</h5>
 				<Mutation
+					awaitRefetchQueries={true}
 					mutation={deleteExercise}
 					refetchQueries={() => [
 						{ query: getSavedWorkout, variables: { id: workout.id } }

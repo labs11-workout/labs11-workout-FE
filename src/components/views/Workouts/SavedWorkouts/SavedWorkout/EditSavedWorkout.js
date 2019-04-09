@@ -62,7 +62,7 @@ const EditSavedWorkout = ({ workout, history }) => {
 							onChange={e => setWorkoutName(e.target.value)}
 						/>
 					</InputGroup>
-					<Mutation mutation={editSavedWorkout}>
+					<Mutation awaitRefetchQueries={true} mutation={editSavedWorkout}>
 						{(editWorkout, { loading }) => {
 							return (
 								<Button

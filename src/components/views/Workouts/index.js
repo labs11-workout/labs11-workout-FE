@@ -69,7 +69,10 @@ const Workouts = ({ match, history, location }) => {
 								<Route
 									path="/workouts/saved"
 									render={() => (
-										<SavedWorkouts savedWorkouts={data.getSavedWorkouts} />
+										<SavedWorkouts
+											history={history}
+											savedWorkouts={data.getSavedWorkouts}
+										/>
 									)}
 								/>
 								<Route

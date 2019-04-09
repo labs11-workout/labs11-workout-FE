@@ -195,6 +195,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 				@ {dateFns.format(schedule.time, "h:mma")}
 				{showDeleteButton && (
 					<Mutation
+						awaitRefetchQueries={true}
 						mutation={deleteSchedule}
 						refetchQueries={() => [{ query: getSchedules }]}
 					>
@@ -275,6 +276,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 															</Input>
 														</InputGroup>
 														<Mutation
+															awaitRefetchQueries={true}
 															mutation={addWorkoutFromSavedWorkout}
 															refetchQueries={() => [{ query: getSchedules }]}
 														>
@@ -347,6 +349,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 														<s.CardHead>
 															Exercises
 															<Mutation
+																awaitRefetchQueries={true}
 																mutation={deleteWorkout}
 																refetchQueries={() => [
 																	{
@@ -391,7 +394,10 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																					)}{" "}
 																					{e.name}
 																				</span>
-																				<Mutation mutation={editExercise}>
+																				<Mutation
+																					awaitRefetchQueries={true}
+																					mutation={editExercise}
+																				>
 																					{editExercise => {
 																						return (
 																							<s.CompletedExercise>
@@ -473,6 +479,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 						</ModalBody>
 						<ModalFooter>
 							<Mutation
+								awaitRefetchQueries={true}
 								mutation={deleteSchedule}
 								refetchQueries={() => [{ query: getSchedules }]}
 							>

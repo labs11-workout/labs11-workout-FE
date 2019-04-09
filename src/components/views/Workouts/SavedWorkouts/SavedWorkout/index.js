@@ -152,6 +152,7 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 					Are you sure you want to delete this?
 				</h5>
 				<Mutation
+					awaitRefetchQueries={true}
 					mutation={deleteSavedWorkout}
 					refetchQueries={() => [{ query: getSavedWorkouts }]}
 				>

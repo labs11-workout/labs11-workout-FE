@@ -23,8 +23,50 @@ import {
 	InputGroup,
 	Input,
 	InputGroupText,
-	Collapse
+	Collapse,
+	Dropdown,
+	DropdownMenu,
+	DropdownItem,
+	DropdownToggle
 } from "reactstrap";
+
+const getWorkout = gql`
+	query GetWorkout($id: ID!) {
+		getWorkout(id: $id) {
+			id
+			name
+			completed
+			exercises {
+				id
+				name
+				reps
+				sets
+				duration
+				intensity
+				completed
+			}
+		}
+	}
+`;
+
+const editWorkout = gql`
+	mutation EditWorkout($id: ID!, $name: String, $completed: Boolean) {
+		editWorkout(id: $id, name: $name, completed: $completed) {
+			id
+			name
+			completed
+			exercises {
+				id
+				name
+				reps
+				sets
+				duration
+				intensity
+				completed
+			}
+		}
+	}
+`;
 
 const deleteSchedule = gql`
 	mutation DeleteSchedule($id: ID!) {
@@ -170,6 +212,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
 	const [activeCollapse, setActiveCollapse] = useState("");
+	const [settings, toggleSettings] = useState(""); //Dropdown Settings for Workout Tabs
 
 	const day = new Date(schedule.time);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
@@ -329,14 +372,64 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 										{schedule.workouts.map((w, i) => {
 											return (
 												<NavItem key={w.id}>
-													<NavLink
+													<s.TabLink
 														className={classnames({
 															active: activeTab === i
 														})}
 														onClick={() => toggleTab(i)}
 													>
 														{w.name}
-													</NavLink>
+														<Dropdown
+															isOpen={settings === w.id}
+															toggle={ev => {
+																ev.stopPropagation();
+																if (settings !== w.id) {
+																	toggleSettings(w.id);
+																} else {
+																	toggleSettings("");
+																}
+															}}
+														>
+															<s.SettingsButton color="link">
+																<i className="fas fa-cog" />
+															</s.SettingsButton>
+
+															<DropdownMenu>
+																<DropdownItem
+																	onClick={() =>
+																		history.push(`/workouts/scheduled/${w.id}`)
+																	}
+																>
+																	Edit
+																</DropdownItem>
+																<Mutation
+																	awaitRefetchQueries={true}
+																	mutation={deleteWorkout}
+																	refetchQueries={() => [
+																		{
+																			query: getSchedules
+																		}
+																	]}
+																>
+																	{(delWorkout, { loading, error, data }) => {
+																		return (
+																			<s.DropdownItemDanger
+																				toggle={false}
+																				onClick={() =>
+																					delWorkout({
+																						variables: { id: w.id }
+																					})
+																				}
+																				color="danger"
+																			>
+																				{loading ? "Deleting..." : "Delete"}
+																			</s.DropdownItemDanger>
+																		);
+																	}}
+																</Mutation>
+															</DropdownMenu>
+														</Dropdown>
+													</s.TabLink>
 												</NavItem>
 											);
 										})}
@@ -350,24 +443,48 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 															Exercises
 															<Mutation
 																awaitRefetchQueries={true}
-																mutation={deleteWorkout}
+																mutation={editWorkout}
 																refetchQueries={() => [
 																	{
-																		query: getSchedules
+																		query: getWorkout,
+																		variables: { id: w.id }
 																	}
 																]}
 															>
-																{(delWorkout, { loading, error, data }) => {
+																{(updateWorkout, { loading, error, data }) => {
 																	return (
-																		<s.DeleteWorkout
-																			onClick={() =>
-																				delWorkout({ variables: { id: w.id } })
-																			}
-																		>
-																			{loading
-																				? "Deleting..."
-																				: "Delete Workout"}
-																		</s.DeleteWorkout>
+																		<s.CompletedExercise>
+																			Completed:{" "}
+																			{loading ? (
+																				<i class="fas fa-spinner completed fa-spin" />
+																			) : w.completed ? (
+																				<i
+																					className="fas fa-check-square completed"
+																					onClick={ev => {
+																						ev.stopPropagation();
+																						updateWorkout({
+																							variables: {
+																								id: w.id,
+																								completed: false
+																							}
+																						});
+																					}}
+																				/>
+																			) : (
+																				<i
+																					className="far fa-square not-completed"
+																					onClick={ev => {
+																						ev.stopPropagation();
+																						updateWorkout({
+																							variables: {
+																								id: w.id,
+																								completed: true
+																							}
+																						});
+																					}}
+																				/>
+																			)}
+																		</s.CompletedExercise>
 																	);
 																}}
 															</Mutation>
@@ -397,12 +514,20 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																				<Mutation
 																					awaitRefetchQueries={true}
 																					mutation={editExercise}
+																					refetchQueries={() => [
+																						{
+																							query: getWorkout,
+																							variables: { id: w.id }
+																						}
+																					]}
 																				>
-																					{editExercise => {
+																					{(editExercise, { loading }) => {
 																						return (
 																							<s.CompletedExercise>
 																								Completed:{" "}
-																								{e.completed ? (
+																								{loading ? (
+																									<i class="fas fa-spinner completed fa-spin" />
+																								) : e.completed ? (
 																									<i
 																										className="fas fa-check-square completed"
 																										onClick={ev => {

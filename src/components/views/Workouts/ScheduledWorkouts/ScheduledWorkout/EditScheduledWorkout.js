@@ -105,6 +105,11 @@ const EditScheduledWorkout = ({ workout, history }) => {
 					);
 				})}
 			</ModalBody>
+			<ModalFooter style={{ justifyContent: "flex-start" }}>
+				<span onClick={history.goBack}>
+					<i className="fas fa-arrow-left" /> Go Back
+				</span>
+			</ModalFooter>
 		</Modal>
 	);
 };

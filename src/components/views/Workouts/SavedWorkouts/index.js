@@ -38,6 +38,7 @@ const SavedWorkouts = ({ savedWorkouts }) => {
 			<h2>Saved Workouts</h2>
 			<hr />
 			<Mutation
+				awaitRefetchQueries={true}
 				mutation={addSavedWorkout}
 				refetchQueries={() => [{ query: getSavedWorkouts }]}
 			>

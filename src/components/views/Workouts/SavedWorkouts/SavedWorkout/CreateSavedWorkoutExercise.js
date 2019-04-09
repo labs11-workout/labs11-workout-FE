@@ -65,6 +65,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 			<ModalHeader>Create Exercise</ModalHeader>
 			<ModalBody>
 				<Mutation
+					awaitRefetchQueries={true}
 					mutation={addExercise}
 					refetchQueries={() => [
 						{ query: getSavedWorkout, variables: { id: workout.id } }

@@ -65,6 +65,7 @@ const CreateScheduledWorkoutExercise = ({ workout, history }) => {
 			<ModalHeader>Create Exercise</ModalHeader>
 			<ModalBody>
 				<Mutation
+					onCompleted={history.goBack}
 					awaitRefetchQueries={true}
 					mutation={addExercise}
 					refetchQueries={() => [
@@ -108,7 +109,6 @@ const CreateScheduledWorkoutExercise = ({ workout, history }) => {
 									createExercise({
 										variables: { ...properties, workoutId: workout.id }
 									});
-									history.goBack();
 								}}
 							>
 								<InputGroup>

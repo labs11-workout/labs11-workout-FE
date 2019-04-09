@@ -129,6 +129,7 @@ const CalendarDay = ({
 									/>
 								</InputGroup>
 								<Mutation
+									awaitRefetchQueries={true}
 									mutation={addSchedule}
 									refetchQueries={() => [{ query: getSchedules }]}
 								>

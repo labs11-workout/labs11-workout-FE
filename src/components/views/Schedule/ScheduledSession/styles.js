@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import { CardHeader, CardBody, Button, Card } from "reactstrap";
+import {
+	CardHeader,
+	CardBody,
+	Button,
+	Card,
+	DropdownToggle,
+	Dropdown,
+	DropdownItem,
+	NavLink
+} from "reactstrap";
 
 export const DaySchedule = styled.div`
 	position: relative;
@@ -14,6 +23,31 @@ export const DaySchedule = styled.div`
 	&:hover {
 		background: #349dff;
 		cursor: pointer;
+	}
+`;
+
+export const DropdownItemDanger = styled(DropdownItem)`
+	&& {
+		transition: 0.4s all;
+		color: white;
+		background: #dc3545;
+		&:hover {
+			background: #ba3545;
+			color: white;
+		}
+	}
+`;
+
+export const TabLink = styled(NavLink)`
+	&& {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+`;
+
+export const SettingsButton = styled(DropdownToggle)`
+	&& {
 	}
 `;
 

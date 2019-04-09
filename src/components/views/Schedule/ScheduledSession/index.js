@@ -23,7 +23,11 @@ import {
 	InputGroup,
 	Input,
 	InputGroupText,
-	Collapse
+	Collapse,
+	Dropdown,
+	DropdownMenu,
+	DropdownItem,
+	DropdownToggle
 } from "reactstrap";
 
 const getWorkout = gql`
@@ -208,6 +212,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
 	const [activeCollapse, setActiveCollapse] = useState("");
+	const [settings, toggleSettings] = useState(""); //Dropdown Settings for Workout Tabs
 
 	const day = new Date(schedule.time);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
@@ -367,14 +372,64 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 										{schedule.workouts.map((w, i) => {
 											return (
 												<NavItem key={w.id}>
-													<NavLink
+													<s.TabLink
 														className={classnames({
 															active: activeTab === i
 														})}
 														onClick={() => toggleTab(i)}
 													>
 														{w.name}
-													</NavLink>
+														<Dropdown
+															isOpen={settings === w.id}
+															toggle={ev => {
+																ev.stopPropagation();
+																if (settings !== w.id) {
+																	toggleSettings(w.id);
+																} else {
+																	toggleSettings("");
+																}
+															}}
+														>
+															<s.SettingsButton color="link">
+																<i className="fas fa-cog" />
+															</s.SettingsButton>
+
+															<DropdownMenu>
+																<DropdownItem
+																	onClick={() =>
+																		history.push(`/workouts/scheduled/${w.id}`)
+																	}
+																>
+																	Edit
+																</DropdownItem>
+																<Mutation
+																	awaitRefetchQueries={true}
+																	mutation={deleteWorkout}
+																	refetchQueries={() => [
+																		{
+																			query: getSchedules
+																		}
+																	]}
+																>
+																	{(delWorkout, { loading, error, data }) => {
+																		return (
+																			<s.DropdownItemDanger
+																				toggle={false}
+																				onClick={() =>
+																					delWorkout({
+																						variables: { id: w.id }
+																					})
+																				}
+																				color="danger"
+																			>
+																				{loading ? "Deleting..." : "Delete"}
+																			</s.DropdownItemDanger>
+																		);
+																	}}
+																</Mutation>
+															</DropdownMenu>
+														</Dropdown>
+													</s.TabLink>
 												</NavItem>
 											);
 										})}
@@ -430,29 +485,6 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																				/>
 																			)}
 																		</s.CompletedExercise>
-																	);
-																}}
-															</Mutation>
-															<Mutation
-																awaitRefetchQueries={true}
-																mutation={deleteWorkout}
-																refetchQueries={() => [
-																	{
-																		query: getSchedules
-																	}
-																]}
-															>
-																{(delWorkout, { loading, error, data }) => {
-																	return (
-																		<s.DeleteWorkout
-																			onClick={() =>
-																				delWorkout({ variables: { id: w.id } })
-																			}
-																		>
-																			{loading
-																				? "Deleting..."
-																				: "Delete Workout"}
-																		</s.DeleteWorkout>
 																	);
 																}}
 															</Mutation>

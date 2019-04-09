@@ -26,6 +26,44 @@ import {
 	Collapse
 } from "reactstrap";
 
+const getWorkout = gql`
+	query GetWorkout($id: ID!) {
+		getWorkout(id: $id) {
+			id
+			name
+			completed
+			exercises {
+				id
+				name
+				reps
+				sets
+				duration
+				intensity
+				completed
+			}
+		}
+	}
+`;
+
+const editWorkout = gql`
+	mutation EditWorkout($id: ID!, $name: String, $completed: Boolean) {
+		editWorkout(id: $id, name: $name, completed: $completed) {
+			id
+			name
+			completed
+			exercises {
+				id
+				name
+				reps
+				sets
+				duration
+				intensity
+				completed
+			}
+		}
+	}
+`;
+
 const deleteSchedule = gql`
 	mutation DeleteSchedule($id: ID!) {
 		deleteSchedule(id: $id) {
@@ -350,6 +388,53 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 															Exercises
 															<Mutation
 																awaitRefetchQueries={true}
+																mutation={editWorkout}
+																refetchQueries={() => [
+																	{
+																		query: getWorkout,
+																		variables: { id: w.id }
+																	}
+																]}
+															>
+																{(updateWorkout, { loading, error, data }) => {
+																	return (
+																		<s.CompletedExercise>
+																			Completed:{" "}
+																			{loading ? (
+																				<i class="fas fa-spinner completed fa-spin" />
+																			) : w.completed ? (
+																				<i
+																					className="fas fa-check-square completed"
+																					onClick={ev => {
+																						ev.stopPropagation();
+																						updateWorkout({
+																							variables: {
+																								id: w.id,
+																								completed: false
+																							}
+																						});
+																					}}
+																				/>
+																			) : (
+																				<i
+																					className="far fa-square not-completed"
+																					onClick={ev => {
+																						ev.stopPropagation();
+																						updateWorkout({
+																							variables: {
+																								id: w.id,
+																								completed: true
+																							}
+																						});
+																					}}
+																				/>
+																			)}
+																		</s.CompletedExercise>
+																	);
+																}}
+															</Mutation>
+															<Mutation
+																awaitRefetchQueries={true}
 																mutation={deleteWorkout}
 																refetchQueries={() => [
 																	{
@@ -397,12 +482,20 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																				<Mutation
 																					awaitRefetchQueries={true}
 																					mutation={editExercise}
+																					refetchQueries={() => [
+																						{
+																							query: getWorkout,
+																							variables: { id: w.id }
+																						}
+																					]}
 																				>
-																					{editExercise => {
+																					{(editExercise, { loading }) => {
 																						return (
 																							<s.CompletedExercise>
 																								Completed:{" "}
-																								{e.completed ? (
+																								{loading ? (
+																									<i class="fas fa-spinner completed fa-spin" />
+																								) : e.completed ? (
 																									<i
 																										className="fas fa-check-square completed"
 																										onClick={ev => {

@@ -1,11 +1,11 @@
 import React from "react";
-import {Query, Mutation, graphql } from 'react-apollo';
-import { Card, CardTitle, CardBody} from 'reactstrap';
+import {Query, Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
 import * as s from './styles.js'
 import Protected from '../../Protected.js';
-import Note from "./notes"
-import AddNote from "./addnotes"
+import Note from "./notes";
+import AddNote from "./addnotes";
+import { Button} from 'reactstrap';
 
 const getNotes = gql`
     {
@@ -17,16 +17,12 @@ const getNotes = gql`
       }
 `;
 
-const addNote = gql`
-    mutation AddNote(
-        $note: String!
-        ) { 
-        addNotes(note: $note){
-        id
-        note
-        }
-      }
-    
+const deleteAllNotes = gql`
+	mutation DeleteAllNotes {
+		deleteAllNotes{
+            id
+		}
+	}
 `;
 
 const Notes = ({ notes }) => {
@@ -56,8 +52,19 @@ const Notes = ({ notes }) => {
                     );
                 }}
                 </Query>
+    
 
             </s.Measurement>
+
+            <Mutation
+                mutation={deleteAllNotes}
+                refetchQueries={() => [{ query: getNotes }]}
+            >
+                {(deleteAllNotes) => (
+  
+                        <Button onClick={deleteAllNotes} type="submit">Delete All Notes</Button>
+                )}
+            </Mutation>
         </s.Container>
     );
 };

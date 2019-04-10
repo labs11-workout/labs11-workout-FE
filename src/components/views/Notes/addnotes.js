@@ -27,8 +27,7 @@ const addNote = gql`
     
 `;
 
-const AddNotes = ({notes}) => {
-    const m = notes;
+const AddNotes = (props) => {
     const [toggle, setState] = useState(false); 
 	const [note, setNote] = useState("");
 	const Toggle = () => {

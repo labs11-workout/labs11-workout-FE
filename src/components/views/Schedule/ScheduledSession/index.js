@@ -5,6 +5,7 @@ import dateFns from "date-fns";
 import classnames from "classnames";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { withTheme } from "styled-components";
 
 import {
 	Button,
@@ -208,7 +209,13 @@ const editExercise = gql`
 	}
 `;
 
-const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
+const ScheduledSession = ({
+	schedule,
+	showDeleteButton,
+	match,
+	history,
+	theme
+}) => {
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
 	const [activeCollapse, setActiveCollapse] = useState("");
@@ -300,7 +307,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 												{data.getSavedWorkouts.length > 0 ? (
 													<>
 														<InputGroup>
-															<InputGroupText>Saved Workouts</InputGroupText>
+															<InputGroupText>Workout Templates</InputGroupText>
 															<Input
 																value={savedWorkoutId}
 																onChange={e => {
@@ -329,7 +336,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 															) => {
 																return (
 																	<Button
-																		color="success"
+																		color="primary"
 																		onClick={() =>
 																			addWorkoutFromSavedWorkout({
 																				variables: {
@@ -339,7 +346,9 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																			})
 																		}
 																	>
-																		{loading ? "Loading..." : "Add Workout"}
+																		{loading
+																			? "Loading..."
+																			: "Add Workout Template"}
 																	</Button>
 																);
 															}}
@@ -356,6 +365,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 									}}
 								</Query>
 							</s.AddWorkout>
+							<hr />
 							<Button
 								color="primary"
 								style={{ width: "100%" }}
@@ -454,7 +464,7 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 																{(updateWorkout, { loading, error, data }) => {
 																	return (
 																		<s.CompletedExercise>
-																			Completed:{" "}
+																			Completed Workout:{" "}
 																			{loading ? (
 																				<i class="fas fa-spinner completed fa-spin" />
 																			) : w.completed ? (
@@ -648,4 +658,4 @@ const ScheduledSession = ({ schedule, showDeleteButton, match, history }) => {
 	);
 };
 
-export default withRouter(ScheduledSession);
+export default withRouter(withTheme(ScheduledSession));

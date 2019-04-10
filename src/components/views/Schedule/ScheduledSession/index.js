@@ -389,7 +389,43 @@ const ScheduledSession = ({
 														onClick={() => toggleTab(i)}
 													>
 														{w.name}
-														<Dropdown
+														<span
+															className="edit"
+															onClick={() =>
+																history.push(`/workouts/scheduled/${w.id}`)
+															}
+														>
+															<i className="fas fa-edit" />
+														</span>
+														<Mutation
+															awaitRefetchQueries={true}
+															mutation={deleteWorkout}
+															refetchQueries={() => [
+																{
+																	query: getSchedules
+																}
+															]}
+														>
+															{(delWorkout, { loading, error, data }) => {
+																return (
+																	<span
+																		className="delete"
+																		onClick={() =>
+																			delWorkout({
+																				variables: { id: w.id }
+																			})
+																		}
+																	>
+																		{loading ? (
+																			<i class="fas fa-spinner fa-spin" />
+																		) : (
+																			<i className="fas fa-minus-square" />
+																		)}
+																	</span>
+																);
+															}}
+														</Mutation>
+														{/* <Dropdown
 															isOpen={settings === w.id}
 															toggle={ev => {
 																ev.stopPropagation();
@@ -438,7 +474,7 @@ const ScheduledSession = ({
 																	}}
 																</Mutation>
 															</DropdownMenu>
-														</Dropdown>
+														</Dropdown> */}
 													</s.TabLink>
 												</NavItem>
 											);

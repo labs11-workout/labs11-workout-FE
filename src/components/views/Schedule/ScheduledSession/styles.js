@@ -43,6 +43,22 @@ export const TabLink = styled(NavLink)`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		span.edit {
+			font-size: 14px;
+			color: orange;
+			margin: 0 5px;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		span.delete {
+			font-size: 14px;
+			color: red;
+			margin: 0 5px;
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 `;
 

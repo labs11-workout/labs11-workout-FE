@@ -1,15 +1,10 @@
-
-// import styled, { ThemeProvider } from 'styled-components';
-
 export const theme = {
-    primaryDark: "#2B3A42",
-    primary: "#405865",
-    primaryLight: "#BED3DD",
-    accent: "#FD8F25",
-    themeWhite: "white",
-    white: "white",
-    roboto: "'Roboto', sans-serif",
-    opensans: "'Open Sans', sans-serif",
-    containingWidth: "960px",
-    boxShadow: "0 1px 2px 0 hsla(0, 0%, 0%, 0.4)"
-  };
+	primaryLight: "#EC7F37",
+	primary: "#FF5A09",
+	primaryDark: "#BE4F0C",
+	secondaryLight: "#184DC9",
+	secondary: "#113086",
+	secondaryDark: "#0F2A75",
+	lightFont: "#E7D9D7",
+	dark: "#393939"
+};

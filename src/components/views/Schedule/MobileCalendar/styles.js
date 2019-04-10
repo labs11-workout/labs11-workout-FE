@@ -21,7 +21,7 @@ export const Next = styled.div`
 	font-size: 22px;
 	transition: all 0.3s;
 	&:hover {
-		color: rgb(26, 143, 255);
+		color: ${props => props.theme.primary};
 		cursor: pointer;
 	}
 `;
@@ -33,7 +33,7 @@ export const Previous = styled.div`
 	font-size: 22px;
 	transition: all 0.3s;
 	&:hover {
-		color: rgb(26, 143, 255);
+		color: ${props => props.theme.primary};
 		cursor: pointer;
 	}
 `;
@@ -47,11 +47,11 @@ export const Day = styled.div`
 
 	&:hover {
 		.DayHeader {
-			color: #1a8fff90;
+			color: ${props => props.theme.primaryLight};
 		}
 
 		.selected {
-			color: #1a8fff;
+			color: ${props => props.theme.primary};
 		}
 	}
 `;
@@ -65,7 +65,7 @@ export const DayHeader = styled.div`
 	transition: all 0.3s;
 
 	&.selected {
-		color: #1a8fff;
+		color: ${props => props.theme.primary};
 	}
 `;
 

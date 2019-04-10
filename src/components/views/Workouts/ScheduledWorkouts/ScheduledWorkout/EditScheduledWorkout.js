@@ -55,7 +55,7 @@ const EditScheduledWorkout = ({ workout, history }) => {
 			<ModalBody>
 				<s.UpdateWorkout>
 					<InputGroup>
-						<InputGroupText>Name</InputGroupText>
+						<InputGroupText>Workout Name</InputGroupText>
 						<Input
 							type="text"
 							value={workoutName}

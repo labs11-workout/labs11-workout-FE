@@ -22,11 +22,12 @@
 /* VARIABLES */
 
 :root {
-	--main-color: #1a8fff;
-	--text-color: #777;
-	--text-color-light: rgb(168, 168, 168);
+	--main-color: #ff5a09;
+	--light-main: #ec7f37;
+	--text-color: #393939;
+	--text-color-light: #e7d9d7;
 	--border-color: #eee;
-	--bg-color: #f9f9f9;
+	--bg-color: #fff;
 	--neutral-color: #fff;
 }
 
@@ -180,7 +181,11 @@ main {
 .calendar .body .selected {
 	position: relative;
 	border-left: 4px solid transparent;
-	border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
+	border-image: linear-gradient(
+		45deg,
+		var(--main-color) 0%,
+		var(--light-main) 40%
+	);
 	border-image-slice: 1;
 }
 
@@ -227,7 +232,7 @@ main {
 }
 
 .calendar .body .cell .content .schedule {
-	background: #1a8fff;
+	background: var(--main-color);
 	color: black;
 	border-radius: 4px;
 	width: 95%;

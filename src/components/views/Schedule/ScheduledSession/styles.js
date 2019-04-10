@@ -12,7 +12,7 @@ import {
 
 export const DaySchedule = styled.div`
 	position: relative;
-	background: #1a8fff;
+	background: ${props => props.theme.primary};
 	color: #eee;
 	width: 100%;
 	margin: 2px auto;
@@ -21,7 +21,7 @@ export const DaySchedule = styled.div`
 	border-radius: 4px;
 	transition: all 0.3s;
 	&:hover {
-		background: #349dff;
+		background: ${props => props.theme.primaryDark};
 		cursor: pointer;
 	}
 `;
@@ -70,7 +70,7 @@ export const BackButton = styled.span`
 	font-size: 14px;
 	transition: 0.4s all;
 	&:hover {
-		color: #1a8fff;
+		color: ${props => props.theme.primary};
 		cursor: pointer;
 	}
 `;

@@ -142,7 +142,7 @@ const CalendarDay = ({
 										return (
 											<>
 												<Button
-													color="success"
+													color="primary"
 													onClick={() => {
 														const scheduleTime = createDate(timeInput);
 														if (scheduleTime !== "Invalid Date") {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withTheme } from "styled-components";
 import dateFns from "date-fns";
 import * as s from "./styles";
 
@@ -41,11 +42,11 @@ const Navigation = props => {
 					</>
 				) : (
 					<>
-					{/* <s.Link exact to="/">
+						{/* <s.Link exact to="/">
 					Welcome To CleanLift!
 					</s.Link> */}
-					<h1>Welcome To CleanLift!</h1>
-					{/* <s.Link to="/login">Login</s.Link> */}
+						<h1>Welcome To CleanLift!</h1>
+						{/* <s.Link to="/login">Login</s.Link> */}
 					</>
 				)}
 			</s.Links>
@@ -53,4 +54,4 @@ const Navigation = props => {
 	);
 };
 
-export default Navigation;
+export default withTheme(Navigation);

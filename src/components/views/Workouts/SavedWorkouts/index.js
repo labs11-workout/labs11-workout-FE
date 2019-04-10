@@ -2,7 +2,6 @@ import React from "react";
 import * as s from "./styles";
 import SavedWorkout from "./SavedWorkout/";
 import { Mutation } from "react-apollo";
-import { Redirect } from "react-router-dom";
 import gql from "graphql-tag";
 import { Button } from "reactstrap";
 
@@ -47,7 +46,7 @@ const getSavedWorkouts = gql`
 const SavedWorkouts = ({ savedWorkouts, history }) => {
 	return (
 		<div>
-			<h2>Saved Workouts</h2>
+			<h2>Workout Templates</h2>
 			<hr />
 			<Mutation
 				awaitRefetchQueries={true}
@@ -60,10 +59,10 @@ const SavedWorkouts = ({ savedWorkouts, history }) => {
 				{(addWorkout, { loading, data }) => {
 					return (
 						<Button
-							color="success"
+							color="primary"
 							onClick={() => addWorkout({ variables: { name: "New Workout" } })}
 						>
-							{loading ? "Loading" : "Create Workout"}
+							{loading ? "Loading" : "Create Workout Template"}
 						</Button>
 					);
 				}}

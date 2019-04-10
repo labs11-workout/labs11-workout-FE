@@ -1,23 +1,17 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
+import dateFns from "date-fns";
 import {
 	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,
 	ModalFooter,
-	TabContent,
-	TabPane,
-	Card,
-	CardHeader,
-	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Collapse
+	InputGroupText
 } from "reactstrap";
 
 import EditScheduledWorkoutExercise from "./EditScheduledWorkoutExercise";
@@ -106,8 +100,19 @@ const EditScheduledWorkout = ({ workout, history }) => {
 				})}
 			</ModalBody>
 			<ModalFooter style={{ justifyContent: "flex-start" }}>
-				<span onClick={history.goBack}>
-					<i className="fas fa-arrow-left" /> Go Back
+				<span
+					onClick={() =>
+						history.push(
+							`/schedule/${dateFns.format(
+								workout.schedule.time,
+								"MM-DD-YYYY"
+							)}/${dateFns.format(workout.schedule.time, "D")}/${
+								workout.schedule.id
+							}`
+						)
+					}
+				>
+					<i className="fas fa-arrow-left" /> Go To Scheduled Session
 				</span>
 			</ModalFooter>
 		</Modal>

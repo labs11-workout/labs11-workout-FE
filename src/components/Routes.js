@@ -1,7 +1,5 @@
-    
 import React from "react";
 import { Route, withRouter } from "react-router-dom";
-import styled from "styled-components";
 import Callback from "./callback.js";
 import Landing from "./views/Landing";
 import Login from "./Login";
@@ -23,14 +21,9 @@ const Routes = props => {
 			<Route path="/workouts" component={Workouts} />
 			<Route path="/settings" component={Settings} />
 			<Route exact path="/progress" component={Progress} />
-			<Route path ="/notes" component={Notes} />
+			<Route path="/notes" component={Notes} />
 		</>
 	);
 };
 
-const ContentContainer = styled.div`
-	width: 100%;
-	max-width: 1280px;
-	margin: 12px auto;
-`;
 export default withRouter(Routes);

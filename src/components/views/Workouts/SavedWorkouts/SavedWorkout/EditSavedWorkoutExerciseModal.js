@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Query, Mutation } from "react-apollo";
+import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
 import {
@@ -7,36 +7,10 @@ import {
 	Modal,
 	ModalHeader,
 	ModalBody,
-	ModalFooter,
-	TabContent,
-	TabPane,
-	Card,
-	CardHeader,
-	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Collapse,
-	Form
+	InputGroupText
 } from "reactstrap";
-
-const getExercise = gql`
-	query GetExercise($id: ID!) {
-		getExercise(id: $id) {
-			id
-			name
-			sets
-			reps
-			intervals
-			duration
-			intensity
-			completed
-			savedWorkout {
-				id
-			}
-		}
-	}
-`;
 
 const editExercise = gql`
 	mutation EditExercise(

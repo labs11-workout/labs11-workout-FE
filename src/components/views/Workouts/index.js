@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as s from "./styles";
 import Protected from "../../Protected";
-import { Query, Mutation } from "react-apollo";
+import { Query } from "react-apollo";
 import { Route, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import SavedWorkouts from "./SavedWorkouts/";
@@ -27,6 +27,10 @@ const getSavedWorkoutsAndSchedules = gql`
 			id
 			name
 			createdAt
+			schedule {
+				id
+				time
+			}
 			exercises {
 				id
 				name
@@ -59,7 +63,7 @@ const Workouts = ({ match, history, location }) => {
 								<h3>Menu</h3>
 								<hr />
 								<s.MenuLink activeClassName="active" to="/workouts/saved">
-									Saved Workouts
+									Workout Templates
 								</s.MenuLink>
 								<s.MenuLink activeClassName="active" to="/workouts/scheduled">
 									Scheduled Workouts

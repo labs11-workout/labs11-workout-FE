@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, withRouter, Redirect, Link } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -10,8 +10,7 @@ import {
 	Collapse,
 	Dropdown,
 	DropdownMenu,
-	DropdownItem,
-	CardFooter
+	DropdownItem
 } from "reactstrap";
 
 import EditScheduledWorkout from "./EditScheduledWorkout";
@@ -165,7 +164,7 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 												saveWorkout({ variables: { workoutId: workout.id } });
 											}}
 										>
-											{loading ? "Saving..." : "Save"}
+											{loading ? "Saving..." : "Save As Template"}
 										</DropdownItem>
 									);
 								}}

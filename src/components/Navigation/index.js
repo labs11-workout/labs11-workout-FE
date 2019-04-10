@@ -45,7 +45,7 @@ const Navigation = props => {
 						{/* <s.Link exact to="/">
 					Welcome To CleanLift!
 					</s.Link> */}
-						<h1>Welcome To CleanLift!</h1>
+						<h1>Welcome to CleanLift!</h1>
 						{/* <s.Link to="/login">Login</s.Link> */}
 					</>
 				)}

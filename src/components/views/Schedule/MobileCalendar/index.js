@@ -114,7 +114,7 @@ const MobileCalendar = ({ schedules, match, history }) => {
 	return (
 		<s.Container>
 			{renderHeader()}
-			{renderDays()}
+			<s.Days>{renderDays()}</s.Days>
 		</s.Container>
 	);
 };

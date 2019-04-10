@@ -12,7 +12,7 @@ import Notes from "./views/Notes";
 
 const Routes = props => {
 	return (
-		<>
+		<div style={{ paddingBottom: "40px" }}>
 			<Route exact path="/" component={Landing} />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/logout" component={Logout} />
@@ -22,7 +22,7 @@ const Routes = props => {
 			<Route path="/settings" component={Settings} />
 			<Route exact path="/progress" component={Progress} />
 			<Route path="/notes" component={Notes} />
-		</>
+		</div>
 	);
 };
 

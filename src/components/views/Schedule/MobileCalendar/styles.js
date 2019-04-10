@@ -10,14 +10,14 @@ export const Container = styled.div`
 export const Header = styled.div`
 	position: relative;
 	width: 100%;
-	padding: 12px;
+	padding: 3px;
 	border: 1px solid #ccc;
 `;
 
 export const Next = styled.div`
+	top: 4px;
 	position: absolute;
 	right: 5px;
-	top: 25%;
 	font-size: 22px;
 	transition: all 0.3s;
 	&:hover {
@@ -29,7 +29,6 @@ export const Next = styled.div`
 export const Previous = styled.div`
 	position: absolute;
 	left: 5px;
-	top: 25%;
 	font-size: 22px;
 	transition: all 0.3s;
 	&:hover {
@@ -44,7 +43,10 @@ export const Day = styled.div`
 	width: 100%;
 	border: 1px solid #ccc;
 	padding: 6px;
-
+	@media (min-height: 655px) {
+		height: calc(100vh / 8.33);
+	}
+	flex-grow: 1;
 	&:hover {
 		.DayHeader {
 			color: ${props => props.theme.primaryLight};
@@ -54,6 +56,13 @@ export const Day = styled.div`
 			color: ${props => props.theme.primary};
 		}
 	}
+`;
+
+export const Days = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
 `;
 
 export const DayHeader = styled.div`

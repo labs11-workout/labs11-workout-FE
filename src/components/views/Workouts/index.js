@@ -6,6 +6,8 @@ import { Route, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import SavedWorkouts from "./SavedWorkouts/";
 import ScheduledWorkouts from "./ScheduledWorkouts/";
+import workoutImg from './assets/workoutImg.svg';
+
 
 const getSavedWorkoutsAndSchedules = gql`
 	{
@@ -70,6 +72,7 @@ const Workouts = ({ match, history, location }) => {
 								</s.MenuLink>
 							</s.Menu>
 							<s.Content>
+								<img src={workoutImg} alt="woman doing situps"/>
 								<Route
 									path="/workouts/saved"
 									render={() => (
@@ -90,6 +93,7 @@ const Workouts = ({ match, history, location }) => {
 					);
 				}}
 			</Query>
+			
 		</s.Container>
 	);
 };

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+
 export const Container = styled.div`
 	width: 100%;
 	display: flex;
 	@media (max-width: 960px) {
 		flex-wrap: wrap;
 	}
+	// background:#184DC9;
 `;
 
 export const Menu = styled.div`
@@ -17,6 +19,7 @@ export const Menu = styled.div`
 	@media (max-width: 960px) {
 		width: 100%;
 	}
+	
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -51,4 +54,12 @@ export const Content = styled.div`
 	@media (max-width: 960px) {
 		width: 100%;
 	}
+
+	img{
+		margin-top: 20px;
+		width: 200px;
+	}
+
+	// background:#184DC9;
+
 `;

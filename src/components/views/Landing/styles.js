@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Button } from 'reactstrap';
 
 export const Container = styled.div`
 	// border: 1px solid black;
@@ -14,6 +14,13 @@ export const Container = styled.div`
 	img {
 		width: 60%
 	}
-
+	
 `;
+
+
+export const Btn = styled(Button)`
+&& {background: ${props => props.theme.primary};}
+`;
+
+
 

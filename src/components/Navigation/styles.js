@@ -32,7 +32,6 @@ export const NavToggle = styled.div`
 	}
 	@media (max-width: 640px) {
 		display: block;
-	
 	}
 `;
 

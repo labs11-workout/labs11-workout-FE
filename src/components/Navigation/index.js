@@ -9,14 +9,17 @@ const Navigation = props => {
 
 	return (
 		<s.Container>
-			{!localStorage.getItem('token') ? <h1>Welcome to CleanLift!</h1>:
-			<s.NavToggle>
-				{navOpen ? (
-					<i className="fas fa-times" onClick={() => toggleNav(!navOpen)} />
-				) : (
-					<i className="fas fa-bars" onClick={() => toggleNav(!navOpen)} />
-				)}
-			</s.NavToggle>}
+			{!localStorage.getItem("token") ? (
+				<h1>Welcome to CleanLift!</h1>
+			) : (
+				<s.NavToggle>
+					{navOpen ? (
+						<i className="fas fa-times" onClick={() => toggleNav(!navOpen)} />
+					) : (
+						<i className="fas fa-bars" onClick={() => toggleNav(!navOpen)} />
+					)}
+				</s.NavToggle>
+			)}
 			<s.Links className={navOpen && "open"}>
 				{/* Show Logout button and other Auth Required routes if token is present, otherwise show Login button. */}
 				{localStorage.getItem("token") ? (
@@ -45,7 +48,7 @@ const Navigation = props => {
 						{/* <s.Link exact to="/">
 					Welcome To CleanLift!
 					</s.Link> */}
-						
+
 						{/* <s.Link to="/login">Login</s.Link> */}
 					</>
 				)}

@@ -178,7 +178,7 @@ const EditScheduledWorkoutExerciseModal = ({
 								}}
 							>
 								<InputGroup>
-									<InputGroupText>Name</InputGroupText>
+									<InputGroupText>Exercise Name</InputGroupText>
 									<Input
 										required
 										type="text"

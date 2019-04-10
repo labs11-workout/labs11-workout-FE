@@ -72,7 +72,9 @@ const addWorkout = gql`
 
 const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 	const [name, setName] = useState("");
-	const [scheduleId, setScheduleId] = useState("");
+	const [scheduleId, setScheduleId] = useState(
+		preset ? location.pathname.split("/")[4] : ""
+	);
 	return (
 		<Modal
 			fade={false}
@@ -95,13 +97,6 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 									if (a.time < b.time) return 1;
 									return 0;
 								});
-						}
-						if (schedules.length > 0) {
-							if (preset) {
-								setScheduleId(location.pathname.split("/")[4]);
-							} else {
-								setScheduleId(schedules[0].id);
-							}
 						}
 
 						return (
@@ -135,7 +130,10 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 															required
 															type="select"
 															value={scheduleId}
-															onChange={e => setScheduleId(e.target.value)}
+															onChange={e => {
+																console.log(e.target.value);
+																setScheduleId(e.target.value);
+															}}
 														>
 															{schedules.map((s, i) => {
 																return (

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Container = styled.div`
 	position: relative;
-	background: #1a8fff;
+	background: ${props => props.theme.primary};
 	padding: 4px;
 `;
 
@@ -23,7 +23,7 @@ export const Links = styled.div`
 export const NavToggle = styled.div`
 	width: 100%;
 	text-align: right;
-	color: white;
+	color: ${props => props.theme.lightFont};
 	font-size: 32px;
 	display: none;
 	padding-right: 32px;
@@ -46,7 +46,7 @@ export const Link = styled(NavLink)`
 		position: absolute;
 		bottom: -4px;
 		height: 2px;
-		background: white;
+		background: ${props => props.theme.lightFont};
 		width: 0%;
 		left: 0;
 		content: "";

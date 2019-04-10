@@ -112,7 +112,7 @@ const CreateScheduledWorkoutExercise = ({ workout, history }) => {
 								}}
 							>
 								<InputGroup>
-									<InputGroupText>Name</InputGroupText>
+									<InputGroupText>Workout Name</InputGroupText>
 									<Input
 										required
 										type="text"

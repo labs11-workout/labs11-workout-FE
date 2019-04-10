@@ -33,9 +33,9 @@ const Navigation = props => {
 						<s.Link to="/progress" activeClassName="active">
 							Progress
 						</s.Link>
-						<s.Link to="/notes" activeClassName="active">
+						{/* <s.Link to="/notes" activeClassName="active">
 							Notes
-						</s.Link>
+						</s.Link> */}
 						<s.Link to="/settings" activeClassName="active">
 							Settings
 						</s.Link>

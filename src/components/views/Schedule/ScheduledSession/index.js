@@ -17,18 +17,12 @@ import {
 	TabPane,
 	Nav,
 	NavItem,
-	NavLink,
 	Card,
-	CardHeader,
 	CardBody,
 	InputGroup,
 	Input,
 	InputGroupText,
-	Collapse,
-	Dropdown,
-	DropdownMenu,
-	DropdownItem,
-	DropdownToggle
+	Collapse
 } from "reactstrap";
 
 const getWorkout = gql`
@@ -154,29 +148,6 @@ const getSchedules = gql`
 	}
 `;
 
-const getSchedule = gql`
-	query GetSchedule($id: ID!) {
-		getSchedule(id: $id) {
-			id
-			time
-			workouts {
-				id
-				name
-				completed
-				exercises {
-					id
-					name
-					reps
-					sets
-					duration
-					intensity
-					completed
-				}
-			}
-		}
-	}
-`;
-
 const editExercise = gql`
 	mutation EditExercise(
 		$exerciseId: ID!
@@ -219,7 +190,6 @@ const ScheduledSession = ({
 	const [activeTab, toggleTab] = useState(0);
 	const [savedWorkoutId, setSavedWorkoutId] = useState("");
 	const [activeCollapse, setActiveCollapse] = useState("");
-	const [settings, toggleSettings] = useState(""); //Dropdown Settings for Workout Tabs
 
 	const day = new Date(schedule.time);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
@@ -238,10 +208,16 @@ const ScheduledSession = ({
 					);
 				}}
 			>
-				{schedule.workouts.length} Workout
-				{schedule.workouts.length > 1 || schedule.workouts.length === 0
-					? "s"
-					: ""}{" "}
+				{schedule.workouts.length < 1 ? (
+					"Add Workouts "
+				) : (
+					<>
+						{schedule.workouts.length} Workout
+						{schedule.workouts.length > 1 || schedule.workouts.length === 0
+							? "s"
+							: ""}{" "}
+					</>
+				)}
 				@ {dateFns.format(schedule.time, "h:mma")}
 				{showDeleteButton && (
 					<Mutation

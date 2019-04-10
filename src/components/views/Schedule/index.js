@@ -7,8 +7,6 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Calendar from "./Calendar/";
 import MobileCalendar from "./MobileCalendar/";
-import CalendarDay from "./CalendarDay";
-import ScheduledSession from "./ScheduledSession";
 
 const getSchedules = gql`
 	{
@@ -85,38 +83,26 @@ const Schedule = props => {
 			)}
 			<s.Container>
 				<div className="Calendar">
-					<header>
-						<div id="logo">
-							<span className="icon">date_range</span>
-							<span>
-								Workout <b>calendar</b>
-							</span>
-						</div>
-					</header>
-					<main>
-						<Query query={getSchedules}>
-							{({ loading, error, data }) => {
-								if (loading) return <p> loading </p>;
-								if (error) return <p> error </p>;
-								return (
-									<>
-										<Route
-											path={`/schedule/:monthDayYear`}
-											render={() => {
-												if (clientWidth > 601) {
-													return <Calendar schedules={data.getSchedules} />;
-												} else {
-													return (
-														<MobileCalendar schedules={data.getSchedules} />
-													);
-												}
-											}}
-										/>
-									</>
-								);
-							}}
-						</Query>
-					</main>
+					<Query query={getSchedules}>
+						{({ loading, error, data }) => {
+							if (loading) return <p> loading </p>;
+							if (error) return <p> error </p>;
+							return (
+								<>
+									<Route
+										path={`/schedule/:monthDayYear`}
+										render={() => {
+											if (clientWidth > 601) {
+												return <Calendar schedules={data.getSchedules} />;
+											} else {
+												return <MobileCalendar schedules={data.getSchedules} />;
+											}
+										}}
+									/>
+								</>
+							);
+						}}
+					</Query>
 				</div>
 			</s.Container>
 		</>

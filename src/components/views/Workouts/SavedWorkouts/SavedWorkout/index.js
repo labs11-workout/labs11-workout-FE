@@ -4,25 +4,11 @@ import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
 import {
-	Button,
 	Modal,
-	ModalHeader,
-	ModalBody,
-	ModalFooter,
-	TabContent,
-	TabPane,
-	Nav,
-	NavItem,
-	NavLink,
-	Card,
 	CardHeader,
 	CardBody,
-	InputGroup,
-	Input,
-	InputGroupText,
 	Collapse,
 	Dropdown,
-	DropdownToggle,
 	DropdownMenu,
 	DropdownItem
 } from "reactstrap";

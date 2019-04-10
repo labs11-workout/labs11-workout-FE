@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import dateFns from "date-fns";
 import { withRouter } from "react-router-dom";
 import CalendarDay from "../CalendarDay";
@@ -18,7 +18,6 @@ const DayCell = ({
 	match,
 	history
 }) => {
-	const [toggled, toggleModal] = useState(false);
 	const monthDayYear = dateFns.format(day, "MM-DD-YYYY");
 	return (
 		<div

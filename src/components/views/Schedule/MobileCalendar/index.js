@@ -5,16 +5,6 @@ import MobileDayCell from "./MobileDayCell";
 import { withRouter } from "react-router-dom";
 
 const MobileCalendar = ({ schedules, match, history }) => {
-	const [currentWeek, setWeek] = useState(
-		dateFns.format(
-			new Date(
-				match.params.monthDayYear.split("-")[2],
-				match.params.monthDayYear.split("-")[0] - 1,
-				match.params.monthDayYear.split("-")[1] - 1
-			),
-			"MM-DD-YYYY"
-		)
-	);
 	const [selectedDate, selectDate] = useState(
 		dateFns.format(
 			new Date(

@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+
 import {
 	Card,
 	CardHeader,
 	CardBody,
 	Button,
 	DropdownToggle,
-	Dropdown,
 	DropdownItem,
-	Modal,
 	Form
 } from "reactstrap";
 

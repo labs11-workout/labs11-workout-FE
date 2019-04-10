@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -10,15 +9,9 @@ import {
 	ModalHeader,
 	ModalBody,
 	ModalFooter,
-	TabContent,
-	TabPane,
-	Card,
-	CardHeader,
-	CardBody,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Collapse
+	InputGroupText
 } from "reactstrap";
 
 import EditScheduledWorkoutExercise from "./EditScheduledWorkoutExercise";

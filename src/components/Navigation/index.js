@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { withTheme } from "styled-components";
-import dateFns from "date-fns";
 import * as s from "./styles";
 
 const Navigation = props => {
@@ -22,7 +21,7 @@ const Navigation = props => {
 				{localStorage.getItem("token") ? (
 					<>
 						<s.Link to={`/schedule`} activeClassName="active">
-							Schedules
+							Calendar
 						</s.Link>
 						<s.Link to="/workouts" activeClassName="active">
 							Workouts

@@ -71,7 +71,6 @@ const CalendarDay = ({
 	history,
 	match
 }) => {
-	const [modalOpen, toggleModal] = useState(false);
 	const [timeInput, setTimeInput] = useState("12:00");
 	const [scheduleFormError, setScheduleFormError] = useState(null);
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as s from "./style";
-import { Route, withRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Payment from "./payment";
 import Profile from "./profile";
 

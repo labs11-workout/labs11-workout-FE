@@ -5,7 +5,6 @@ import {
 	Button,
 	Card,
 	DropdownToggle,
-	Dropdown,
 	DropdownItem,
 	NavLink
 } from "reactstrap";

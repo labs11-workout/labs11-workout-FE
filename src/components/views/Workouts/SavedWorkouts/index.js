@@ -2,7 +2,6 @@ import React from "react";
 import * as s from "./styles";
 import SavedWorkout from "./SavedWorkout/";
 import { Mutation } from "react-apollo";
-import { Redirect } from "react-router-dom";
 import gql from "graphql-tag";
 import { Button } from "reactstrap";
 
@@ -60,10 +59,10 @@ const SavedWorkouts = ({ savedWorkouts, history }) => {
 				{(addWorkout, { loading, data }) => {
 					return (
 						<Button
-							color="success"
+							color="primary"
 							onClick={() => addWorkout({ variables: { name: "New Workout" } })}
 						>
-							{loading ? "Loading" : "Create Workout"}
+							{loading ? "Loading" : "Create Workout Template"}
 						</Button>
 					);
 				}}

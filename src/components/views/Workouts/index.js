@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as s from "./styles";
 import Protected from "../../Protected";
-import { Query, Mutation } from "react-apollo";
+import { Query } from "react-apollo";
 import { Route, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import SavedWorkouts from "./SavedWorkouts/";

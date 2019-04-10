@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, withRouter, Redirect, Link } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -10,8 +10,7 @@ import {
 	Collapse,
 	Dropdown,
 	DropdownMenu,
-	DropdownItem,
-	CardFooter
+	DropdownItem
 } from "reactstrap";
 
 import EditScheduledWorkout from "./EditScheduledWorkout";

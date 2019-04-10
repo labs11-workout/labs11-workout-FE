@@ -93,6 +93,7 @@ class Calendar extends React.Component {
 			for (let i = 0; i < 7; i++) {
 				formattedDate = dateFns.format(day, dateFormat);
 				const cloneDay = day;
+				// eslint-disable-next-line
 				const schedules = this.props.schedules.filter(s =>
 					dateFns.isSameDay(day, s.time)
 				);

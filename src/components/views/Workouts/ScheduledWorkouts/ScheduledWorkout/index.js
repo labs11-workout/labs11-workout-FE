@@ -165,7 +165,7 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 												saveWorkout({ variables: { workoutId: workout.id } });
 											}}
 										>
-											{loading ? "Saving..." : "Save"}
+											{loading ? "Saving..." : "Save As Template"}
 										</DropdownItem>
 									);
 								}}

@@ -47,7 +47,7 @@ const getSavedWorkouts = gql`
 const SavedWorkouts = ({ savedWorkouts, history }) => {
 	return (
 		<div>
-			<h2>Saved Workouts</h2>
+			<h2>Workout Templates</h2>
 			<hr />
 			<Mutation
 				awaitRefetchQueries={true}

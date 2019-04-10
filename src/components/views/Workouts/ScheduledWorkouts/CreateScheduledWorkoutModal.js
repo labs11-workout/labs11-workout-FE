@@ -38,6 +38,10 @@ const getSchedules = gql`
 			id
 			name
 			createdAt
+			schedule {
+				id
+				time
+			}
 			exercises {
 				id
 				name

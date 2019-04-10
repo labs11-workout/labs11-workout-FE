@@ -27,6 +27,10 @@ const getSavedWorkoutsAndSchedules = gql`
 			id
 			name
 			createdAt
+			schedule {
+				id
+				time
+			}
 			exercises {
 				id
 				name
@@ -59,7 +63,7 @@ const Workouts = ({ match, history, location }) => {
 								<h3>Menu</h3>
 								<hr />
 								<s.MenuLink activeClassName="active" to="/workouts/saved">
-									Saved Workouts
+									Workout Templates
 								</s.MenuLink>
 								<s.MenuLink activeClassName="active" to="/workouts/scheduled">
 									Scheduled Workouts

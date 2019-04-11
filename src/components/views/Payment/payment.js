@@ -4,6 +4,8 @@ import { Query } from "react-apollo";
 import Protected from "../../Protected";
 import gql from "graphql-tag";
 import Axios from "axios";
+import * as s from "./style";
+import paymentImg from './assets/paymentImg.svg';
 
 const getUserInfo = gql`
 	{
@@ -46,12 +48,17 @@ class Payment extends Component {
 							name="Premium Subscription"
 							stripeKey={process.env.REACT_APP_STRIPE_KEY}
 							token={this.onToken}
+							
 						/>
+						
 					);
 				}}
 			</Query>
 		);
 	}
 }
-
+			
+  
 export default Protected(Payment);
+
+

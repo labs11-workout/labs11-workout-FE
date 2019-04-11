@@ -112,12 +112,13 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								}}
 							>
 								<InputGroup>
-									<InputGroupText>Name</InputGroupText>
+									<InputGroupText>Workout Name</InputGroupText>
 									<Input
 										required
 										type="text"
 										value={name}
 										onChange={e => setName(e.target.value)}
+										placeholder="Workout name"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -126,6 +127,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 										type="number"
 										value={intervals}
 										onChange={e => setIntervals(e.target.value)}
+										placeholder=""
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -134,6 +136,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 										type="number"
 										value={reps}
 										onChange={e => setReps(e.target.value)}
+										placeholder="How many Reps"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -142,6 +145,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 										type="number"
 										value={sets}
 										onChange={e => setSets(e.target.value)}
+										placeholder="How many Sets"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -150,6 +154,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 										type="number"
 										value={duration}
 										onChange={e => setDuration(e.target.value)}
+										placeholder="Duration of Exercise"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -158,6 +163,7 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 										type="number"
 										value={intensity}
 										onChange={e => setIntensity(e.target.value)}
+										placeholder="Weight of Lift, Speed of run"
 									/>
 								</InputGroup>
 								<Button type="submit" color="success">

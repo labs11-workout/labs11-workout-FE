@@ -149,7 +149,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 														</Input>
 													</InputGroup>
 													<InputGroup>
-														<InputGroupText>Name</InputGroupText>
+														<InputGroupText>Workout Name</InputGroupText>
 														<Input
 															required
 															type="text"
@@ -158,7 +158,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 														/>
 													</InputGroup>
 													<Button style={{ width: "100%" }} color="success">
-														{loading ? "Loading..." : "Create"}
+														{loading ? "Loading..." : "Create Workout"}
 													</Button>
 												</Form>
 											)}

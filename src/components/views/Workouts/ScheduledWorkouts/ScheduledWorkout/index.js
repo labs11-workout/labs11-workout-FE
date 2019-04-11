@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, withRouter, Redirect } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
@@ -120,6 +120,19 @@ const addSavedWorkoutFromWorkout = gql`
 	}
 `;
 
+const getProfile = gql`
+	{
+		getProfile {
+			id
+			authId
+			premium
+			savedWorkouts {
+				id
+			}
+		}
+	}
+`;
+
 const ScheduledWorkout = ({ workout, history, match, location }) => {
 	const [activeCollapse, setActiveCollapse] = useState("");
 	const [settings, toggleSettings] = useState(false);
@@ -142,33 +155,59 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 							>
 								Edit
 							</DropdownItem>
-							<Mutation
-								awaitRefetchQueries={true}
-								mutation={addSavedWorkoutFromWorkout}
-								refetchQueries={() => [{ query: getSavedWorkouts }]}
-							>
-								{(saveWorkout, { loading, data }) => {
-									if (data && data.addSavedWorkoutFromWorkout) {
+							<Query query={getProfile}>
+								{({ loading, error, data }) => {
+									if (loading) return <DropdownItem>Loading...</DropdownItem>;
+									if (
+										data.getProfile.premium ||
+										data.getProfile.savedWorkouts.length < 3
+									) {
 										return (
-											<Redirect
-												to={`/workouts/saved/${
-													data.addSavedWorkoutFromWorkout.id
-												}`}
-											/>
+											<Mutation
+												awaitRefetchQueries={true}
+												mutation={addSavedWorkoutFromWorkout}
+												refetchQueries={() => [
+													{ query: getSavedWorkouts },
+													{ query: getProfile }
+												]}
+											>
+												{(saveWorkout, { loading, data }) => {
+													//uncomment to redirect users to the workout they saved.
+													// if (data && data.addSavedWorkoutFromWorkout) {
+													// 	return (
+													// 		<Redirect
+													// 			to={`/workouts/saved/${
+													// 				data.addSavedWorkoutFromWorkout.id
+													// 			}`}
+													// 		/>
+													// 	);
+													// }
+													if (data && data.addSavedWorkoutFromWorkout) {
+														return (
+															<DropdownItem toggle={false}>Saved</DropdownItem>
+														);
+													}
+													return (
+														<DropdownItem
+															toggle={false}
+															onClick={e => {
+																saveWorkout({
+																	variables: { workoutId: workout.id }
+																});
+															}}
+														>
+															{loading ? "Saving..." : "Save As Template"}
+														</DropdownItem>
+													);
+												}}
+											</Mutation>
 										);
+									} else {
+										return <></>;
 									}
-									return (
-										<DropdownItem
-											toggle={false}
-											onClick={e => {
-												saveWorkout({ variables: { workoutId: workout.id } });
-											}}
-										>
-											{loading ? "Saving..." : "Save As Template"}
-										</DropdownItem>
-									);
 								}}
-							</Mutation>
+							</Query>
+
 							<s.DropdownItemDanger
 								onClick={() => toggleDeleteModal(!deleteModalOpen)}
 								color="danger"

@@ -17,6 +17,7 @@ const editExercise = gql`
 		$sets: Int
 		$reps: Int
 		$intervals: Int
+		$intensity: Int
 		$duration: Float
 		$name: String!
 		$exerciseId: ID!
@@ -27,6 +28,7 @@ const editExercise = gql`
 			intervals: $intervals
 			duration: $duration
 			name: $name
+			intensity: $intensity
 			exerciseId: $exerciseId
 		) {
 			id
@@ -81,7 +83,10 @@ const EditSavedWorkoutExerciseModal = ({
 						{ query: getSavedWorkout, variables: { id: workout.id } }
 					]}
 				>
-					{(editExercise, { loading }) => {
+					{(editExercise, { loading, data }) => {
+						if (data && data.editExercise) {
+							history.goBack();
+						}
 						return (
 							<s.CreationForm
 								onSubmit={e => {
@@ -111,16 +116,16 @@ const EditSavedWorkoutExerciseModal = ({
 											exerciseId: exercise.id
 										}
 									});
-									history.goBack();
 								}}
 							>
 								<InputGroup>
-									<InputGroupText>Name</InputGroupText>
+									<InputGroupText>Workout Name</InputGroupText>
 									<Input
 										required
 										type="text"
 										value={name}
 										onChange={e => setName(e.target.value)}
+										placeholder="Workout name"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -129,6 +134,7 @@ const EditSavedWorkoutExerciseModal = ({
 										type="number"
 										value={intervals}
 										onChange={e => setIntervals(e.target.value)}
+										placeholder=""
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -137,6 +143,7 @@ const EditSavedWorkoutExerciseModal = ({
 										type="number"
 										value={reps}
 										onChange={e => setReps(e.target.value)}
+										placeholder="How many Reps"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -145,6 +152,7 @@ const EditSavedWorkoutExerciseModal = ({
 										type="number"
 										value={sets}
 										onChange={e => setSets(e.target.value)}
+										placeholder="How many Sets"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -153,6 +161,7 @@ const EditSavedWorkoutExerciseModal = ({
 										type="number"
 										value={duration}
 										onChange={e => setDuration(e.target.value)}
+										placeholder="Duration of Exercise"
 									/>
 								</InputGroup>
 								<InputGroup>
@@ -161,6 +170,7 @@ const EditSavedWorkoutExerciseModal = ({
 										type="number"
 										value={intensity}
 										onChange={e => setIntensity(e.target.value)}
+										placeholder="Weight of Lift, Speed of run"
 									/>
 								</InputGroup>
 								<Button type="submit" color="success">

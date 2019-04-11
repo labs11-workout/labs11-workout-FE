@@ -174,8 +174,8 @@ main {
 }
 
 .calendar .body .cell:hover {
-	background: var(--bg-color);
-	transition: 0.2s ease-out;
+	background: #fff;
+	transition: 0.4s ease-out;
 }
 
 .calendar .body .cell:hover .number::after {
@@ -185,6 +185,7 @@ main {
 
 .calendar .body .selected {
 	position: relative;
+	background: #fff;
 	border-left: 4px solid var(--main-color);
 	border-image-slice: 1;
 }

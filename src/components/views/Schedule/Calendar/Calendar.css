@@ -25,10 +25,10 @@
 	--main-color: #ff5a09;
 	--light-main: #ec7f37;
 	--text-color: #393939;
-	--text-color-light: #e7d9d7;
-	--border-color: #eee;
-	--bg-color: #fff;
-	--neutral-color: #fff;
+	--text-color-light: #a5a5a5;
+	--border-color: rgba(0, 0, 0, 0.13);
+	--bg-color: #edeae8;
+	--neutral-color: #edeae8b7;
 }
 
 /* GENERAL */
@@ -76,8 +76,8 @@ main {
 /* GRID */
 
 .row {
-	margin: 0;
-	padding: 0;
+	margin: 0px !important;
+	padding: 0px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -178,15 +178,40 @@ main {
 	transition: 0.2s ease-out;
 }
 
+.calendar .body .cell:hover .number::after {
+	width: 100%;
+	background: var(--main-color);
+}
+
 .calendar .body .selected {
 	position: relative;
-	border-left: 4px solid transparent;
-	border-image: linear-gradient(
-		45deg,
-		var(--main-color) 0%,
-		var(--light-main) 40%
-	);
+	border-left: 4px solid var(--main-color);
 	border-image-slice: 1;
+}
+
+.calendar .body .selected .number {
+	position: relative;
+}
+
+.calendar .body .number::after {
+	position: absolute;
+	bottom: -4px;
+	height: 2px;
+	width: 0%;
+	background: var(--main-color);
+	left: 0;
+	content: "";
+	transition: 0.4s all;
+}
+
+.calendar .body .selected .number::after {
+	width: 100%;
+	background: var(--main-color);
+}
+
+.calendar .body .selected .number:hover::after {
+	width: 100%;
+	background: var(--main-color);
 }
 
 .calendar .body .row {

@@ -18,8 +18,9 @@ const logout = () => {
 
 const client = new ApolloClient({
 	uri: process.env.REACT_APP_GQL_API,
-	onError: ({ networkError }) => {
-		if (networkError.statusCode === 401) logout();
+	onError: error => {
+		if (error.networkError && error.networkError.statusCode === 401)
+			return logout();
 	},
 	headers: {
 		authorization: localStorage.getItem("token")
@@ -33,8 +34,8 @@ ReactDOM.render(
 		<Router>
 			<ThemeProvider theme={theme}>
 				<>
-					<App />
 					<ToastContainer />
+					<App />
 				</>
 			</ThemeProvider>
 		</Router>

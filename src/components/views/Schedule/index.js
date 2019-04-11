@@ -36,6 +36,7 @@ const userLogin = gql`
 		userLogin {
 			id
 			authId
+			premium
 		}
 	}
 `;

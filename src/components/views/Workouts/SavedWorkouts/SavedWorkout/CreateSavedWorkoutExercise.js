@@ -112,13 +112,13 @@ const CreateSavedWorkoutExercise = ({ workout, history }) => {
 								}}
 							>
 								<InputGroup>
-									<InputGroupText>Workout Name</InputGroupText>
+									<InputGroupText>Exercise Name</InputGroupText>
 									<Input
 										required
 										type="text"
 										value={name}
 										onChange={e => setName(e.target.value)}
-										placeholder="Workout name"
+										placeholder="Exercise name"
 									/>
 								</InputGroup>
 								<InputGroup>

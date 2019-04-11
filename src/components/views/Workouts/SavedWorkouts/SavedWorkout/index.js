@@ -25,6 +25,19 @@ const deleteSavedWorkout = gql`
 	}
 `;
 
+const getProfile = gql`
+	{
+		getProfile {
+			id
+			authId
+			premium
+			savedWorkouts {
+				id
+			}
+		}
+	}
+`;
+
 const getSavedWorkouts = gql`
 	{
 		getSavedWorkouts {
@@ -140,7 +153,10 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 				<Mutation
 					awaitRefetchQueries={true}
 					mutation={deleteSavedWorkout}
-					refetchQueries={() => [{ query: getSavedWorkouts }]}
+					refetchQueries={() => [
+						{ query: getSavedWorkouts },
+						{ query: getProfile }
+					]}
 				>
 					{(deleteWorkout, { loading }) => {
 						return (

@@ -1,10 +1,9 @@
 import React from "react";
 import * as s from "./styles";
 import SavedWorkout from "./SavedWorkout/";
-import { Mutation } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { Button } from "reactstrap";
-
 const addSavedWorkout = gql`
 	mutation AddSavedWorkout($name: String!) {
 		addSavedWorkout(name: $name) {
@@ -43,30 +42,66 @@ const getSavedWorkouts = gql`
 	}
 `;
 
+const getProfile = gql`
+	{
+		getProfile {
+			id
+			authId
+			premium
+			savedWorkouts {
+				id
+			}
+		}
+	}
+`;
+
 const SavedWorkouts = ({ savedWorkouts, history }) => {
 	return (
 		<div>
 			<h2>Workout Templates</h2>
 			<hr />
-			<Mutation
-				awaitRefetchQueries={true}
-				mutation={addSavedWorkout}
-				refetchQueries={() => [{ query: getSavedWorkouts }]}
-				onCompleted={data =>
-					history.push(`/workouts/saved/${data.addSavedWorkout.id}`)
-				}
-			>
-				{(addWorkout, { loading, data }) => {
-					return (
-						<Button
-							color="primary"
-							onClick={() => addWorkout({ variables: { name: "New Workout" } })}
-						>
-							{loading ? "Loading" : "Create Workout Template"}
-						</Button>
-					);
+			<Query query={getProfile}>
+				{({ loading, error, data }) => {
+					if (loading) return <p>Loading</p>;
+					if (
+						!data.getProfile.premium &&
+						data.getProfile.savedWorkouts.length >= 3
+					) {
+						return (
+							<p>
+								You must be Premium to create more than 3 Workout Templates!
+							</p>
+						);
+					} else {
+						return (
+							<Mutation
+								awaitRefetchQueries={true}
+								mutation={addSavedWorkout}
+								refetchQueries={() => [
+									{ query: getSavedWorkouts },
+									{ query: getProfile }
+								]}
+								onCompleted={data =>
+									history.push(`/workouts/saved/${data.addSavedWorkout.id}`)
+								}
+							>
+								{(addWorkout, { l = loading }) => {
+									return (
+										<Button
+											color="primary"
+											onClick={() =>
+												addWorkout({ variables: { name: "New Workout" } })
+											}
+										>
+											{l ? "Loading" : "Create Workout Template"}
+										</Button>
+									);
+								}}
+							</Mutation>
+						);
+					}
 				}}
-			</Mutation>
+			</Query>
 			<s.WorkoutList>
 				{savedWorkouts.map(s => {
 					return <SavedWorkout key={s.id} workout={s} />;

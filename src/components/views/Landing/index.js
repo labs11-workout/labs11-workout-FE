@@ -3,7 +3,6 @@ import * as s from "./styles";
 import { Link, withRouter } from "react-router-dom";
 import { withTheme } from "styled-components";
 import landingImg from "./assets/landingImg.svg";
-import { Button } from "reactstrap";
 
 const Landing = props => {
 	useEffect(() => {
@@ -29,7 +28,9 @@ const Landing = props => {
 				</div>
 			</s.Container>
 			{/* <Link to="/login">Let's Get Started</Link> */}
-			<s.Btn><Link to="/login">Let's Get Started</Link></s.Btn>
+			<s.Btn>
+				<Link to="/login">Let's Get Started</Link>
+			</s.Btn>
 		</div>
 	);
 };

@@ -4,6 +4,15 @@ import { NavLink } from "react-router-dom";
 export const Container = styled.div`
 	width: 100%;
 	display: flex;
+	@media (max-width: 960px) {
+		flex-wrap: wrap;
+		h3 {
+			display: none;
+		}
+		hr {
+			display: none;
+		}
+	}
 `;
 
 export const Menu = styled.div`
@@ -11,6 +20,12 @@ export const Menu = styled.div`
 	padding: 12px;
 	display: flex;
 	flex-direction: column;
+	@media (max-width: 960px) {
+		width: 100%;
+		flex-direction: row;
+		padding: 0;
+		margin: 0;
+	}
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -33,5 +48,25 @@ export const MenuLink = styled(NavLink)`
 	&.active {
 		background: #1a8fff;
 		color: white;
+	}
+	@media (max-width: 960px) {
+		width: 50%;
+		margin: 0 auto;
+		border-radius: 0;
+		padding: 12px;
+		outline: 1px solid rgba(0, 0, 0, 0.3);
+	}
+`;
+
+export const Content = styled.div`
+	width: 80%;
+	margin: 0 auto;
+	@media (max-width: 960px) {
+		width: 100%;
+	}
+
+	img {
+		margin-top: 20px;
+		width: 200px;
 	}
 `;

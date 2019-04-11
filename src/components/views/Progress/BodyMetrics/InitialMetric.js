@@ -26,7 +26,7 @@ const getBodyMetrics = gql`
 	}
 `;
 
-const BodyMetric = ({ metric }) => {
+const InitialBodyMetric = ({ metric }) => {
 	const m = metric;
 
 	return (
@@ -51,7 +51,7 @@ const BodyMetric = ({ metric }) => {
 				<EditBodyMetric metric={m}>Update</EditBodyMetric>
 				</CardHeader>
 				<CardTitle>
-				{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
+				Starting Stats
 				</CardTitle>
 				<CardBody>
 					{m.weight && <p>Weight: {m.weight}kg</p>}
@@ -63,4 +63,4 @@ const BodyMetric = ({ metric }) => {
 	);
 };
 
-export default BodyMetric;
+export default InitialBodyMetric;

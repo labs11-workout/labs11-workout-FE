@@ -31,7 +31,7 @@ const getBodyMeasurements = gql`
 	}
 `;
 
-const BodyMeasurement = ({ measurement }) => {
+const IntialBodyMeasurement = ({ measurement }) => {
 	const m = measurement;
 	return (
 		<s.Measurement>
@@ -57,7 +57,7 @@ const BodyMeasurement = ({ measurement }) => {
 				<CardBody>
 
 				<CardTitle>
-				{datefns.format(m.createdAt, "MMM Do YYYY h:mm a")}
+				Starting Stats
 				</CardTitle>
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
@@ -71,4 +71,4 @@ const BodyMeasurement = ({ measurement }) => {
 	);
 };
 
-export default BodyMeasurement;
+export default IntialBodyMeasurement;

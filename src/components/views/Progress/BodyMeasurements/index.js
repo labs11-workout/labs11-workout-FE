@@ -2,6 +2,7 @@ import React from "react";
 import * as s from "../styles.js";
 import BodyMeasurement from "./BodyMeasurement";
 import AddBodyMeasurement from "./AddBodyMeasurement";
+import IntialBodyMeasurement from "./InitialBodyMeasurement"
 
 
 
@@ -11,7 +12,7 @@ const BodyMeasurements = ({ measurements }) => {
 				
 				return(
 				<s.Measurements>
-				<BodyMeasurement key={measurements.id} measurement={measurements[0]}/>
+				<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]}/>
 				<AddBodyMeasurement/>
 				</s.Measurements>
 				)
@@ -20,7 +21,7 @@ const BodyMeasurements = ({ measurements }) => {
 				return(
 					<s.Measurements>
 						<h3>Body Measurements</h3>
-						<BodyMeasurement key={measurements.id} measurement={measurements[0]} />
+						<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]} />
 						<BodyMeasurement key={measurements.id} measurement={measurements[measurements.length-1]} />
 						<AddBodyMeasurement/>
 					</s.Measurements>

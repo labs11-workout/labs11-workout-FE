@@ -1,6 +1,6 @@
 import React from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
 import datefns from "date-fns";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
@@ -48,13 +48,17 @@ const BodyMeasurement = ({ measurement }) => {
 						</s.DeleteButton>
 					)}
 				</Mutation>
+
+				<CardHeader>
 				<EditBodyMeasurement measurement = {m}>
 					Update
 				</EditBodyMeasurement>
-				<CardTitle>
-					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
-				</CardTitle>
+				</CardHeader>
 				<CardBody>
+
+				<CardTitle>
+				{datefns.format(m.createdAt, "MMM Do YYYY h:mm a")}
+				</CardTitle>
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
 					{m.leftArm && <p>Left Arm: {m.leftArm}in</p>}

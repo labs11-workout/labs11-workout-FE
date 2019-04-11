@@ -1,6 +1,6 @@
 import React from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
 import datefns from "date-fns";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
@@ -46,10 +46,12 @@ const BodyMetric = ({ metric }) => {
 						);
 					}}
 				</Mutation>
+			
+				<CardHeader>
 				<EditBodyMetric metric={m}>Update</EditBodyMetric>
-
+				</CardHeader>
 				<CardTitle>
-					{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
+				{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>
 				<CardBody>
 					{m.weight && <p>Weight: {m.weight}kg</p>}

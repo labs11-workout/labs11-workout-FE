@@ -4,26 +4,39 @@ import BodyMetric from "./BodyMetric";
 import AddBodyMetric from "./AddBodyMetric";
 
 const BodyMetrics = ({ metrics }) => {
-	return (
-		<s.Measurements>
-			<h3>Body Metrics</h3>
-			{metrics.length > 0 ? (
-				<>
+		
+			if(metrics.length === 1){
+				return(
+				<s.Measurements>
+					<h3>Body Metrics</h3>
+					<BodyMetric key={metrics[0].id} metric={metrics[0]} />
+					<AddBodyMetric />
+				</s.Measurements>
+				);
+			}
+			else if (metrics.length > 0) {
+			return(
+				<s.Measurements>
+					<h3>Body Metrics</h3>
 					<BodyMetric key={metrics[0].id} metric={metrics[0]} />
 					<BodyMetric
 						key={metrics[metrics.length - 1].id}
 						metric={metrics[metrics.length - 1]}
 					/>
 					<AddBodyMetric />
-				</>
-			) : (
-				<>
+				</s.Measurements>
+			)
+			} else{
+				return(
+				<s.Measurements>
+					<h3>Body Metrics</h3>
 					<p>You have no Body Metrics recorded. Try Adding One!</p>
 					<AddBodyMetric />
-				</>
-			)}
-		</s.Measurements>
-	);
+				</s.Measurements>
+				);
+			}
+			
+		
 };
 
 export default BodyMetrics;

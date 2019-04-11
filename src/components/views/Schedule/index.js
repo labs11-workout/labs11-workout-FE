@@ -37,6 +37,13 @@ const userLogin = gql`
 			id
 			authId
 			premium
+			savedWorkouts {
+				id
+			}
+			schedules {
+				id
+			}
+			createdAt
 		}
 	}
 `;

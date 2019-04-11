@@ -8,11 +8,16 @@ import datefns from "date-fns";
 const getProfile = gql`
 	{
 		getProfile {
-			createdAt
+			id
+			authId
 			premium
+			savedWorkouts {
+				id
+			}
 			schedules {
 				id
 			}
+			createdAt
 		}
 	}
 `;

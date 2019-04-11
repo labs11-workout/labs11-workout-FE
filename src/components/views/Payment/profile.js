@@ -4,6 +4,10 @@ import Protected from "../../Protected";
 import gql from "graphql-tag";
 import { Card, CardBody } from "reactstrap";
 import datefns from "date-fns";
+import * as s from "./style";
+import userImg from './assets/userImg.svg';
+import accountImg from './assets/accountImg.svg';
+
 
 const getProfile = gql`
 	{
@@ -27,45 +31,53 @@ class Profile extends Component {
 					if (error) return <p>{error.message}</p>;
 					return data.getProfile.premium ? (
 						<>
-							<Card>
-								<CardBody>You are a premium User</CardBody>
-							</Card>
-							<Card>
-								<CardBody>
+							<s.Card>
+								<s.CardBody>You are a premium User</s.CardBody>
+							</s.Card>
+							<s.Card>
+								<s.CardBody>
 									Joined:{" "}
 									{datefns.format(
 										data.getProfile.createdAt,
 										"ddd, Do MMM YYYY h:mm a"
 									)}
-								</CardBody>
-							</Card>
-							<Card>
-								<CardBody>
+								</s.CardBody>
+							</s.Card>
+							<s.Card>
+								<s.CardBody>
 									Number of Entries: {data.getProfile.schedules.length}
-								</CardBody>
-							</Card>
+								</s.CardBody>
+							</s.Card>
 						</>
 					) : (
 						<>
-							<Card>
-								<CardBody>You are a NOT a premium User</CardBody>
-							</Card>
-							<Card>
-								<CardBody>
+							<s.Card>
+								<s.CardBody>You are a NOT a premium User</s.CardBody>
+							</s.Card>
+							<s.Card>
+								<s.CardBody>
 									Joined:{" "}
 									{datefns.format(
 										data.getProfile.createdAt,
 										"ddd, Do MMM YYYY h:mm a"
 									)}
-								</CardBody>
-							</Card>
-							<Card>
-								<CardBody>
+								</s.CardBody>
+							</s.Card>
+							<s.Card>
+								<s.CardBody>
 									Number of Entries: {data.getProfile.schedules.length}
-								</CardBody>
-							</Card>
+								</s.CardBody>
+							</s.Card>
+							<s.Image>
+								{/* <img src={ userImg } alt="man looking at personal profile"/> */}
+							</s.Image>
+							<s.Image>
+							<img src={ accountImg } alt="profiles"/>
+							</s.Image>
+													
 						</>
 					);
+					
 				}}
 			</Query>
 		);

@@ -12,7 +12,8 @@ export const Container = styled.div`
 	}
 
 	img {
-		width: 60%
+		margin-top: 20px;
+		width: 75%
 	}
 	
 `;

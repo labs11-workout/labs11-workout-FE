@@ -70,3 +70,32 @@ export const Content = styled.div`
 		width: 200px;
 	}
 `;
+
+export const Card = styled.div`
+	display: flex;
+	width: 25%
+	// border: 1px dotted black;
+	padding: 10px;
+
+`;
+
+export const CardBody = styled.div`
+// font-family: 'Fontdiner Swanky', cursive;
+color: ${props => props.theme.primaryDark};
+align-items: baseline;
+// margin-rigth: 150px;
+	
+`;
+
+
+export const Image = styled.div`
+img {
+	display: flex;
+	margin-top: 20px;
+	width: 65%
+	height: 250px;
+	margin 0 150px 80px 80px;
+}
+	
+`;
+

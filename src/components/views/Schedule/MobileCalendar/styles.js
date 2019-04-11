@@ -68,7 +68,7 @@ export const Days = styled.div`
 export const DayHeader = styled.div`
 	position: relative;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	font-size: 18px;
 	color: rgba(0, 0, 0, 0.5);
 	transition: all 0.3s;
@@ -88,5 +88,5 @@ export const DayCell = styled.div`
 export const TodayLabel = styled.span`
 	position: absolute;
 	opacity: 0.6;
-	left: 0;
+	right: 0;
 `;

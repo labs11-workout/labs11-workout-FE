@@ -48,11 +48,9 @@ const BodyMetric = ({ metric }) => {
 				</Mutation>
 			
 				<s.Head>
-				<EditBodyMetric metric={m}>Update</EditBodyMetric>
+				<EditBodyMetric metric={m}></EditBodyMetric>
+				{datefns.format(m.createdAt, "MMM Do YYYY")}
 				</s.Head>
-				<CardTitle>
-				{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
-				</CardTitle>
 				<CardBody>
 					{m.weight && <p>Weight: {m.weight}kg</p>}
 					{m.height && <p>Height: {m.height}cm</p>}

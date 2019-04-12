@@ -51,15 +51,13 @@ const BodyMeasurement = ({ measurement }) => {
 				</Mutation>
 
 				<s.Head>
+				{datefns.format(m.createdAt, "MMM Do YYYY")}
 				<EditBodyMeasurement measurement = {m}>
-					Update
 				</EditBodyMeasurement>
 				</s.Head>
 				<CardBody>
 
-				<CardTitle>
-				{datefns.format(m.createdAt, "MMM Do YYYY h:mm a")}
-				</CardTitle>
+
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
 					{m.leftArm && <p>Left Arm: {m.leftArm}in</p>}

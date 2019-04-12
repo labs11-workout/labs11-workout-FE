@@ -47,11 +47,9 @@ const InitialBodyMetric = ({ metric }) => {
 				</Mutation>
 			
 				<s.Head>
-				<EditBodyMetric metric={m}>Update</EditBodyMetric>
+				<EditBodyMetric metric={m}></EditBodyMetric>
+				Start
 				</s.Head>
-				<CardTitle>
-				Starting Stats
-				</CardTitle>
 				<CardBody>
 					{m.weight && <p>Weight: {m.weight}kg</p>}
 					{m.height && <p>Height: {m.height}cm</p>}

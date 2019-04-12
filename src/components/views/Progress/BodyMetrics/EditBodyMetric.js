@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import * as s from "../styles.js";
-import { Form, FormGroup, Label, Input, Button, Modal } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Modal, ModalHeader } from "reactstrap";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -57,26 +57,29 @@ const EditBodyMetric = ({metric} ) => {
                 refetchQueries={() => [{ query: getBodyMetrics }]}
             >
                 {(editBodyMetric) => (
-                <Modal isOpen={toggle}>
-                    <s.DeleteButton onClick={Toggle}>x
+                <Modal isOpen={toggle} centered size='lg'>
+                <ModalHeader>
+                    Edit Metrics
+                    <s.DeleteButton onClick={Toggle}><i className="fas fa-times"></i>
                     </s.DeleteButton>
-                    <Form onSubmit={e => SubmitForm(e, editBodyMetric)}>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                </ModalHeader>
+                    <s.CreationForm onSubmit={e => SubmitForm(e, editBodyMetric)} centered>
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
                             <Label for="exampleEmail" className="mr-sm-2">Weight</Label>
-                            <Input type="number" name="email" id="exampleEmail" value={weight} onChange={e => setWeight(Number(e.target.value))}/>
+                            <Input type="number" min="0" name="email" id="exampleEmail" value={weight} onChange={e => setWeight(Number(e.target.value))}/>
                         </FormGroup>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
                             <Label for="examplePassword" className="mr-sm-2">Height</Label>
-                            <Input type="number" name="password" id="examplePassword" value={height} onChange={e => setHeight(Number(e.target.value))}/>
+                            <Input type="number" min="0" name="password" id="examplePassword" value={height} onChange={e => setHeight(Number(e.target.value))}/>
                         </FormGroup>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
                             <Label for="examplePassword" className="mr-sm-2">Bodyfat</Label>
-                            <Input type="number" name="password" id="examplePassword" value={bodyfat} onChange={e => setBodyFat(Number(e.target.value))}/>
+                            <Input type="number" min="0" name="password" id="examplePassword" value={bodyfat} onChange={e => setBodyFat(Number(e.target.value))}/>
                         </FormGroup>
                         <Button onClick={Toggle} type="submit">Submit</Button>
 
 
-                    </Form>
+                    </s.CreationForm>
                 </Modal>
                 )}
             </Mutation>

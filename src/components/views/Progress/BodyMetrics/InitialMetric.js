@@ -30,7 +30,7 @@ const InitialBodyMetric = ({ metric }) => {
 
 	return (
 		<s.Measurement>
-			<Card>
+			<s.ProgressCard>
 				<Mutation
 					mutation={deleteBodyMetric}
 					refetchQueries={() => [{ query: getBodyMetrics }]}
@@ -40,15 +40,15 @@ const InitialBodyMetric = ({ metric }) => {
 							<s.DeleteButton
 								onClick={() => deleteBodyMetric({ variables: { id: m.id } })}
 							>
-								X
+								<i className="fas fa-times"></i>
 							</s.DeleteButton>
 						);
 					}}
 				</Mutation>
 			
-				<CardHeader>
+				<s.Head>
 				<EditBodyMetric metric={m}>Update</EditBodyMetric>
-				</CardHeader>
+				</s.Head>
 				<CardTitle>
 				Starting Stats
 				</CardTitle>
@@ -57,7 +57,7 @@ const InitialBodyMetric = ({ metric }) => {
 					{m.height && <p>Height: {m.height}cm</p>}
 					{m.bodyfat && <p>Body Fat: {m.bodyfat}%</p>}
 				</CardBody>
-			</Card>
+			</s.ProgressCard>
 		</s.Measurement>
 	);
 };

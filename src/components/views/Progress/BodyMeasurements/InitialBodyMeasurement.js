@@ -34,7 +34,7 @@ const IntialBodyMeasurement = ({ measurement }) => {
 	const m = measurement;
 	return (
 		<s.Measurement>
-			<Card>
+			<s.ProgressCard>
 				<Mutation
 					mutation={deleteBodyMeasurement}
 					refetchQueries={() => [{ query: getBodyMeasurements }]}
@@ -43,16 +43,16 @@ const IntialBodyMeasurement = ({ measurement }) => {
 						<s.DeleteButton
 							onClick={() => deleteBodyMeasurement({ variables: { id: m.id } })}
 						>
-							X
+							<i className="fas fa-times"></i>
 						</s.DeleteButton>
 					)}
 				</Mutation>
 
-				<CardHeader>
+				<s.Head>
 				<EditBodyMeasurement measurement = {m}>
 					Update
 				</EditBodyMeasurement>
-				</CardHeader>
+				</s.Head>
 				<CardBody>
 
 				<CardTitle>
@@ -65,7 +65,7 @@ const IntialBodyMeasurement = ({ measurement }) => {
 					{m.leftLeg && <p>Left Leg: {m.leftLeg}in</p>}
 					{m.rightLeg && <p>Right Leg: {m.rightLeg}in</p>}
 				</CardBody>
-			</Card>
+			</s.ProgressCard>
 		</s.Measurement>
 	);
 };

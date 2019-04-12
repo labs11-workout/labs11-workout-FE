@@ -62,7 +62,7 @@ const EditBodyMeasurement = ({measurement} ) => {
         <>
 
             <s.UpdateButton onClick={Toggle}>
-            Update
+            <i class="fas fa-edit"></i>
             </s.UpdateButton>
 
             <Mutation

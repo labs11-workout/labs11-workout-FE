@@ -41,15 +41,15 @@ const BodyMetric = ({ metric }) => {
 							<s.DeleteButton
 								onClick={() => deleteBodyMetric({ variables: { id: m.id } })}
 							>
-								X
+								<i className="fas fa-times"></i>
 							</s.DeleteButton>
 						);
 					}}
 				</Mutation>
 			
-				<CardHeader>
+				<s.Head>
 				<EditBodyMetric metric={m}>Update</EditBodyMetric>
-				</CardHeader>
+				</s.Head>
 				<CardTitle>
 				{datefns.format(m.createdAt, "ddd, Do MMM YYYY h:mm a")}
 				</CardTitle>

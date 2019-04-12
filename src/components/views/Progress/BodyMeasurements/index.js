@@ -13,8 +13,8 @@ const BodyMeasurements = ({ measurements }) => {
 				return(
 				<s.Measurements>
 				<h3>Body Measurements</h3>
-				<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]}/>
 				<AddBodyMeasurement/>
+				<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]}/>
 				</s.Measurements>
 				)
 			}
@@ -22,9 +22,10 @@ const BodyMeasurements = ({ measurements }) => {
 				return(
 					<s.Measurements>
 						<h3>Body Measurements</h3>
+						<AddBodyMeasurement/>
 						<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]} />
 						<BodyMeasurement key={measurements.id} measurement={measurements[measurements.length-1]} />
-						<AddBodyMeasurement/>
+						
 					</s.Measurements>
 				)
 	

@@ -96,9 +96,9 @@ export const DeleteButton = styled.span`
 	top: 2px;
 	font-size: 20px;
 	transition: 0.4s all;
-	color: rgba(255, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 1);
 	&:hover {
-		color: rgba(255, 0, 0, 0.7);
+		color: rgba(120, 0, 0, 1);
 		cursor: pointer;
 	}
 `;

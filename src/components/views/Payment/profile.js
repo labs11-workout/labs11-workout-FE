@@ -25,7 +25,6 @@ const getProfile = gql`
 		}
 	}
 `;
-//this is our stripe thing.
 
 const Profile = props => {
 	const onToken = res => {
@@ -35,6 +34,7 @@ const Profile = props => {
 			{ headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
 		)
 			.then(res => {
+				//We wrapped component export with the with
 				props.client.query({
 					query: getProfile,
 					fetchPolicy: "network-only"
@@ -44,6 +44,7 @@ const Profile = props => {
 				console.log(err);
 			});
 	};
+
 	return (
 		<Query query={getProfile}>
 			{({ loading, error, data }) => {

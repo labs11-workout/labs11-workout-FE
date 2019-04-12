@@ -28,8 +28,8 @@ const Landing = props => {
 				</div>
 			</s.Container>
 			{/* <Link to="/login">Let's Get Started</Link> */}
-			<s.Btn>
-				<Link to="/login">Let's Get Started</Link>
+			<s.Btn onClick={() => props.history.push("/login")}>
+				Let's Get Started
 			</s.Btn>
 		</div>
 	);

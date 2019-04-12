@@ -4,6 +4,7 @@ import { Route, withRouter, Redirect } from "react-router-dom";
 import dateFns from "date-fns";
 import Protected from "../../Protected";
 import { Query } from "react-apollo";
+import Loading from "../../Loading";
 import gql from "graphql-tag";
 import Calendar from "./Calendar/";
 import MobileCalendar from "./MobileCalendar/";
@@ -93,7 +94,7 @@ const Schedule = props => {
 				<div className="Calendar">
 					<Query query={getSchedules}>
 						{({ loading, error, data }) => {
-							if (loading) return <p> loading </p>;
+							if (loading) return <Loading />;
 							if (error) return <p> error </p>;
 							return (
 								<>

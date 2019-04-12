@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Card } from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -78,3 +79,14 @@ export const Workout = styled.div`
 	}
 `;
 
+export const ProgressCard = styled(Card)`
+	&& {
+		border-color: rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 1px 2px black;
+	}
+	width: 30%;
+	margin: 16px auto;
+	@media (max-width: 960px) {
+		width: 95%;
+	}
+`;

@@ -12,6 +12,7 @@ const BodyMeasurements = ({ measurements }) => {
 				
 				return(
 				<s.Measurements>
+				<h3>Body Measurements</h3>
 				<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]}/>
 				<AddBodyMeasurement/>
 				</s.Measurements>

@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 import Axios from "axios";
 import * as s from "./style";
 import paymentImg from './assets/paymentImg.svg';
+import { Card, CardImg, CardBody } from 'reactstrap';
 
 const getUserInfo = gql`
 	{
@@ -36,6 +37,10 @@ class Payment extends Component {
 	};
 	render() {
 		return (
+			<s.Container>
+			<Card>
+			<CardImg top width="10%" src={paymentImg}/>
+			<CardBody>
 			<Query query={getUserInfo}>
 				{({ loading, error, data }) => {
 					if (loading) return "";
@@ -54,6 +59,9 @@ class Payment extends Component {
 					);
 				}}
 			</Query>
+			</CardBody>
+			</Card>
+			</s.Container>
 		);
 	}
 }

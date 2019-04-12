@@ -31,7 +31,7 @@ const BodyMetric = ({ metric }) => {
 
 	return (
 		<s.Measurement>
-			<Card>
+			<s.ProgressCard>
 				<Mutation
 					mutation={deleteBodyMetric}
 					refetchQueries={() => [{ query: getBodyMetrics }]}
@@ -58,7 +58,7 @@ const BodyMetric = ({ metric }) => {
 					{m.height && <p>Height: {m.height}cm</p>}
 					{m.bodyfat && <p>Body Fat: {m.bodyfat}%</p>}
 				</CardBody>
-			</Card>
+			</s.ProgressCard>
 		</s.Measurement>
 	);
 };

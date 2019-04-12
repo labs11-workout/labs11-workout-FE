@@ -57,9 +57,9 @@ const AddBodyMeasurement = ( ) => {
         addBodyMeasurement({ variables: {hips, waist, leftArm, rightArm, leftLeg, rightLeg}})
     }
     return(
-        <>
+        <s.Container>
 
-            <Button onClick={Toggle}>
+            <Button onClick={Toggle} color="primary">
             Add Body Measurement
             </Button>
 
@@ -103,7 +103,7 @@ const AddBodyMeasurement = ( ) => {
                 </Modal>
                 )}
             </Mutation>
-        </>
+        </s.Container>
     )
 }
 

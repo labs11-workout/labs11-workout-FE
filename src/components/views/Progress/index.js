@@ -30,6 +30,18 @@ const getMetricsAndMeasurements = gql`
 	}
 `;
 
+const getCompletedSchedules = gql`
+	{
+		getSchedules{
+			id
+			completed
+			workouts{
+				completed
+			}
+		}  
+	}
+`;
+
 const Progress = props => {
 	return (
 		<s.Container>

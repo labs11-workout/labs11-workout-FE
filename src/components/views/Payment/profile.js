@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Query, withApollo } from "react-apollo";
+import { toast } from "react-toastify";
 import Protected from "../../Protected";
 import Axios from "axios";
 import gql from "graphql-tag";
@@ -40,6 +41,7 @@ const Profile = props => {
 					query: getProfile,
 					fetchPolicy: "network-only"
 				});
+				toast.success("Thank you for your premium purchase!");
 			})
 			.catch(err => {
 				console.log(err);

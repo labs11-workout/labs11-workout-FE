@@ -13,7 +13,7 @@ const Login = props => {
 			auth.show();
 		}
 	});
-	return <p>Redirecting you to login page...</p>;
+	return <p />;
 };
 
 export default withRouter(Login);

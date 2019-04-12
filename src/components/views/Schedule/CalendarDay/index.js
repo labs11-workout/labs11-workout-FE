@@ -78,7 +78,7 @@ const CalendarDay = ({
 	const createSchedule = (time, mutation) => {
 		//check if schedule with this time already exists
 		if (dateFns.isBefore(time, new Date())) {
-			toast.error("You can schedule a workout session in the past!");
+			toast.error("You can not schedule a workout session in the past!");
 		} else if (schedules.filter(s => s.time === time).length === 0) {
 			mutation({
 				variables: {
@@ -111,13 +111,13 @@ const CalendarDay = ({
 				history.push(`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`)
 			}
 		>
-			{schedules.length === 1 && schedules.length !==0 ? 
-				schedules.map(d => {
-					return <ScheduledSession key={d.id} schedule={d} />;
-				})
-				: schedules.length > 0 &&
-					 <s.DaySchedule>{schedules.length} Sessions Planned</s.DaySchedule>
-				} 
+			{schedules.length === 1 && schedules.length !== 0
+				? schedules.map(d => {
+						return <ScheduledSession key={d.id} schedule={d} />;
+				  })
+				: schedules.length > 0 && (
+						<s.DaySchedule>{schedules.length} Sessions Planned</s.DaySchedule>
+				  )}
 			<Route
 				exact
 				path={`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`}

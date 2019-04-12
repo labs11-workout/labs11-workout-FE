@@ -59,7 +59,7 @@ const EditSavedWorkout = ({ workout, history }) => {
 						{(editWorkout, { loading }) => {
 							return (
 								<Button
-									color="success"
+									color="primary"
 									onClick={() =>
 										editWorkout({
 											variables: { id: workout.id, name: workoutName }
@@ -75,7 +75,7 @@ const EditSavedWorkout = ({ workout, history }) => {
 				<s.ExercisesHeader>
 					<h5 style={{ textAlign: "left", marginTop: "6px" }}>Exercises</h5>
 					<Button
-						color="success"
+						color="primary"
 						onClick={() =>
 							history.push(`/workouts/saved/${workout.id}/exercises/c/new`)
 						}

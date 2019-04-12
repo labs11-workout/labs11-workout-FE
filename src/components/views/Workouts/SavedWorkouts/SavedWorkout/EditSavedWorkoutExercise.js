@@ -137,7 +137,7 @@ const EditSavedWorkoutExercise = ({
 					}}
 				</Mutation>
 				<s.DeleteButton
-					color="success"
+					color="primary"
 					onClick={() => toggleDeleteModal(!deleteModalOpen)}
 				>
 					Cancel

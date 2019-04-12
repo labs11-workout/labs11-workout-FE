@@ -3,6 +3,7 @@ import { Query, withApollo } from "react-apollo";
 import Protected from "../../Protected";
 import Axios from "axios";
 import gql from "graphql-tag";
+import Loading from "../../Loading";
 import StripeCheckout from "react-stripe-checkout";
 import datefns from "date-fns";
 import * as s from "./style";
@@ -48,7 +49,7 @@ const Profile = props => {
 	return (
 		<Query query={getProfile}>
 			{({ loading, error, data }) => {
-				if (loading) return "";
+				if (loading) return <Loading />;
 				if (error) return <p>{error.message}</p>;
 				return (
 					<s.SettingsContainer>

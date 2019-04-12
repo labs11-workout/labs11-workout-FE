@@ -3,7 +3,7 @@ import * as s from "./styles.js";
 import Protected from "../../Protected";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-
+import Loading from "../../Loading";
 import BodyMetrics from "./BodyMetrics/";
 import BodyMeasurements from "./BodyMeasurements/";
 
@@ -47,7 +47,7 @@ const Progress = props => {
 		<s.Container>
 			<Query query={getMetricsAndMeasurements}>
 				{({ loading, error, data }) => {
-					if (loading) return <p>Loading...</p>;
+					if (loading) return <Loading />;
 					if (error) return <p>{error.message}</p>;
 					return (
 						<>

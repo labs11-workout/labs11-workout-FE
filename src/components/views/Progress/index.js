@@ -32,13 +32,13 @@ const getMetricsAndMeasurements = gql`
 
 const getCompletedSchedules = gql`
 	{
-		getSchedules{
+		getSchedules {
 			id
 			completed
-			workouts{
+			workouts {
 				completed
 			}
-		}  
+		}
 	}
 `;
 
@@ -49,7 +49,6 @@ const Progress = props => {
 				{({ loading, error, data }) => {
 					if (loading) return <p>Loading...</p>;
 					if (error) return <p>{error.message}</p>;
-					console.log(data);
 					return (
 						<>
 							<BodyMetrics metrics={data.getBodyMetrics} />

@@ -157,7 +157,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 															onChange={e => setName(e.target.value)}
 														/>
 													</InputGroup>
-													<Button style={{ width: "100%" }} color="success">
+													<Button style={{ width: "100%" }} color="primary">
 														{loading ? "Loading..." : "Create Workout"}
 													</Button>
 												</Form>

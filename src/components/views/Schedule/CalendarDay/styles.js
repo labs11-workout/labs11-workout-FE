@@ -51,3 +51,19 @@ export const AlertBox = styled(Alert)`
 		cursor: pointer;
 	}
 `;
+
+export const DaySchedule = styled.div`
+	position: relative;
+	background: ${props => props.theme.primary};
+	color: #eee;
+	width: 100%;
+	margin: 2px auto;
+	padding: 6px;
+	text-align: center;
+	border-radius: 4px;
+	transition: all 0.3s;
+	&:hover {
+		background: ${props => props.theme.primaryDark};
+		cursor: pointer;
+	}
+`;

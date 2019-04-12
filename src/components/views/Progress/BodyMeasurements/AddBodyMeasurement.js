@@ -57,9 +57,9 @@ const AddBodyMeasurement = ( ) => {
         addBodyMeasurement({ variables: {hips, waist, leftArm, rightArm, leftLeg, rightLeg}})
     }
     return(
-        <>
+        <s.Container>
 
-            <Button onClick={Toggle}>
+            <Button onClick={Toggle} color="primary">
             Add Body Measurement
             </Button>
 
@@ -96,14 +96,12 @@ const AddBodyMeasurement = ( ) => {
                             <Label for="examplePassword" className="mr-sm-2">rightLeg</Label>
                             <Input type="number" value={rightLeg} onChange={e => setRightLeg(Number(e.target.value))}/>
                         </FormGroup>
-                        <Button onClick={Toggle} type="submit">Submit</Button>
-
-
+                        <Button onClick={Toggle} type="submit">Submit</Button>  
                     </Form>
                 </Modal>
                 )}
             </Mutation>
-        </>
+        </s.Container>
     )
 }
 

@@ -41,8 +41,8 @@ const AddBodyMetric = () => {
 		addBodyMetric({ variables: { height, bodyfat, weight } });
 	};
 	return (
-		<>
-			<Button onClick={Toggle}>Add Body Metric</Button>
+		<s.Container>
+			<Button onClick={Toggle} color="primary">Add Body Metric</Button>
 
 			<Mutation
 				mutation={addBodyMetric}
@@ -74,6 +74,7 @@ const AddBodyMetric = () => {
 									id="examplePassword"
 									value={height}
 									onChange={e => setHeight(Number(e.target.value))}
+									placeholder={2}
 								/>
 							</FormGroup>
 							<FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -95,7 +96,7 @@ const AddBodyMetric = () => {
 					</Modal>
 				)}
 			</Mutation>
-		</>
+		</s.Container>
 	);
 };
 

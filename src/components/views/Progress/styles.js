@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Card, CardHeader} from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -19,9 +20,11 @@ export const Measurements = styled.div`
 export const Measurement = styled.div`
 	position: relative;
 	width: 25%;
+	@media (max-width: 590px) {
+		width: 80%;
+	};
 	margin: 6px;
-	border: 1px solid black;
-	border-radius: 6px;
+
 
 	p {
 		padding: 0;
@@ -78,3 +81,20 @@ export const Workout = styled.div`
 	}
 `;
 
+export const ProgressCard = styled(Card)`
+	&& {
+		border-color: rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 1px 2px black;
+	}
+	width: 30%;
+	margin: 16px auto;
+	@media (max-width: 960px) {
+		width: 95%;
+	}
+`;
+
+export const Head = styled(CardHeader)`
+&&{
+	padding:18px;
+}
+`

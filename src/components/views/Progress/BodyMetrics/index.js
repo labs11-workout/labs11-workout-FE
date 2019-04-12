@@ -10,8 +10,8 @@ const BodyMetrics = ({ metrics }) => {
 				return(
 				<s.Measurements>
 					<h3>Body Metrics</h3>
-					<InitialBodyMetric key={metrics[0].id} metric={metrics[0]} />
 					<AddBodyMetric />
+					<InitialBodyMetric key={metrics[0].id} metric={metrics[0]} />
 				</s.Measurements>
 				);
 			}
@@ -19,20 +19,21 @@ const BodyMetrics = ({ metrics }) => {
 			return(
 				<s.Measurements>
 					<h3>Body Metrics</h3>
+					<AddBodyMetric />
 					<InitialBodyMetric key={metrics[0].id} metric={metrics[0]} />
 					<BodyMetric
 						key={metrics[metrics.length - 1].id}
 						metric={metrics[metrics.length - 1]}
 					/>
-					<AddBodyMetric />
+					
 				</s.Measurements>
 			)
 			} else{
 				return(
 				<s.Measurements>
 					<h3>Body Metrics</h3>
-					<p>You have no Body Metrics recorded. Try Adding One!</p>
 					<AddBodyMetric />
+					<span>You have no Body Metrics recorded. Try Adding One!</span>
 				</s.Measurements>
 				);
 			}

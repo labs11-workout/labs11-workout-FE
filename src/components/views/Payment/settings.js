@@ -3,6 +3,7 @@ import * as s from "./style";
 import { Route } from "react-router-dom";
 import Payment from "./payment";
 import Profile from "./profile";
+import { Card, CardDeck, CardBody, CardTitle} from "reactstrap";
 
 const Settings = props => {
 	useEffect(() => {

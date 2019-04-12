@@ -95,10 +95,13 @@ const CalendarDay = ({
 				history.push(`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`)
 			}
 		>
-			{schedules.length > 0 &&
+			{schedules.length === 1 && schedules.length !==0 ? 
 				schedules.map(d => {
 					return <ScheduledSession key={d.id} schedule={d} />;
-				})}
+				})
+				: schedules.length > 0 &&
+					 <s.DaySchedule>{schedules.length} Sessions Planned</s.DaySchedule>
+				} 
 			<Route
 				exact
 				path={`/schedule/${monthDayYear}/${dateFns.format(day, "D")}`}

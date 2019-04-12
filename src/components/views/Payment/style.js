@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Card, CardBody } from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -71,31 +72,31 @@ export const Content = styled.div`
 	}
 `;
 
-export const Card = styled.div`
+export const PCard = styled(Card)`
 	display: flex;
-	width: 25%
-	// border: 1px dotted black;
+	width: 100%;
 	padding: 10px;
-
+	margin: 12px auto;
 `;
 
-export const CardBody = styled.div`
-// font-family: 'Fontdiner Swanky', cursive;
-color: ${props => props.theme.primaryDark};
-align-items: baseline;
-// margin-rigth: 150px;
-	
+export const PCardBody = styled(CardBody)`
+	color: black;
+	margin: 12px auto;
 `;
 
+export const SettingsContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+`;
 
 export const Image = styled.div`
-img {
-	display: flex;
-	margin-top: 20px;
-	width: 65%
-	height: 250px;
-	margin 0 150px 80px 80px;
-}
-	
+	img {
+		display: flex;
+		margin: 0 auto;
+		margin-top: 20px;
+		width: 65%;
+		height: 250px;
+	}
 `;
-

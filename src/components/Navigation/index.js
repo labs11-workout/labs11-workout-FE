@@ -37,7 +37,7 @@ const Navigation = props => {
 							Notes
 						</s.Link> */}
 						<s.Link to="/settings" activeClassName="active">
-							Settings
+							Profile
 						</s.Link>
 						<s.Link to="/logout" activeClassName="active">
 							Logout

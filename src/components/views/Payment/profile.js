@@ -34,7 +34,7 @@ const Profile = props => {
 			{ headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
 		)
 			.then(res => {
-				//We wrapped component export with the with
+				//We wrapped component export with the withApollo higher order component, which allows us to execute Apollo Client queries/mutations anywhere in the component.
 				props.client.query({
 					query: getProfile,
 					fetchPolicy: "network-only"

@@ -49,15 +49,11 @@ const IntialBodyMeasurement = ({ measurement }) => {
 				</Mutation>
 
 				<s.Head>
+				Start
 				<EditBodyMeasurement measurement = {m}>
-					Update
 				</EditBodyMeasurement>
 				</s.Head>
 				<CardBody>
-
-				<CardTitle>
-				Starting Stats
-				</CardTitle>
 					{m.hips && <p>Hips: {m.hips}in</p>}
 					{m.waist && <p>Waist: {m.waist}in</p>}
 					{m.leftArm && <p>Left Arm: {m.leftArm}in</p>}

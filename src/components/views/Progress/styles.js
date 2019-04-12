@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, CardHeader} from "reactstrap";
+import { Card, CardHeader, Form, Button} from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -10,6 +10,7 @@ export const Measurements = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin: 10px 0 0 0;
 
 	h3 {
 		width: 100%;
@@ -20,6 +21,7 @@ export const Measurements = styled.div`
 export const Measurement = styled.div`
 	position: relative;
 	width: 25%;
+	margin: 10px 0 0 0;
 	@media (max-width: 590px) {
 		width: 80%;
 	};
@@ -34,25 +36,31 @@ export const Measurement = styled.div`
 
 export const DeleteButton = styled.div`
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 5%;
+	right: 2%;
 	margin: 6px;
 	color: red;
 
 	&:hover {
 		cursor: pointer;
 	}
+	i{
+		font-size:1.2rem;
+	}
 `;
 
 export const UpdateButton = styled.div`
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 5%;
+	left: 2%;
 	margin: 6px;
 	color: red;
 
 	&:hover {
 		cursor: pointer;
+	}
+	i{
+		font-size:1.2rem;
 	}
 `;
 
@@ -96,5 +104,32 @@ export const ProgressCard = styled(Card)`
 export const Head = styled(CardHeader)`
 &&{
 	padding:18px;
+	font-weight: 600;
 }
-`
+`;
+
+
+export const CreationForm = styled(Form)`
+	&& {
+		
+		margin: 0px 0px 0px 5%;
+		width: 90%;
+		.input-group {
+			margin: 6px auto;
+		}
+		button{
+			margin:20px 0 10px 0px;
+			background-color:#007bff;
+			width: 99%
+		}
+	}
+`;
+
+export const AddButton = styled(Button)`
+	&& {
+		
+		margin: 10px 0px 0px 0px;
+	}
+`;
+
+

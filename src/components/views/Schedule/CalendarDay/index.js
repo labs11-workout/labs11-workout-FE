@@ -4,6 +4,7 @@ import dateFns from "date-fns";
 import * as s from "./styles";
 import ScheduledSession from "../ScheduledSession";
 import gql from "graphql-tag";
+import { toast } from "react-toastify";
 import { Mutation } from "react-apollo";
 
 import {
@@ -73,6 +74,21 @@ const CalendarDay = ({
 }) => {
 	const [timeInput, setTimeInput] = useState("12:00");
 	const [scheduleFormError, setScheduleFormError] = useState(null);
+
+	const createSchedule = (time, mutation) => {
+		//check if schedule with this time already exists
+		if (dateFns.isBefore(time, new Date())) {
+			toast.error("You can schedule a workout session in the past!");
+		} else if (schedules.filter(s => s.time === time).length === 0) {
+			mutation({
+				variables: {
+					time
+				}
+			});
+		} else {
+			toast.error("You already have a schedule at this time.");
+		}
+	};
 
 	//This is used to take the time from our time input, assign it to the day that was clicked on, then format it so our backend can read it.
 	const createDate = time => {
@@ -145,11 +161,7 @@ const CalendarDay = ({
 													onClick={() => {
 														const scheduleTime = createDate(timeInput);
 														if (scheduleTime !== "Invalid Date") {
-															addSchedule({
-																variables: {
-																	time: scheduleTime
-																}
-															});
+															createSchedule(scheduleTime, addSchedule);
 														} else {
 															setScheduleFormError("Invalid Date.");
 														}

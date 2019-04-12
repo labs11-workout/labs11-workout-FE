@@ -4,6 +4,7 @@ import Protected from "../../Protected";
 import { Query } from "react-apollo";
 import { Route, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
+import Loading from "../../Loading";
 import SavedWorkouts from "./SavedWorkouts/";
 import ScheduledWorkouts from "./ScheduledWorkouts/";
 import workoutImg from "./assets/workoutImg.svg";
@@ -56,7 +57,7 @@ const Workouts = ({ match, history, location }) => {
 		<s.Container>
 			<Query query={getSavedWorkoutsAndSchedules}>
 				{({ loading, error, data }) => {
-					if (loading) return <p>Loading...</p>;
+					if (loading) return <Loading />;
 					if (error) return <p>{error.message}</p>;
 					return (
 						<>

@@ -29,10 +29,11 @@ const BodyMeasurements = ({ measurements }) => {
 					</s.Measurements>
 				)
 	
-			}   
+			}  
 			else {
 				return(
 				<s.Measurements>
+				<h3>Body Measurements</h3>
 				<p>You have no Body Measurements recorded. Try Adding One!</p>
 				<AddBodyMeasurement/>
 				</s.Measurements>

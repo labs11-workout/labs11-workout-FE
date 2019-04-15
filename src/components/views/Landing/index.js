@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as s from "./styles";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { withTheme } from "styled-components";
 import landingImg from "./assets/landingImg.svg";
 

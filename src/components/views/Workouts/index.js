@@ -73,7 +73,6 @@ const Workouts = ({ match, history, location }) => {
 								</s.MenuLink>
 							</s.Menu>
 							<s.Content>
-								<img src={workoutImg} alt="woman doing situps" />
 								<Route
 									path="/workouts/saved"
 									render={() => (

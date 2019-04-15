@@ -6,5 +6,6 @@ export const theme = {
 	secondary: "#1C8383",
 	secondaryDark: "#335F5F",
 	lightFont: "#E7D9D7",
-	dark: "#393939"
+	dark: "#393939",
+	backgroundMain: "#EDEAE8"
 };

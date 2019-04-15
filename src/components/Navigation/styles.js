@@ -23,11 +23,11 @@ export const Links = styled.div`
 
 export const NavToggle = styled.div`
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	color: ${props => props.theme.lightFont};
 	font-size: 32px;
 	display: none;
-	padding-right: 32px;
+	padding-left: 32px;
 	i:hover {
 		cursor: pointer;
 	}

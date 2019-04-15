@@ -55,9 +55,7 @@ const Profile = props => {
 				if (error) return <p>{error.message}</p>;
 				return (
 					<s.SettingsContainer>
-						<s.Image>
-							<img src={accountImg} alt="profiles" />
-						</s.Image>
+						<h3>Profile</h3>
 						<s.PCard>
 							<s.PCardBody>
 								<p>

@@ -39,7 +39,7 @@ export const DeleteButton = styled.div`
 	top: 5%;
 	right: 2%;
 	margin: 6px;
-	color: red;
+	color: ${props => props.theme.primary};
 
 	&:hover {
 		cursor: pointer;
@@ -54,7 +54,7 @@ export const UpdateButton = styled.div`
 	top: 5%;
 	left: 2%;
 	margin: 6px;
-	color: red;
+	color: ${props => props.theme.primary};
 
 	&:hover {
 		cursor: pointer;
@@ -119,7 +119,15 @@ export const CreationForm = styled(Form)`
 		}
 		button{
 			margin:20px 0 10px 0px;
-			background-color:#007bff;
+			background: ${props => props.theme.secondary};
+			border: none;
+			/* box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; */
+			&:hover {
+			background: ${props => props.theme.secondaryLight};
+			}
+			&:active{
+			background: ${props => props.theme.secondaryDark};
+			}
 			width: 99%
 		}
 	}
@@ -129,7 +137,15 @@ export const AddButton = styled(Button)`
 	&& {
 		
 		margin: 10px 0px 0px 0px;
+		background: ${props => props.theme.secondary};
+		border: none;
+		/* box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; */
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+		}
 	}
 `;
-
 

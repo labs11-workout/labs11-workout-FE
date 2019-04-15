@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import Loading from "../../Loading";
 import BodyMetrics from "./BodyMetrics/";
 import BodyMeasurements from "./BodyMeasurements/";
+import { withTheme } from "styled-components";
 
 //When a Query Component gets the Data after running this query. It will have data.getBodyMetrics, and data.getBodyMeasurements
 const getMetricsAndMeasurements = gql`
@@ -51,4 +52,4 @@ const Progress = props => {
 	);
 };
 
-export default Protected(Progress);
+export default withTheme(Protected(Progress));

@@ -97,7 +97,6 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 							</DropdownItem>
 							<s.DropdownItemDanger
 								onClick={() => toggleDeleteModal(!deleteModalOpen)}
-								color="danger"
 							>
 								Delete
 							</s.DropdownItemDanger>
@@ -170,7 +169,6 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 					}}
 				</Mutation>
 				<s.DeleteButton
-					color="primary"
 					onClick={() => toggleDeleteModal(!deleteModalOpen)}
 				>
 					Cancel

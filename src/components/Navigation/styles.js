@@ -5,6 +5,7 @@ export const Container = styled.div`
 	position: relative;
 	background: ${props => props.theme.primary};
 	padding: 4px;
+	box-shadow: 0px 0px 0px 1px black;
 `;
 
 export const Links = styled.div`

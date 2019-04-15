@@ -3,7 +3,7 @@ import * as s from "./styles";
 import SavedWorkout from "./SavedWorkout/";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import { Button } from "reactstrap";
+
 const addSavedWorkout = gql`
 	mutation AddSavedWorkout($name: String!) {
 		addSavedWorkout(name: $name) {
@@ -87,14 +87,14 @@ const SavedWorkouts = ({ savedWorkouts, history }) => {
 							>
 								{(addWorkout, { l = loading }) => {
 									return (
-										<Button
+										<s.CreateButton
 											color="primary"
 											onClick={() =>
 												addWorkout({ variables: { name: "New Workout" } })
 											}
 										>
 											{l ? "Loading" : "Create Workout Template"}
-										</Button>
+										</s.CreateButton>
 									);
 								}}
 							</Mutation>

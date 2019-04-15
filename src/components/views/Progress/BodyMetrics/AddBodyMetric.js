@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as s from "../styles.js";
-import { FormGroup, Label, Input, Button, Modal, ModalHeader } from "reactstrap";
+import { FormGroup, Label, Input, Modal, ModalHeader } from "reactstrap";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -90,9 +90,9 @@ const AddBodyMetric = () => {
 									onChange={e => setBodyFat(Number(e.target.value))}
 								/>
 							</FormGroup>
-							<Button onClick={Toggle} type="submit">
+							<s.AddButton onClick={Toggle} type="submit">
 								Submit
-							</Button>
+							</s.AddButton>
 						</s.CreationForm>
 					</Modal>
 				)}

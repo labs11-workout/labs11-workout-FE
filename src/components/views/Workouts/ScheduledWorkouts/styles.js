@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "reactstrap";
+import { Card, Button } from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -24,3 +24,20 @@ export const WorkoutCard = styled(Card)`
 		width: 95%;
 	}
 `;
+
+export const CreateButton = styled(Button)`
+
+	&& {
+		box-shadow: 1px 0px 0px 1px;
+		background: ${props => props.theme.secondary};
+		border: none;
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+	}
+	}
+
+`;
+

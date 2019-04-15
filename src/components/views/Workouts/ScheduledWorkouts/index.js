@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "reactstrap";
 import { withRouter, Route } from "react-router-dom";
 import CreateScheduledWorkoutModal from "./CreateScheduledWorkoutModal";
 import ScheduledWorkout from "./ScheduledWorkout";
@@ -11,12 +10,12 @@ const ScheduledWorkouts = ({ workouts, match, history, location }) => {
 			<div>
 				<h2>Scheduled Workouts</h2>
 				<hr />
-				<Button
+				<s.CreateButton
 					color="primary"
 					onClick={() => history.push("/workouts/scheduled/create")}
 				>
 					Create Workout
-				</Button>
+				</s.CreateButton>
 				<s.WorkoutList>
 					{workouts.map(s => {
 						return <ScheduledWorkout key={s.id} workout={s} />;

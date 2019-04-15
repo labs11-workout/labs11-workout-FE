@@ -7,7 +7,6 @@ import gql from "graphql-tag";
 import Loading from "../../Loading";
 import SavedWorkouts from "./SavedWorkouts/";
 import ScheduledWorkouts from "./ScheduledWorkouts/";
-import workoutImg from "./assets/workoutImg.svg";
 import { withTheme } from "styled-components";
 
 const getSavedWorkoutsAndSchedules = gql`

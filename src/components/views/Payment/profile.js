@@ -8,7 +8,6 @@ import Loading from "../../Loading";
 import StripeCheckout from "react-stripe-checkout";
 import datefns from "date-fns";
 import * as s from "./style";
-import accountImg from "./assets/accountImg.svg";
 
 const getProfile = gql`
 	{

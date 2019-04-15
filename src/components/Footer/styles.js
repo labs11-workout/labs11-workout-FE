@@ -9,5 +9,5 @@ export const Footer = styled.footer`
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	box-shadow: 0px 0px 0px 1px ${props => props.theme.primaryDark};
+	box-shadow: 0px 0px 1px 1px ${props => props.theme.primaryDark};
 `;

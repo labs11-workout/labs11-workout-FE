@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { numberOnlyInput } from "../../../../utils/numberInputValidation";
 import * as s from "../styles.js";
 import {
 	FormGroup,
@@ -110,7 +111,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={hips}
 										onChange={e => setHips(Number(e.target.value))}
@@ -124,7 +125,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={waist}
 										onChange={e => setWaist(Number(e.target.value))}
@@ -138,7 +139,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={leftArm}
 										onChange={e => setLeftArm(Number(e.target.value))}
@@ -152,7 +153,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={rightArm}
 										onChange={e => setRightArm(Number(e.target.value))}
@@ -166,7 +167,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={leftLeg}
 										onChange={e => setLeftLeg(Number(e.target.value))}
@@ -180,7 +181,7 @@ const EditBodyMeasurement = ({ measurement }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										value={rightLeg}
 										onChange={e => setRightLeg(Number(e.target.value))}

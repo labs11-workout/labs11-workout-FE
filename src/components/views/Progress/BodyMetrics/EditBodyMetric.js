@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { numberOnlyInput } from "../../../../utils/numberInputValidation";
 import * as s from "../styles.js";
 import {
 	FormGroup,
@@ -87,7 +88,7 @@ const EditBodyMetric = ({ metric }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										name="email"
 										id="exampleEmail"
@@ -103,7 +104,7 @@ const EditBodyMetric = ({ metric }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										name="password"
 										id="examplePassword"
@@ -119,7 +120,7 @@ const EditBodyMetric = ({ metric }) => {
 								</Label>
 								<InputGroup>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										min="0"
 										name="password"
 										id="examplePassword"

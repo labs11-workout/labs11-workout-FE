@@ -39,7 +39,7 @@ export const DeleteButton = styled.div`
 	top: 5%;
 	right: 2%;
 	margin: 6px;
-	color: red;
+	color: ${props => props.theme.primary};
 
 	&:hover {
 		cursor: pointer;
@@ -54,7 +54,7 @@ export const UpdateButton = styled.div`
 	top: 5%;
 	left: 2%;
 	margin: 6px;
-	color: red;
+	color: ${props => props.theme.primary};
 
 	&:hover {
 		cursor: pointer;
@@ -92,7 +92,7 @@ export const Workout = styled.div`
 export const ProgressCard = styled(Card)`
 	&& {
 		border-color: rgba(0, 0, 0, 0.3);
-		box-shadow: 0px 1px 2px black;
+		box-shadow: 0px 1px 1px black;
 	}
 	width: 90%;
 	margin: 16px auto;
@@ -111,7 +111,7 @@ export const Head = styled(CardHeader)`
 
 export const CreationForm = styled(Form)`
 	&& {
-		
+		box-shadow: 1px;
 		margin: 0px 0px 0px 5%;
 		width: 90%;
 		.input-group {
@@ -119,7 +119,15 @@ export const CreationForm = styled(Form)`
 		}
 		button{
 			margin:20px 0 10px 0px;
-			background-color:#007bff;
+			background: ${props => props.theme.secondary};
+			border: none;
+			/* box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; */
+			&:hover {
+			background: ${props => props.theme.secondaryLight};
+			}
+			&:active{
+			background: ${props => props.theme.secondaryDark};
+			}
 			width: 99%
 		}
 	}
@@ -129,7 +137,15 @@ export const AddButton = styled(Button)`
 	&& {
 		
 		margin: 10px 0px 0px 0px;
+		background: ${props => props.theme.secondary};
+		border: none;
+		/* box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; */
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+		}
 	}
 `;
-
 

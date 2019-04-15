@@ -4,7 +4,6 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as s from "./styles";
 import {
-	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,
@@ -58,8 +57,7 @@ const EditSavedWorkout = ({ workout, history }) => {
 					<Mutation awaitRefetchQueries={true} mutation={editSavedWorkout}>
 						{(editWorkout, { loading }) => {
 							return (
-								<Button
-									color="primary"
+								<s.CreateButton
 									onClick={() =>
 										editWorkout({
 											variables: { id: workout.id, name: workoutName }
@@ -67,21 +65,21 @@ const EditSavedWorkout = ({ workout, history }) => {
 									}
 								>
 									{loading ? "Loading" : "Update Workout Name"}
-								</Button>
+								</s.CreateButton>
 							);
 						}}
 					</Mutation>
 				</s.UpdateWorkout>
 				<s.ExercisesHeader>
 					<h5 style={{ textAlign: "left", marginTop: "6px" }}>Exercises</h5>
-					<Button
+					<s.CreateButton
 						color="primary"
 						onClick={() =>
 							history.push(`/workouts/saved/${workout.id}/exercises/c/new`)
 						}
 					>
 						<i className="fas fa-plus" />
-					</Button>
+					</s.CreateButton>
 					<hr />
 				</s.ExercisesHeader>
 				{workout.exercises.map((e, i) => {

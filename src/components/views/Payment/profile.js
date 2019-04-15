@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Query, withApollo } from "react-apollo";
 import { toast } from "react-toastify";
 import Protected from "../../Protected";

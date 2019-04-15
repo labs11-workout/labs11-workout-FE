@@ -7,7 +7,6 @@ import IntialBodyMeasurement from "./InitialBodyMeasurement"
 
 
 const BodyMeasurements = ({ measurements }) => {
-	console.log(measurements.length)
 		if ((measurements.length) === 1){
 				
 				return(

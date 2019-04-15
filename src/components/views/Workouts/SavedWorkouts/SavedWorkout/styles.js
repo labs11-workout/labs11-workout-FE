@@ -62,6 +62,7 @@ export const SettingButton = styled(DropdownToggle)`
 	}
 	&& {
 		padding: 6px;
+		background: ${props => props.theme.secondary}
 	}
 `;
 
@@ -69,17 +70,34 @@ export const DropdownItemDanger = styled(DropdownItem)`
 	&& {
 		transition: 0.4s all;
 		color: white;
-		background: #dc3545;
+		background: ${props => props.theme.primary};
 		&:hover {
-			background: #ba3545;
+			background: ${props => props.theme.primaryLight};
 			color: white;
 		}
 	}
 `;
 
+export const CreateButton = styled(Button)`
+
+	&& {
+		box-shadow: 1px 0px 0px 1px;
+		background: ${props => props.theme.secondary};
+		border: none;
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+	}
+	}
+
+`;
+
 export const DeleteButton = styled(Button)`
 	&& {
 		margin: 8px;
+		background: ${props => props.theme.primary};
 	}
 `;
 
@@ -91,6 +109,8 @@ export const UpdateWorkout = styled.div`
 		width: 100%;
 		margin: 4px auto;
 		box-shadow: 0px 1px 2px black;
+		background: ${props => props.theme.secondary};
+		border:none;
 	}
 `;
 
@@ -115,3 +135,5 @@ export const CreationForm = styled(Form)`
 		}
 	}
 `;
+
+

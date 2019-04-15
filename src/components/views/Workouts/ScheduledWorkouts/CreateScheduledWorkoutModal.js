@@ -101,6 +101,9 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 									if (a.time < b.time) return 1;
 									return 0;
 								});
+							if (!preset) {
+								setScheduleId(schedules[0].id);
+							}
 						}
 
 						return (

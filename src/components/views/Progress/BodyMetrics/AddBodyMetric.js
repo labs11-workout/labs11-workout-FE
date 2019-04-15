@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import * as s from "../styles.js";
-import { FormGroup, Label, Input, Modal, ModalHeader } from "reactstrap";
+import {
+	FormGroup,
+	Label,
+	Input,
+	Modal,
+	ModalHeader,
+	InputGroup,
+	InputGroupText
+} from "reactstrap";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -65,35 +73,49 @@ const AddBodyMetric = () => {
 								<Label for="exampleEmail" className="mr-sm-2">
 									Weight
 								</Label>
-								<Input
-									type="number"
-									min="0"
-									value={weight}
-									onChange={e => setWeight(Number(e.target.value))}
-								/>
+								<InputGroup>
+									<Input
+										type="number"
+										min="0"
+										name="email"
+										id="exampleEmail"
+										value={weight}
+										onChange={e => setWeight(Number(e.target.value))}
+									/>
+									<InputGroupText>kg</InputGroupText>
+								</InputGroup>
 							</FormGroup>
 							<FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
 								<Label for="examplePassword" className="mr-sm-2">
 									Height
 								</Label>
-								<Input
-									type="number"
-									min="0"
-									value={height}
-									onChange={e => setHeight(Number(e.target.value))}
-									placeholder={2}
-								/>
+								<InputGroup>
+									<Input
+										type="number"
+										min="0"
+										name="password"
+										id="examplePassword"
+										value={height}
+										onChange={e => setHeight(Number(e.target.value))}
+									/>
+									<InputGroupText>cm</InputGroupText>
+								</InputGroup>
 							</FormGroup>
 							<FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
 								<Label for="examplePassword" className="mr-sm-2">
 									Bodyfat
 								</Label>
-								<Input
-									type="number"
-									min="0"
-									value={bodyfat}
-									onChange={e => setBodyFat(Number(e.target.value))}
-								/>
+								<InputGroup>
+									<Input
+										type="number"
+										min="0"
+										name="password"
+										id="examplePassword"
+										value={bodyfat}
+										onChange={e => setBodyFat(Number(e.target.value))}
+									/>
+									<InputGroupText>%</InputGroupText>
+								</InputGroup>
 							</FormGroup>
 							<s.AddButton onClick={Toggle} type="submit">
 								Submit

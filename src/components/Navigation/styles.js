@@ -45,7 +45,7 @@ export const Link = styled(NavLink)`
 	margin: 4px 8px;
 	&::after {
 		position: absolute;
-		bottom: -4px;
+		bottom: -2px;
 		height: 2px;
 		background: ${props => props.theme.lightFont};
 		width: 0%;

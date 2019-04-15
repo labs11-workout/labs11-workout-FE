@@ -30,7 +30,7 @@ export const Menu = styled.div`
 
 export const MenuLink = styled(NavLink)`
 	width: 100%;
-	background: ${props => props.theme.secondary};
+  background: rgba(0, 0, 0, 0.025);
 	color: black;
 	padding: 4px;
 	border-radius: 4px;
@@ -47,7 +47,7 @@ export const MenuLink = styled(NavLink)`
 		color: white;
 	}
 	&.active {
-		background: ${props => props.theme.secondaryDark};
+    background: ${props => props.theme.secondaryDark};
 		color: white;
 	}
 	@media (max-width: 960px) {

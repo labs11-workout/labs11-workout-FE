@@ -62,7 +62,14 @@ export const SettingButton = styled(DropdownToggle)`
 	}
 	&& {
 		padding: 6px;
-		background: ${props => props.theme.secondary}
+		background: ${props => props.theme.secondary};
+		border: none;
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+		}
 	}
 `;
 
@@ -81,7 +88,7 @@ export const DropdownItemDanger = styled(DropdownItem)`
 export const CreateButton = styled(Button)`
 
 	&& {
-		box-shadow: 1px 0px 0px 1px;
+		box-shadow: 1px 1px 1px 1px;
 		background: ${props => props.theme.secondary};
 		border: none;
 		&:hover {
@@ -110,7 +117,7 @@ export const UpdateWorkout = styled.div`
 		margin: 4px auto;
 		box-shadow: 0px 1px 2px black;
 		background: ${props => props.theme.secondary};
-		border:none;
+		border: none;
 	}
 `;
 

@@ -86,7 +86,7 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 					<h4>{workout.name}</h4>
 
 					<Dropdown isOpen={settings} toggle={() => toggleSettings(!settings)}>
-						<s.SettingButton color="primary">
+						<s.SettingButton>
 							<i className="fas fa-cog" />
 						</s.SettingButton>
 						<DropdownMenu>

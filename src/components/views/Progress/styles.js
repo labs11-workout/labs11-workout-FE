@@ -139,7 +139,7 @@ export const AddButton = styled(Button)`
 		margin: 10px 0px 0px 0px;
 		background: ${props => props.theme.secondary};
 		border: none;
-		/* box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; */
+		box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; 
 		&:hover {
 		background: ${props => props.theme.secondaryLight};
 		}

@@ -57,13 +57,19 @@ export const SettingButton = styled(DropdownToggle)`
 	position: absolute;
 	right: 12px;
 	top: -36px;
-	
 	&.exercise {
 		top: -8px;
 	}
 	&& {
 		padding: 6px;
 		background: ${props => props.theme.secondary};
+		border: none;
+		&:hover {
+		background: ${props => props.theme.secondaryLight};
+		}
+		&:active{
+		background: ${props => props.theme.secondaryDark};
+		}
 	}
 `;
 

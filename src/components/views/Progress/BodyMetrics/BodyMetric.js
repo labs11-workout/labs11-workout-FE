@@ -52,9 +52,9 @@ const BodyMetric = ({ metric }) => {
 				{datefns.format(m.createdAt, "MMM Do YYYY")}
 				</s.Head>
 				<CardBody>
-					{m.weight && <p>Weight: {m.weight}kg</p>}
-					{m.height && <p>Height: {m.height}cm</p>}
-					{m.bodyfat && <p>Body Fat: {m.bodyfat}%</p>}
+					{m.weight > 0 && <p>Weight: {m.weight}kg</p>}
+					{m.height > 0 && <p>Height: {m.height}cm</p>}
+					{m.bodyfat !== 0 && <p>Body Fat: {m.bodyfat}%</p>}
 				</CardBody>
 			</s.ProgressCard>
 		</s.Measurement>

@@ -28,7 +28,7 @@ export const WorkoutCard = styled(Card)`
 export const CreateButton = styled(Button)`
 
 	&& {
-		box-shadow: 1px 0px 0px 1px;
+		box-shadow: 1px 1px 1px 1px ${props => props.theme.secondaryDark};
 		background: ${props => props.theme.secondary};
 		border: none;
 		&:hover {

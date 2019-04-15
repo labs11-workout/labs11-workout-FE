@@ -92,7 +92,7 @@ export const Workout = styled.div`
 export const ProgressCard = styled(Card)`
 	&& {
 		border-color: rgba(0, 0, 0, 0.3);
-		box-shadow: 0px 1px 2px black;
+		box-shadow: 0px 1px 1px black;
 	}
 	width: 90%;
 	margin: 16px auto;
@@ -111,7 +111,7 @@ export const Head = styled(CardHeader)`
 
 export const CreationForm = styled(Form)`
 	&& {
-		
+		box-shadow: 1px;
 		margin: 0px 0px 0px 5%;
 		width: 90%;
 		.input-group {

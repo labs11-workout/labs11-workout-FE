@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { numberOnlyInput } from "../../../../../utils/numberInputValidation";
 import * as s from "./styles";
 import {
 	Button,
@@ -131,16 +132,16 @@ const EditSavedWorkoutExerciseModal = ({
 								<InputGroup>
 									<InputGroupText>Intervals</InputGroupText>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										value={intervals}
 										onChange={e => setIntervals(e.target.value)}
-										placeholder=""
+										placeholder="How many Intervals"
 									/>
 								</InputGroup>
 								<InputGroup>
 									<InputGroupText>Reps</InputGroupText>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										value={reps}
 										onChange={e => setReps(e.target.value)}
 										placeholder="How many Reps"
@@ -149,7 +150,7 @@ const EditSavedWorkoutExerciseModal = ({
 								<InputGroup>
 									<InputGroupText>Sets</InputGroupText>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										value={sets}
 										onChange={e => setSets(e.target.value)}
 										placeholder="How many Sets"
@@ -158,7 +159,7 @@ const EditSavedWorkoutExerciseModal = ({
 								<InputGroup>
 									<InputGroupText>Duration</InputGroupText>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										value={duration}
 										onChange={e => setDuration(e.target.value)}
 										placeholder="Duration of Exercise"
@@ -167,7 +168,7 @@ const EditSavedWorkoutExerciseModal = ({
 								<InputGroup>
 									<InputGroupText>Intensity</InputGroupText>
 									<Input
-										type="number"
+										onKeyDown={numberOnlyInput}
 										value={intensity}
 										onChange={e => setIntensity(e.target.value)}
 										placeholder="Weight of Lift, Speed of run"

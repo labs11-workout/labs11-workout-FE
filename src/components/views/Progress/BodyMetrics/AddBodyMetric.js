@@ -34,7 +34,6 @@ const AddBodyMetric = () => {
 
 	const Toggle = () => {
 		setState(!toggle);
-		console.log(toggle);
 	};
 	const SubmitForm = (e, addBodyMetric) => {
 		e.preventDefault();
@@ -42,20 +41,26 @@ const AddBodyMetric = () => {
 	};
 	return (
 		<s.Container>
-			<s.AddButton onClick={Toggle} color="primary">Add Body Metric</s.AddButton>
+			<s.AddButton onClick={Toggle} color="primary">
+				Add Body Metric
+			</s.AddButton>
 
 			<Mutation
 				mutation={addBodyMetric}
 				refetchQueries={() => [{ query: getBodyMetrics }]}
 			>
 				{addBodyMetric => (
-					<Modal isOpen={toggle} centered size='lg'>
-					<ModalHeader>
-						Add New Metrics
-						<s.DeleteButton onClick={Toggle}><i className="fas fa-times"></i>
-						</s.DeleteButton>
-					</ModalHeader>
-						<s.CreationForm onSubmit={e => SubmitForm(e, addBodyMetric)} centered>
+					<Modal isOpen={toggle} centered size="lg">
+						<ModalHeader>
+							Add New Metrics
+							<s.DeleteButton onClick={Toggle}>
+								<i className="fas fa-times" />
+							</s.DeleteButton>
+						</ModalHeader>
+						<s.CreationForm
+							onSubmit={e => SubmitForm(e, addBodyMetric)}
+							centered
+						>
 							<FormGroup className="mb-2 mr-sm-2 mb-sm-0 mt-sm-4">
 								<Label for="exampleEmail" className="mr-sm-2">
 									Weight

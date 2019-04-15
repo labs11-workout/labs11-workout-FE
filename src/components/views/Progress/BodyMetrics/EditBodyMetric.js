@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import * as s from "../styles.js";
-import { Form, FormGroup, Label, Input, Button, Modal, ModalHeader } from "reactstrap";
+import { FormGroup, Label, Input, Button, Modal, ModalHeader } from "reactstrap";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -49,7 +49,7 @@ const EditBodyMetric = ({metric} ) => {
         <>
 
             <s.UpdateButton onClick={Toggle}>
-            <i class="fas fa-edit"></i>
+            <i className="fas fa-edit"></i>
             </s.UpdateButton>
 
             <Mutation

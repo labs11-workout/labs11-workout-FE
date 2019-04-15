@@ -167,7 +167,7 @@ const CreateScheduledWorkoutExercise = ({ workout, history }) => {
 										placeholder="Weight of Lift, Speed of run"
 									/>
 								</InputGroup>
-								<Button type="submit" color="primary">
+								<Button type="submit">
 									{loading ? "Loading" : "Create Exercise"}
 								</Button>
 							</s.CreationForm>

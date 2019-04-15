@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as s from "./styles";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { withTheme } from "styled-components";
 import landingImg from "./assets/landingImg.svg";
 
@@ -27,7 +27,6 @@ const Landing = props => {
 					</p>
 				</div>
 			</s.Container>
-			{/* <Link to="/login">Let's Get Started</Link> */}
 			<s.Btn onClick={() => props.history.push("/login")}>
 				Let's Get Started
 			</s.Btn>

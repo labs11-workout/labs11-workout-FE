@@ -6,13 +6,13 @@ import {
 	Input,
 	InputGroup,
 	InputGroupText,
-	Form,
-	Button
+	Form
 } from "reactstrap";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import dateFns from "date-fns";
 import { Redirect } from "react-router-dom";
+import * as s from "./styles";
 
 const getSchedules = gql`
 	{
@@ -160,9 +160,9 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 															onChange={e => setName(e.target.value)}
 														/>
 													</InputGroup>
-													<Button style={{ width: "100%" }} color="primary">
+													<s.CreateButton style={{ width: "100%" }} color="primary">
 														{loading ? "Loading..." : "Create Workout"}
-													</Button>
+													</s.CreateButton>
 												</Form>
 											)}
 										</>

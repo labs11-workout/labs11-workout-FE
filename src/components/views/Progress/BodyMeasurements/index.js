@@ -7,7 +7,6 @@ import IntialBodyMeasurement from "./InitialBodyMeasurement"
 
 
 const BodyMeasurements = ({ measurements }) => {
-	console.log(measurements.length)
 		if ((measurements.length) === 1){
 				
 				return(
@@ -29,10 +28,11 @@ const BodyMeasurements = ({ measurements }) => {
 					</s.Measurements>
 				)
 	
-			}   
+			}  
 			else {
 				return(
 				<s.Measurements>
+				<h3>Body Measurements</h3>
 				<p>You have no Body Measurements recorded. Try Adding One!</p>
 				<AddBodyMeasurement/>
 				</s.Measurements>

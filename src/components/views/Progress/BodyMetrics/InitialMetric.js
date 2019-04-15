@@ -1,6 +1,6 @@
 import React from "react";
 import * as s from "../styles.js";
-import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
+import { CardBody} from "reactstrap";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import EditBodyMetric from "./EditBodyMetric";

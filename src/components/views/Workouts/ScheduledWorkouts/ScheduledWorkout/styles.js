@@ -57,11 +57,13 @@ export const SettingButton = styled(DropdownToggle)`
 	position: absolute;
 	right: 12px;
 	top: -36px;
+	
 	&.exercise {
 		top: -8px;
 	}
 	&& {
 		padding: 6px;
+		background: ${props => props.theme.secondary};
 	}
 `;
 
@@ -91,6 +93,7 @@ export const UpdateWorkout = styled.div`
 		width: 100%;
 		margin: 4px auto;
 		box-shadow: 0px 1px 2px black;
+		background: ${props => props.theme.secondary};
 	}
 `;
 

@@ -30,7 +30,7 @@ export const Menu = styled.div`
 
 export const MenuLink = styled(NavLink)`
 	width: 100%;
-	background: #ccc;
+	background: rgba(0, 0, 0, 0.025);
 	color: black;
 	padding: 4px;
 	border-radius: 4px;
@@ -42,11 +42,11 @@ export const MenuLink = styled(NavLink)`
 	}
 	&:hover {
 		text-decoration: none;
-		background: #1a8fff;
+		background: ${props => props.theme.secondaryLight};
 		color: white;
 	}
 	&.active {
-		background: #1a8fff;
+		background: ${props => props.theme.secondary};
 		color: white;
 	}
 	@media (max-width: 960px) {

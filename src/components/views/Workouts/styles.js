@@ -6,6 +6,7 @@ export const Container = styled.div`
 	width: 100%;
 	display: flex;
 	@media (max-width: 960px) {
+		margin-top: 0;
 		flex-wrap: wrap;
 		h3 {
 			display: none;

@@ -75,7 +75,7 @@ const AddBodyMeasurement = () => {
 		});
 	};
 	return (
-		<s.Container>
+		<s.AddContainer>
 			<s.AddButton onClick={Toggle}>Add Body Measurement</s.AddButton>
 
 			<Mutation
@@ -182,7 +182,7 @@ const AddBodyMeasurement = () => {
 					</Modal>
 				)}
 			</Mutation>
-		</s.Container>
+		</s.AddContainer>
 	);
 };
 

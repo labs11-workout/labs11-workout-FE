@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 const Logout = props => {
 	useEffect(() => {
 		localStorage.removeItem("token");
-		props.history.push("/");
+		window.href = "/";
 	});
 	return <p>Redirecting you to home page...</p>;
 };

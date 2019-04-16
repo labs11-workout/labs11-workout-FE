@@ -16,7 +16,6 @@ const Routes = props => {
 		<>
 			{props.location.pathname === "/" ? (
 				<div style={{ paddingBottom: "62px" }}>
-					<Route exact path="/" component={Landing} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/logout" component={Logout} />
 					<Route path="/schedule" component={Schedule} />
@@ -30,7 +29,6 @@ const Routes = props => {
 				<>
 					<Navigation />
 					<div style={{ paddingBottom: "62px" }}>
-						<Route exact path="/" component={Landing} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/logout" component={Logout} />
 						<Route path="/schedule" component={Schedule} />

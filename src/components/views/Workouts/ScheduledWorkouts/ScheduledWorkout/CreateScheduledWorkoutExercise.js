@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import * as s from "./styles";
 import { numberOnlyInput } from "../../../../../utils/numberInputValidation";
 import {
-	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,

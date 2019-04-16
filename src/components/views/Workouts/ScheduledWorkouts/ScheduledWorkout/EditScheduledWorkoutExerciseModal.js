@@ -5,7 +5,6 @@ import { withTheme } from "styled-components";
 import { numberOnlyInput } from "../../../../../utils/numberInputValidation";
 import * as s from "./styles";
 import {
-	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,

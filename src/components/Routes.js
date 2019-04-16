@@ -7,7 +7,6 @@ import Schedule from "./views/Schedule";
 import Settings from "./views/Payment/settings";
 import Workouts from "./views/Workouts";
 import Progress from "./views/Progress";
-import Notes from "./views/Notes";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 

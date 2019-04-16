@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Container = styled.div`
+	margin-top: 2rem;
 	width: 100%;
 	display: flex;
 	@media (max-width: 960px) {
+		margin-top: 0;
 		flex-wrap: wrap;
 		h3 {
 			display: none;
@@ -16,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Menu = styled.div`
-	width: 20%;
+	width: 15%;
 	padding: 12px;
 	display: flex;
 	flex-direction: column;

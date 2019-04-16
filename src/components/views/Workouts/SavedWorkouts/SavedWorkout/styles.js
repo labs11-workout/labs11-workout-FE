@@ -106,6 +106,12 @@ export const DeleteButton = styled(Button)`
 	&& {
 		margin: 8px;
 		background: ${props => props.theme.primary};
+		&:hover {
+		background: ${props => props.theme.primaryDark};
+		}
+		&:active{
+		background: ${props => props.theme.primaryDark};
+		}
 	}
 `;
 

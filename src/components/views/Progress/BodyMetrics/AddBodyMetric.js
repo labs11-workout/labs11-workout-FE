@@ -50,9 +50,7 @@ const AddBodyMetric = ({metric}) => {
 	};
 	return (
 		<s.Container>
-			<s.AddButton onClick={Toggle} color="primary">
-				Add Body Metric
-			</s.AddButton>
+			<s.AddButton onClick={Toggle}>Add Body Metric</s.AddButton>
 
 			<Mutation
 				mutation={addBodyMetric}

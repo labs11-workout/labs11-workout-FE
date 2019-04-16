@@ -100,21 +100,25 @@ const auth = new Auth0Lock(
 				scope: "openid profile email"
 			}
 		},
+		theme: {
+			logo: "https://i.imgur.com/5M432x1.png",
+			primaryColor: "#DB762E"
+		},
+		languageDictionary: {
+			title: "Welcome to CleanLift"
+		},
 		autoclose: true
 	}
 );
 
 //Listening for authenticated event
 auth.on("authenticated", function(authResult) {
-	console.log(authResult);
 	//grabbing token from authResult to authenticate user and save to local storage for session
 	auth.getUserInfo(authResult.accessToken, function(error, profile, idToken) {
 		if (error) {
 			console.log("cannot get user info");
 			return;
 		}
-		console.log(profile);
-		console.log(authResult.idToken);
 		//we only need to store the token to authenticate our users.
 		localStorage.setItem("token", authResult.idToken);
 		let d = dateFns.format(new Date(), "MM-DD-YYYY");

@@ -6,6 +6,7 @@ import ScheduledSession from "../ScheduledSession";
 import gql from "graphql-tag";
 import { toast } from "react-toastify";
 import { Mutation } from "react-apollo";
+import { withTheme } from "styled-components";
 
 import {
 	Modal,
@@ -14,8 +15,7 @@ import {
 	ModalFooter,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Button
+	InputGroupText
 } from "reactstrap";
 
 const addSchedule = gql`
@@ -70,7 +70,8 @@ const CalendarDay = ({
 	externalToggle,
 	externalToggled,
 	history,
-	match
+	match,
+	theme
 }) => {
 	const [timeInput, setTimeInput] = useState("12:00");
 	const [scheduleFormError, setScheduleFormError] = useState(null);
@@ -159,8 +160,7 @@ const CalendarDay = ({
 										}
 										return (
 											<>
-												<Button
-													color="primary"
+												<s.SecondaryButton
 													onClick={() => {
 														const scheduleTime = createDate(timeInput);
 														if (scheduleTime !== "Invalid Date") {
@@ -171,11 +171,14 @@ const CalendarDay = ({
 													}}
 												>
 													{loading ? "Loading..." : "Add Schedule"}
-												</Button>
+												</s.SecondaryButton>
 											</>
 										);
 									}}
 								</Mutation>
+								<s.HelperText>
+									Time Format: <i>4:30 PM</i>, or <i>16:30</i>
+								</s.HelperText>
 							</s.AddSchedule>
 							{scheduleFormError && (
 								<s.AlertBox
@@ -218,4 +221,4 @@ const CalendarDay = ({
 	);
 };
 
-export default withRouter(CalendarDay);
+export default withRouter(withTheme(CalendarDay));

@@ -66,6 +66,18 @@ export const SettingsButton = styled(DropdownToggle)`
 	}
 `;
 
+export const SecondaryButton = styled(Button)`
+	&& {
+		background: ${props => props.theme.secondary};
+		&:hover {
+			background: ${props => props.theme.secondaryDark};
+		}
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+		}
+	}
+`;
+
 export const CloseButton = styled.span`
 	position: absolute;
 	top: 12px;

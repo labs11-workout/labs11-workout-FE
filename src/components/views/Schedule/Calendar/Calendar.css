@@ -31,16 +31,6 @@
 	--neutral-color: #f3f3f3b7;
 }
 
-/* GENERAL */
-/* div.App {
-	padding-right: 62px;
-} */
-
-div.sc-bZQynM.kongkz {
-	max-width: 90%;
-	padding-right: 62px;
-}
-
 * {
 	box-sizing: border-box;
 }
@@ -53,7 +43,6 @@ body {
 	color: var(--text-color);
 	background: var(--bg-color);
 	position: relative;
-
 }
 
 header {
@@ -80,9 +69,6 @@ main {
 	margin: 0 auto;
 	margin-top: 5em;
 	max-width: 100%;
-
-
-
 }
 
 /* GRID */
@@ -119,7 +105,6 @@ main {
 .col-end {
 	justify-content: flex-end;
 	text-align: right;
-
 }
 
 /* Calendar */
@@ -130,20 +115,15 @@ main {
 	width: 100%;
 	background: var(--neutral-color);
 	border: 1px solid var(--border-color);
-	margin: 40px;
+	margin: 40px auto;
 	border-radius: 4px;
 	box-shadow: 0px 0px 1px black;
-
+	margin-top: 62px;
 }
 
 @media (max-width: 600px) {
-	div.sc-bZQynM.kongkz {
-		padding-right: 0;
-	}
-
 	.calendar {
 		display: none;
-
 	}
 }
 
@@ -185,7 +165,6 @@ main {
 
 .calendar .body .cell {
 	position: relative;
-	height: 5em;
 	border-right: 1px solid var(--border-color);
 	overflow: hidden;
 	cursor: pointer;
@@ -193,6 +172,11 @@ main {
 	transition: 0.25s ease-out;
 	padding: 4px;
 	padding-top: 18px;
+	height: calc(100vh / 8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 65.5px;
 }
 
 .calendar .body .cell:hover {
@@ -239,6 +223,9 @@ main {
 
 .calendar .body .row {
 	border-bottom: 1px solid var(--border-color);
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
 }
 
 .calendar .body .row:last-child {
@@ -277,6 +264,7 @@ main {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 }
 
 .calendar .body .cell .content .schedule {

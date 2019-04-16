@@ -88,7 +88,6 @@ const SavedWorkouts = ({ savedWorkouts, history }) => {
 								{(addWorkout, { l = loading }) => {
 									return (
 										<s.CreateButton
-											color="primary"
 											onClick={() =>
 												addWorkout({ variables: { name: "New Workout" } })
 											}

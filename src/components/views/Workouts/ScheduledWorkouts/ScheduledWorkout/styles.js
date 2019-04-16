@@ -77,9 +77,9 @@ export const DropdownItemDanger = styled(DropdownItem)`
 	&& {
 		transition: 0.4s all;
 		color: white;
-		background: #dc3545;
+		background: ${props => props.theme.primary};
 		&:hover {
-			background: #ba3545;
+			background: ${props => props.theme.primaryLight};
 			color: white;
 		}
 	}
@@ -88,6 +88,13 @@ export const DropdownItemDanger = styled(DropdownItem)`
 export const DeleteButton = styled(Button)`
 	&& {
 		margin: 8px;
+		background: ${props => props.theme.primary};
+		&:hover {
+		background: ${props => props.theme.primaryDark};
+		}
+		&:active{
+		background: ${props => props.theme.primaryDark};
+		}
 	}
 `;
 

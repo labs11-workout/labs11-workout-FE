@@ -36,7 +36,7 @@ export const Measurement = styled.div`
 
 export const DeleteButton = styled.div`
 	position: absolute;
-	top: 5%;
+	top: 3%;
 	right: 2%;
 	margin: 6px;
 	color: ${props => props.theme.primary};

@@ -15,8 +15,7 @@ import {
 	ModalFooter,
 	InputGroup,
 	Input,
-	InputGroupText,
-	Button
+	InputGroupText
 } from "reactstrap";
 
 const addSchedule = gql`
@@ -177,6 +176,9 @@ const CalendarDay = ({
 										);
 									}}
 								</Mutation>
+								<s.HelperText>
+									Time Format: <i>4:30 PM</i>, or <i>16:30</i>
+								</s.HelperText>
 							</s.AddSchedule>
 							{scheduleFormError && (
 								<s.AlertBox

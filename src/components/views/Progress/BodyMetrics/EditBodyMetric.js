@@ -48,9 +48,9 @@ const editBodyMetric = gql`
 
 const EditBodyMetric = ({ metric }) => {
 	const [toggle, setState] = useState(false);
-	const [height, setHeight] = useState(0);
-	const [weight, setWeight] = useState(0);
-	const [bodyfat, setBodyFat] = useState(0);
+	const [height, setHeight] = useState(metric.height);
+	const [weight, setWeight] = useState(metric.weight);
+	const [bodyfat, setBodyFat] = useState(metric.bodyfat);
 
 	const Toggle = () => {
 		setState(!toggle);

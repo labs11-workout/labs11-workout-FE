@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, withRouter } from "react-router-dom";
 import Callback from "./callback.js";
-import Landing from "./views/Landing";
 import Login from "./Login";
 import Logout from "./Logout";
 import Schedule from "./views/Schedule";

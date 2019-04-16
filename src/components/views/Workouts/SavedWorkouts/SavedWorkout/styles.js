@@ -90,7 +90,7 @@ export const DropdownItemDanger = styled(DropdownItem)`
 
 export const CreateButton = styled(Button)`
 	&& {
-		box-shadow: 1px 1px 1px 1px;
+		box-shadow: 1px 1px 1px 1px ${props => props.theme.secondaryDark};
 		background: ${props => props.theme.secondary};
 		border: none;
 		&:hover {

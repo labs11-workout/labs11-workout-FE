@@ -35,7 +35,7 @@ const addBodyMetric = gql`
 	}
 `;
 
-const AddBodyMetric = () => {
+const AddBodyMetric = ({metric}) => {
 	const [toggle, setState] = useState(false);
 	const [height, setHeight] = useState(0);
 	const [weight, setWeight] = useState(0);

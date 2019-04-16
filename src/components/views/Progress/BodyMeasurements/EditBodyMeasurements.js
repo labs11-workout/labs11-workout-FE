@@ -61,12 +61,12 @@ const editBodyMeasurement = gql`
 
 const EditBodyMeasurement = ({ measurement }) => {
 	const [toggle, setState] = useState(false);
-	const [hips, setHips] = useState(0);
-	const [waist, setWaist] = useState(0);
-	const [leftArm, setLeftArm] = useState(0);
-	const [rightArm, setRightArm] = useState(0);
-	const [leftLeg, setLeftLeg] = useState(0);
-	const [rightLeg, setRightLeg] = useState(0);
+	const [hips, setHips] = useState(measurement.hips);
+	const [waist, setWaist] = useState(measurement.waist);
+	const [leftArm, setLeftArm] = useState(measurement.leftArm);
+	const [rightArm, setRightArm] = useState(measurement.rightArm);
+	const [leftLeg, setLeftLeg] = useState(measurement.leftLeg);
+	const [rightLeg, setRightLeg] = useState(measurement.rightLeg);
 
 	const Toggle = () => {
 		setState(!toggle);

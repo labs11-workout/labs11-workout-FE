@@ -223,6 +223,9 @@ main {
 
 .calendar .body .row {
 	border-bottom: 1px solid var(--border-color);
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
 }
 
 .calendar .body .row:last-child {

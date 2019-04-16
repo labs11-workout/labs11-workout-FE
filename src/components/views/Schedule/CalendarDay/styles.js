@@ -87,5 +87,7 @@ export const HelperText = styled.span`
 	text-align: center;
 	i {
 		opacity: 1;
+		color: black;
+		font-weight: 600;
 	}
 `;

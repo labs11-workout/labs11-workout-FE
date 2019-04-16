@@ -79,3 +79,15 @@ export const SecondaryButton = styled(Button)`
 		}
 	}
 `;
+
+export const HelperText = styled.span`
+	color: black;
+	opacity: 0.5;
+	width: 100%;
+	text-align: center;
+	i {
+		opacity: 1;
+		color: black;
+		font-weight: 600;
+	}
+`;

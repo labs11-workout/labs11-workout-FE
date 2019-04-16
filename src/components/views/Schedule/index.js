@@ -102,7 +102,7 @@ const Schedule = props => {
 										path={`/schedule/:monthDayYear`}
 										render={() => {
 											if (clientWidth > 601) {
-												return <Calendar schedules={data.getSchedules} />;
+												return <div className="calendar-container"><Calendar schedules={data.getSchedules} /></div>;
 											} else {
 												return <MobileCalendar schedules={data.getSchedules} />;
 											}

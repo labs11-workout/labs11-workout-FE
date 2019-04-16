@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { withTheme } from "styled-components";
 import { numberOnlyInput } from "../../../../../utils/numberInputValidation";
 import * as s from "./styles";
 import {
@@ -174,9 +175,9 @@ const EditScheduledWorkoutExerciseModal = ({
 										placeholder="Weight of Lift, Speed of run"
 									/>
 								</InputGroup>
-								<Button type="submit" color="primary">
+								<s.SecondaryButton>
 									{loading ? "Loading" : "Update"}
-								</Button>
+								</s.SecondaryButton>
 							</s.CreationForm>
 						);
 					}}
@@ -186,4 +187,4 @@ const EditScheduledWorkoutExerciseModal = ({
 	);
 };
 
-export default EditScheduledWorkoutExerciseModal;
+export default withTheme(EditScheduledWorkoutExerciseModal);

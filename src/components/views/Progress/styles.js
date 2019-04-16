@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, CardHeader, Form, Button} from "reactstrap";
+import { Card, CardHeader, Form, Button } from "reactstrap";
 
 export const Container = styled.div`
 	width: 100%;
@@ -24,9 +24,8 @@ export const Measurement = styled.div`
 	margin: 10px 0 0 0;
 	@media (max-width: 590px) {
 		width: 80%;
-	};
+	}
 	margin: 6px;
-
 
 	p {
 		padding: 0;
@@ -44,8 +43,8 @@ export const DeleteButton = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
-	i{
-		font-size:1.2rem;
+	i {
+		font-size: 1.2rem;
 	}
 `;
 
@@ -59,8 +58,8 @@ export const UpdateButton = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
-	i{
-		font-size:1.2rem;
+	i {
+		font-size: 1.2rem;
 	}
 `;
 
@@ -102,12 +101,11 @@ export const ProgressCard = styled(Card)`
 `;
 
 export const Head = styled(CardHeader)`
-&&{
-	padding:18px;
-	font-weight: 600;
-}
+	&& {
+		padding: 18px;
+		font-weight: 600;
+	}
 `;
-
 
 export const CreationForm = styled(Form)`
 	&& {
@@ -135,17 +133,15 @@ export const CreationForm = styled(Form)`
 
 export const AddButton = styled(Button)`
 	&& {
-		
 		margin: 10px 0px 0px 0px;
 		background: ${props => props.theme.secondary};
 		border: none;
-		box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark}; 
+		box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark};
 		&:hover {
-		background: ${props => props.theme.secondaryLight};
+			background: ${props => props.theme.secondaryLight};
 		}
-		&:active{
-		background: ${props => props.theme.secondaryDark};
+		&:active {
+			background: ${props => props.theme.secondaryDark};
 		}
 	}
 `;
-

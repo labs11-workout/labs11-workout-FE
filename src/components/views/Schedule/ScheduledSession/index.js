@@ -311,8 +311,7 @@ const ScheduledSession = ({
 																{ loading, error, data }
 															) => {
 																return (
-																	<Button
-																		color="primary"
+																	<s.SecondaryButton
 																		onClick={() =>
 																			addWorkoutFromSavedWorkout({
 																				variables: {
@@ -325,7 +324,7 @@ const ScheduledSession = ({
 																		{loading
 																			? "Loading..."
 																			: "Add Workout Template"}
-																	</Button>
+																	</s.SecondaryButton>
 																);
 															}}
 														</Mutation>
@@ -342,15 +341,14 @@ const ScheduledSession = ({
 								</Query>
 							</s.AddWorkout>
 							<hr />
-							<Button
-								color="primary"
+							<s.SecondaryButton
 								style={{ width: "100%" }}
 								onClick={() =>
 									history.push(`/workouts/scheduled/create/${schedule.id}`)
 								}
 							>
 								Create New Workout
-							</Button>
+							</s.SecondaryButton>
 							<hr />
 							{schedule.workouts.length > 0 ? (
 								<>

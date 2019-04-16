@@ -174,9 +174,9 @@ const EditSavedWorkoutExerciseModal = ({
 										placeholder="Weight of Lift, Speed of run"
 									/>
 								</InputGroup>
-								<Button type="submit" color="primary">
+								<s.SecondaryButton type="submit">
 									{loading ? "Loading" : "Update"}
-								</Button>
+								</s.SecondaryButton>
 							</s.CreationForm>
 						);
 					}}

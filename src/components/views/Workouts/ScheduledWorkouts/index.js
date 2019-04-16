@@ -11,7 +11,6 @@ const ScheduledWorkouts = ({ workouts, match, history, location }) => {
 				<h2>Scheduled Workouts</h2>
 				<hr />
 				<s.CreateButton
-					color="primary"
 					onClick={() => history.push("/workouts/scheduled/create")}
 				>
 					Create Workout

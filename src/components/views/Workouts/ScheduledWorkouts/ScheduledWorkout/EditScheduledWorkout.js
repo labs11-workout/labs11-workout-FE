@@ -59,8 +59,7 @@ const EditScheduledWorkout = ({ workout, history }) => {
 					<Mutation awaitRefetchQueries={true} mutation={editScheduledWorkout}>
 						{(editWorkout, { loading }) => {
 							return (
-								<Button
-									color="primary"
+								<s.SecondaryButton
 									onClick={() =>
 										editWorkout({
 											variables: { id: workout.id, name: workoutName }
@@ -68,21 +67,20 @@ const EditScheduledWorkout = ({ workout, history }) => {
 									}
 								>
 									{loading ? "Loading" : "Update Workout Name"}
-								</Button>
+								</s.SecondaryButton>
 							);
 						}}
 					</Mutation>
 				</s.UpdateWorkout>
 				<s.ExercisesHeader>
 					<h5 style={{ textAlign: "left", marginTop: "6px" }}>Exercises</h5>
-					<Button
-						color="primary"
+					<s.SecondaryButton
 						onClick={() =>
 							history.push(`/workouts/scheduled/${workout.id}/exercises/c/new`)
 						}
 					>
 						<i className="fas fa-plus" />
-					</Button>
+					</s.SecondaryButton>
 					<hr />
 				</s.ExercisesHeader>
 				{workout.exercises.map((e, i) => {

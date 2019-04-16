@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import * as s from "./styles";
 import dateFns from "date-fns";
 import {
-	Button,
 	Modal,
 	ModalHeader,
 	ModalBody,

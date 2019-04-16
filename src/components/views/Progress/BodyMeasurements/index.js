@@ -11,7 +11,8 @@ const BodyMeasurements = ({ measurements }) => {
 				
 				return(
 				<s.Measurements>
-				<h3>Body Measurements</h3>
+				<h2>Body Measurements</h2>
+				<hr />
 				<AddBodyMeasurement/>
 				<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]}/>
 				</s.Measurements>
@@ -20,7 +21,8 @@ const BodyMeasurements = ({ measurements }) => {
 			else if(measurements.length > 0){
 				return(
 					<s.Measurements>
-						<h3>Body Measurements</h3>
+						<h2>Body Measurements</h2>
+						<hr />
 						<AddBodyMeasurement/>
 						<IntialBodyMeasurement key={measurements.id} measurement={measurements[0]} />
 						<BodyMeasurement key={measurements.id} measurement={measurements[measurements.length-1]} />
@@ -32,7 +34,8 @@ const BodyMeasurements = ({ measurements }) => {
 			else {
 				return(
 				<s.Measurements>
-				<h3>Body Measurements</h3>
+				<h2>Body Measurements</h2>
+				<hr />
 				<p>You have no Body Measurements recorded. Try Adding One!</p>
 				<AddBodyMeasurement/>
 				</s.Measurements>

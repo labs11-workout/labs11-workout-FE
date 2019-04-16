@@ -22,7 +22,7 @@ const Routes = props => {
 					<Route path="/callback" component={Callback} />
 					<Route path="/workouts" component={Workouts} />
 					<Route path="/settings" component={Settings} />
-					<Route exact path="/progress" component={Progress} />
+					<Route path="/progress" component={Progress} />
 					<Route path="/notes" component={Notes} />
 				</div>
 			) : (
@@ -35,7 +35,7 @@ const Routes = props => {
 						<Route path="/callback" component={Callback} />
 						<Route path="/workouts" component={Workouts} />
 						<Route path="/settings" component={Settings} />
-						<Route exact path="/progress" component={Progress} />
+						<Route path="/progress" component={Progress} />
 						<Route path="/notes" component={Notes} />
 					</div>
 					<Footer />

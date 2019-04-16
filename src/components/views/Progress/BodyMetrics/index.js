@@ -9,7 +9,8 @@ const BodyMetrics = ({ metrics }) => {
 			if(metrics.length === 1){
 				return(
 				<s.Measurements>
-					<h3>Body Metrics</h3>
+					<h2>Body Metrics</h2>
+					<hr />
 					<AddBodyMetric />
 					<InitialBodyMetric key={metrics[0].id} metric={metrics[0]} />
 				</s.Measurements>
@@ -18,7 +19,8 @@ const BodyMetrics = ({ metrics }) => {
 			else if (metrics.length > 0) {
 			return(
 				<s.Measurements>
-					<h3>Body Metrics</h3>
+					<h2>Body Metrics</h2>
+					<hr />
 					<AddBodyMetric />
 					<InitialBodyMetric key={metrics[0].id} metric={metrics[0]} />
 					<BodyMetric
@@ -31,7 +33,8 @@ const BodyMetrics = ({ metrics }) => {
 			} else{
 				return(
 				<s.Measurements>
-					<h3>Body Metrics</h3>
+					<h2>Body Metrics</h2>
+					<hr />
 					<AddBodyMetric />
 					<span>You have no Body Metrics recorded. Try Adding One!</span>
 				</s.Measurements>

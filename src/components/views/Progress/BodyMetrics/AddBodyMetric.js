@@ -49,7 +49,7 @@ const AddBodyMetric = ({metric}) => {
 		addBodyMetric({ variables: { height, bodyfat, weight } });
 	};
 	return (
-		<s.Container>
+		<s.AddContainer>
 			<s.AddButton onClick={Toggle}>Add Body Metric</s.AddButton>
 
 			<Mutation
@@ -123,7 +123,7 @@ const AddBodyMetric = ({metric}) => {
 					</Modal>
 				)}
 			</Mutation>
-		</s.Container>
+		</s.AddContainer>
 	);
 };
 

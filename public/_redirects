@@ -1,5 +1,5 @@
 /     /landingpage/index.html   200
-/img/*     /landingpage/img/   200
-/css/*     /landingpage/css/   200
-/js/*     /landingpage/js/   200
+/img/*     /landingpage/img/:splat   200
+/css/*     /landingpage/css/:splat    200
+/js/*     /landingpage/js/:splat    200
 /*    /index.html   200

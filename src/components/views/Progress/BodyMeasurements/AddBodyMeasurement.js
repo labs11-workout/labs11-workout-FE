@@ -67,7 +67,6 @@ const AddBodyMeasurement = () => {
 
 	const Toggle = () => {
 		setState(!toggle);
-		console.log(toggle);
 	};
 	const SubmitForm = (e, addBodyMeasurement) => {
 		e.preventDefault();
@@ -77,9 +76,7 @@ const AddBodyMeasurement = () => {
 	};
 	return (
 		<s.Container>
-			<s.AddButton onClick={Toggle} color="primary">
-				Add Body Measurement
-			</s.AddButton>
+			<s.AddButton onClick={Toggle}>Add Body Measurement</s.AddButton>
 
 			<Mutation
 				mutation={addBodyMeasurement}

@@ -144,7 +144,7 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 					<h4>{workout.name}</h4>
 
 					<Dropdown isOpen={settings} toggle={() => toggleSettings(!settings)}>
-						<s.SettingButton color="primary">
+						<s.SettingButton>
 							<i className="fas fa-cog" />
 						</s.SettingButton>
 						<DropdownMenu>
@@ -282,10 +282,7 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 						);
 					}}
 				</Mutation>
-				<s.DeleteButton
-					color="primary"
-					onClick={() => toggleDeleteModal(!deleteModalOpen)}
-				>
+				<s.DeleteButton onClick={() => toggleDeleteModal(!deleteModalOpen)}>
 					Cancel
 				</s.DeleteButton>
 			</Modal>

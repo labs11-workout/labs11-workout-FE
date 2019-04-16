@@ -11,7 +11,7 @@ import {
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import dateFns from "date-fns";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import * as s from "./styles";
 
 const getSchedules = gql`
@@ -101,7 +101,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 									if (a.time < b.time) return 1;
 									return 0;
 								});
-							if (!preset) {
+							if (!preset && schedules.length > 0) {
 								setScheduleId(schedules[0].id);
 							}
 						}
@@ -123,7 +123,17 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 									return (
 										<>
 											{schedules.length < 1 ? (
-												"You don't have any Scheduled Workout Times to make a Workout for. Try creating one on the calendar!"
+												<>
+													<p style={{ textAlign: "center" }}>
+														You don't have any Scheduled Workout Times to make a
+														Workout for.
+													</p>
+													<p style={{ textAlign: "center" }}>
+														<Link to="/schedule">
+															Try creating one on the calendar!
+														</Link>
+													</p>
+												</>
 											) : (
 												<Form
 													onSubmit={e => {
@@ -138,7 +148,6 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 															type="select"
 															value={scheduleId}
 															onChange={e => {
-																console.log(e.target.value);
 																setScheduleId(e.target.value);
 															}}
 														>
@@ -160,7 +169,7 @@ const CreateScheduledWorkoutModal = ({ history, match, location, preset }) => {
 															onChange={e => setName(e.target.value)}
 														/>
 													</InputGroup>
-													<s.CreateButton style={{ width: "100%" }} color="primary">
+													<s.CreateButton style={{ width: "100%" }}>
 														{loading ? "Loading..." : "Create Workout"}
 													</s.CreateButton>
 												</Form>

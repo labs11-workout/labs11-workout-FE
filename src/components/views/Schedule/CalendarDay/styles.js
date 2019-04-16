@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Alert } from "reactstrap";
+import { Alert, Button } from "reactstrap";
 
 export const Container = styled.div`
 	position: relative;
@@ -65,5 +65,17 @@ export const DaySchedule = styled.div`
 	&:hover {
 		background: ${props => props.theme.primaryDark};
 		cursor: pointer;
+	}
+`;
+
+export const SecondaryButton = styled(Button)`
+	&& {
+		background: ${props => props.theme.secondary};
+		&:hover {
+			background: ${props => props.theme.secondaryDark};
+		}
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+		}
 	}
 `;

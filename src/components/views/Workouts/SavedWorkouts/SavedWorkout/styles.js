@@ -64,11 +64,14 @@ export const SettingButton = styled(DropdownToggle)`
 		padding: 6px;
 		background: ${props => props.theme.secondary};
 		border: none;
+		color: white;
 		&:hover {
-		background: ${props => props.theme.secondaryLight};
+			background: ${props => props.theme.secondaryLight};
+			color: white;
 		}
-		&:active{
-		background: ${props => props.theme.secondaryDark};
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+			color: white;
 		}
 	}
 `;
@@ -77,28 +80,26 @@ export const DropdownItemDanger = styled(DropdownItem)`
 	&& {
 		transition: 0.4s all;
 		color: white;
-		background: ${props => props.theme.primary};
+		background: #dc3545;
 		&:hover {
-			background: ${props => props.theme.primaryLight};
+			background: #ba3545;
 			color: white;
 		}
 	}
 `;
 
 export const CreateButton = styled(Button)`
-
 	&& {
 		box-shadow: 1px 1px 1px 1px;
 		background: ${props => props.theme.secondary};
 		border: none;
 		&:hover {
-		background: ${props => props.theme.secondaryLight};
+			background: ${props => props.theme.secondaryLight};
 		}
-		&:active{
-		background: ${props => props.theme.secondaryDark};
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+		}
 	}
-	}
-
 `;
 
 export const DeleteButton = styled(Button)`
@@ -143,4 +144,17 @@ export const CreationForm = styled(Form)`
 	}
 `;
 
-
+export const SecondaryButton = styled(Button)`
+	&& {
+		background: ${props => props.theme.secondary};
+		border: none;
+		color: white;
+		&:hover {
+			background: ${props => props.theme.secondaryLight};
+			color: white;
+		}
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+		}
+	}
+`;

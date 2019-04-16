@@ -22,6 +22,19 @@ export const WorkoutCard = styled(Card)`
 	}
 `;
 
+export const SecondaryButton = styled(Button)`
+	&& {
+		background: ${props => props.theme.secondary};
+		color: white;
+		&:hover {
+			background: ${props => props.theme.secondaryDark};
+		}
+		&:active {
+			background: ${props => props.theme.secondaryDark};
+		}
+	}
+`;
+
 export const NestedCard = styled(Card)`
 	&& {
 		width: 100%;
@@ -64,11 +77,13 @@ export const SettingButton = styled(DropdownToggle)`
 		padding: 6px;
 		background: ${props => props.theme.secondary};
 		border: none;
+		color: white;
 		&:hover {
-		background: ${props => props.theme.secondaryLight};
+			background: ${props => props.theme.secondaryLight};
+			color: white;
 		}
-		&:active{
-		background: ${props => props.theme.secondaryDark};
+		&:active {
+			background: ${props => props.theme.secondaryDark};
 		}
 	}
 `;

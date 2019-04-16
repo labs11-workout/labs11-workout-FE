@@ -4,9 +4,9 @@ import { withRouter } from "react-router-dom";
 const Logout = props => {
 	useEffect(() => {
 		localStorage.removeItem("token");
-		window.href = "/";
+		window.location = "/";
 	});
-	return <p>Redirecting you to home page...</p>;
+	return <p>Logging you out...</p>;
 };
 
 export default withRouter(Logout);

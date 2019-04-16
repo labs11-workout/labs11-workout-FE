@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
 import Callback from "./callback.js";
 import Login from "./Login";
@@ -12,6 +12,20 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 
 const Routes = props => {
+	const validPaths = [
+		"login",
+		"logout",
+		"schedule",
+		"callback",
+		"workouts",
+		"settings",
+		"progress"
+	];
+	useEffect(() => {
+		if (!validPaths.find(e => e === props.location.pathname.split("/")[1])) {
+			props.history.push("/schedule");
+		}
+	}, [props.location.pathname]);
 	return (
 		<>
 			{props.location.pathname === "/" ? (
@@ -23,7 +37,7 @@ const Routes = props => {
 					<Route path="/workouts" component={Workouts} />
 					<Route path="/settings" component={Settings} />
 					<Route exact path="/progress" component={Progress} />
-					<Route path="/notes" component={Notes} />
+					{/* <Route path="/notes" component={Notes} /> */}
 				</div>
 			) : (
 				<>
@@ -36,7 +50,7 @@ const Routes = props => {
 						<Route path="/workouts" component={Workouts} />
 						<Route path="/settings" component={Settings} />
 						<Route exact path="/progress" component={Progress} />
-						<Route path="/notes" component={Notes} />
+						{/* <Route path="/notes" component={Notes} /> */}
 					</div>
 					<Footer />
 				</>

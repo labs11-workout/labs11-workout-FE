@@ -11,19 +11,19 @@ import "./css/owl.carousel.css";
 import "./css/swiper.min.css";
 import "./css/main.css";
 import "./css/responsive.css";
-import "./js/vendor/jquery-1.12.4.min.js";
-import "./js/vendor/jquery.ajaxchimp.min.js";
-import "./js/vendor/jquery.slicknav.min.js";
-import "./js/vendor/modernizr-2.8.3-respond-1.4.2.min.js";
-import "./js/vendor/bootstrap.min.js";
-import "./js/vendor/modernizr-2.8.3-respond-1.4.2.min.js";
-import "./js/vendor/owl.carousel.min.js";
-import "./js/vendor/smooth-scroll.min.js";
-import "./js/vendor/swiper.min.js";
-import "./js/vendor/tether.min.js";
-import "./js/vendor/venobox.min.js";
-import "./js/vendor/wow.min.js";
-import "./js/main.js";
+// import "./js/vendor/jquery-1.12.4.min.js";
+// import "./js/vendor/jquery.ajaxchimp.min.js";
+// import "./js/vendor/jquery.slicknav.min.js";
+// import "./js/vendor/modernizr-2.8.3-respond-1.4.2.min.js";
+// import "./js/vendor/bootstrap.min.js";
+// import "./js/vendor/modernizr-2.8.3-respond-1.4.2.min.js";
+// import "./js/vendor/owl.carousel.min.js";
+// import "./js/vendor/smooth-scroll.min.js";
+// import "./js/vendor/swiper.min.js";
+// import "./js/vendor/tether.min.js";
+// import "./js/vendor/venobox.min.js";
+// import "./js/vendor/wow.min.js";
+// import "./js/main.js";
 
 const Landing = props => {
 	useEffect(() => {

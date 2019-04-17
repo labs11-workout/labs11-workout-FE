@@ -698,6 +698,7 @@ ul.nav > li > a.active {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	font-weight: 700;
+	padding: 4px;
 }
 .feature-content p {
 	font-size: 13px;

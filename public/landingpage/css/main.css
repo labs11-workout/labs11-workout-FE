@@ -1006,7 +1006,7 @@ ul.nav > li > a.active {
 /* ==========================================================================
    Pricing Section
    ========================================================================== */
-.pricing-section {
+.pricing-section .container {
 }
 .pricing-box {
 	background: linear-gradient(to top, var(--main-color) 0%, #ffb199 100%);

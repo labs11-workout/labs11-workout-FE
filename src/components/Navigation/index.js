@@ -10,7 +10,7 @@ const Navigation = props => {
 	return (
 		<s.Container>
 			{!localStorage.getItem("token") ? (
-				<h1>Welcome to CleanLift!</h1>
+				<h1 />
 			) : (
 				<s.NavToggle>
 					{navOpen ? (

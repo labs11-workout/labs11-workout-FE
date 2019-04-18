@@ -48,7 +48,7 @@ export const Links = styled.div`
 		position: absolute;
 		margin: 0;
 		padding: 0;
-		bottom: -186px;
+		bottom: -188px;
 		background: ${props => props.theme.primary};
 		box-shadow: 0px 1px 1px 1px ${props => props.theme.primaryDark};
 		&.open {

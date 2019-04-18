@@ -29,19 +29,35 @@ const Navigation = props => {
 					{/* Show Logout button and other Auth Required routes if token is present, otherwise show Login button. */}
 					{localStorage.getItem("token") ? (
 						<>
-							<s.Link to={`/schedule`} activeClassName="active">
+							<s.Link
+								to={`/schedule`}
+								onClick={() => toggleNav(false)}
+								activeClassName="active"
+							>
 								Calendar
 							</s.Link>
-							<s.Link to="/workouts" activeClassName="active">
+							<s.Link
+								to="/workouts"
+								onClick={() => toggleNav(false)}
+								activeClassName="active"
+							>
 								Workouts
 							</s.Link>
-							<s.Link to="/progress" activeClassName="active">
+							<s.Link
+								to="/progress"
+								onClick={() => toggleNav(false)}
+								activeClassName="active"
+							>
 								Progress
 							</s.Link>
 							{/* <s.Link to="/notes" activeClassName="active">
 							Notes
 						</s.Link> */}
-							<s.Link to="/settings" activeClassName="active">
+							<s.Link
+								to="/settings"
+								onClick={() => toggleNav(false)}
+								activeClassName="active"
+							>
 								Profile
 							</s.Link>
 							<s.Link to="/logout" className="logout" activeClassName="active">

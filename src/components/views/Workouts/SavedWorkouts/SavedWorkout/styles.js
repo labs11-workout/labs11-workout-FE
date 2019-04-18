@@ -105,6 +105,16 @@ export const CreateButton = styled(Button)`
 export const DeleteButton = styled(Button)`
 	&& {
 		margin: 8px;
+		background: #dc3545;
+		&:hover {
+		background: #ba3545;
+		}
+	}
+`;
+
+export const CancelButton = styled(Button)`
+	&& {
+		margin: 8px;
 		background: ${props => props.theme.primary};
 		&:hover {
 		background: ${props => props.theme.primaryDark};

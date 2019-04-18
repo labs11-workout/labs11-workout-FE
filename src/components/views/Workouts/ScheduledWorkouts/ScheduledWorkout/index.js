@@ -282,9 +282,9 @@ const ScheduledWorkout = ({ workout, history, match, location }) => {
 						);
 					}}
 				</Mutation>
-				<s.DeleteButton onClick={() => toggleDeleteModal(!deleteModalOpen)}>
+				<s.CancelButton onClick={() => toggleDeleteModal(!deleteModalOpen)}>
 					Cancel
-				</s.DeleteButton>
+				</s.CancelButton>
 			</Modal>
 			<Route
 				exact

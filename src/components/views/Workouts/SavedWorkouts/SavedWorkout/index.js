@@ -168,11 +168,11 @@ const SavedWorkout = ({ workout, history, match, location }) => {
 						);
 					}}
 				</Mutation>
-				<s.DeleteButton
+				<s.CancelButton
 					onClick={() => toggleDeleteModal(!deleteModalOpen)}
 				>
 					Cancel
-				</s.DeleteButton>
+				</s.CancelButton>
 			</Modal>
 			<Route
 				exact

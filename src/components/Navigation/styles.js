@@ -5,8 +5,7 @@ import { Button } from "reactstrap";
 export const Container = styled.div`
 	position: relative;
 	background: ${props => props.theme.primary};
-	padding: 4px;
-	box-shadow: 1px 1px 1px 1px ${props => props.theme.primaryDark};
+	box-shadow: 0px 1px 1px 1px ${props => props.theme.primaryDark};
 `;
 
 export const Content = styled.div`
@@ -14,6 +13,7 @@ export const Content = styled.div`
 	justify-content: space-between;
 	max-width: 1140px;
 	margin: 0 auto;
+	position: relative;
 	.logout-link {
 		width: 20%;
 		display: flex;
@@ -44,6 +44,13 @@ export const Links = styled.div`
 		flex-direction: column;
 		display: none;
 		width: 100%;
+		z-index: 5;
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		bottom: -186px;
+		background: ${props => props.theme.primary};
+		box-shadow: 0px 1px 1px 1px ${props => props.theme.primaryDark};
 		&.open {
 			display: flex;
 		}
@@ -57,6 +64,7 @@ export const NavToggle = styled.div`
 	display: none;
 	padding-left: 32px;
 	width: 100%;
+	margin-bottom: 14px;
 	i:hover {
 		cursor: pointer;
 	}
@@ -97,9 +105,9 @@ export const Link = styled(NavLink)`
 		content: "";
 		transition: 0.4s all;
 		@media (max-width: 640px) {
-			left: 33%;
-			max-width: 33%;
-			transition: 1s all;
+			left: 0%;
+			max-width: 100%;
+			transition: 0.4s all;
 			text-align: center;
 		}
 	}
@@ -122,12 +130,15 @@ export const AddButton = styled(Button)`
 		margin: 0 0px 0px 0px;
 		background: ${props => props.theme.secondary};
 		border: none;
-		box-shadow: 1px 1px 0px 1px ${props => props.theme.secondaryDark};
+		box-shadow: 1px 1px 0px 0.5px ${props => props.theme.secondaryDark};
 		&:hover {
 			background: ${props => props.theme.secondaryLight};
 		}
 		&:active {
 			background: ${props => props.theme.secondaryDark};
+		}
+		@media (max-width: 640px) {
+			margin-bottom: 8px;
 		}
 	}
 `;

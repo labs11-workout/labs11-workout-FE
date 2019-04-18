@@ -20,6 +20,7 @@ const addExercise = gql`
 		$duration: Float
 		$name: String!
 		$workoutId: ID!
+		$intensity: Int
 	) {
 		addExercise(
 			sets: $sets
@@ -28,6 +29,7 @@ const addExercise = gql`
 			duration: $duration
 			name: $name
 			workoutId: $workoutId
+			intensity: $intensity
 		) {
 			id
 		}

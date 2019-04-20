@@ -105,10 +105,7 @@ export const DeleteButton = styled(Button)`
 		margin: 8px;
 		background: #dc3545;
 		&:hover {
-		background: ${props => props.theme.primaryDark};
-		}
-		&:active{
-		background: ${props => props.theme.primaryDark};
+		background: #ba3545;
 		}
 	}
 `;
@@ -118,9 +115,6 @@ export const CancelButton = styled(Button)`
 		margin: 8px;
 		background: ${props => props.theme.primary};
 		&:hover {
-		background: ${props => props.theme.primaryDark};
-		}
-		&:active{
 		background: ${props => props.theme.primaryDark};
 		}
 	}

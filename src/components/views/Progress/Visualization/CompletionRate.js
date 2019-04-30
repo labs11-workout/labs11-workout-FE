@@ -16,3 +16,9 @@ const getCompletedSchedules = gql`
 		}
 	}
 `;
+
+const CompletionRate = props => {
+
+}
+
+export default CompletionRate
